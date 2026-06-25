@@ -6,4 +6,3 @@
 *.RData
 _bookdown_files
 .Rprofile
-libs/
