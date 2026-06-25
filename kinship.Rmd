@@ -6,7 +6,7 @@ SNPRelate offers several algorithms for computing a GRM, including the commonly-
 
 ```{r grm}
 library(SeqArray)
-repo_path <- "https://github.com/UW-GAC/SISG_2020/raw/master"
+repo_path <- "https://github.com/smgogarten/GENESIS_workshop_2026/raw/main"
 if (!dir.exists("data")) dir.create("data")
 gdsfile <- "data/1KG_phase3_subset_chr1.gds"
 if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
@@ -41,7 +41,7 @@ gds <- seqOpen(gdsfile)
 # use a subset of 100 samples to make things run faster
 sampfile <- "data/samples_subset100.RData"
 if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
-sample.id <- TopmedPipeline::getobj(sampfile)
+sample.id <- get(load(sampfile))
 
 # LD pruning to get variant set
 library(SNPRelate)
@@ -104,13 +104,13 @@ samp.ord <- match(sample.id, rownames(pcs))
 pcs <- pcs[samp.ord,]
 ```
 
-We need to determine which PCs are ancestry informative. To do this we need population information for the 1000 Genomes samples. This information is stored in an `AnnotatedDataFrame`, which is a data.frame with optional metadata describing the columns. The class is defined in the Biobase package. We load the stored object using the `getobj` function from the TopmedPipeline package.
+We need to determine which PCs are ancestry informative. To do this we need population information for the 1000 Genomes samples. This information is stored in an `AnnotatedDataFrame`, which is a data.frame with optional metadata describing the columns. The class is defined in the Biobase package. We load the stored object.
 
 ```{r annot}
 library(Biobase)
 sampfile <- "data/sample_annotation.RData"
 if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
-annot <- TopmedPipeline::getobj(sampfile)
+annot <- get(load(sampfile))
 annot
 head(pData(annot))
 varMetadata(annot)
@@ -209,9 +209,9 @@ seqClose(gds)
 We can detect pedigree errors and sample identity problems by comparing the pedigree with empirical kinship estimates. We use a function from the GWASTools package, `pedigreePairwiseRelatedness`, to get expected pairwise relationships based on the pedigree.
 
 ```{r pedigree}
-pedfile <- "data/pedigree.RData"
+pedfile <- "data/pedigree.rds"
 if (!file.exists(pedfile)) download.file(file.path(repo_path, pedfile), pedfile)
-ped <- TopmedPipeline::getobj(pedfile)
+ped <- readRDS(pedfile)
 head(ped)
 pw <- GWASTools::pedigreePairwiseRelatedness(ped)
 names(pw)

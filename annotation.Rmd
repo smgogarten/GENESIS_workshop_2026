@@ -8,11 +8,11 @@ In this example, we illustrate defining aggregate units based on known genes.
 First, we load the null mixed model and open the GDS file.
 
 ```{r}
-modfile <- "data/null_mixed_model.RData"
-nullmod <- TopmedPipeline::getobj(modfile)
+modfile <- "data/null_mixed_model.rds"
+nullmod <- readRDS(modfile)
 
-sampfile <- "data/sample_phenotype_annotation.RData"
-annot <- TopmedPipeline::getobj(sampfile)
+sampfile <- "data/sample_phenotype_annotation.rds"
+annot <- readRDS(sampfile)
 
 gdsfile <- "data/1KG_phase3_subset_chr1.gds"
 library(SeqVarTools)

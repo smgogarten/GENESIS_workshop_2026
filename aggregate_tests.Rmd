@@ -6,14 +6,14 @@ Now you can proceed to an assocation testing exercise. You will be using a sligh
 
 As before, the aggregation units are defined in an R dataframe. Each row of the dataframe specifies a variant (chr, pos, ref, alt) and the group identifier (group_id) it is a part of. Mutiple rows with different group identifiers can be specified to assign a variant to different groups (a variant can be assigned to mutiple genes).
 
-Begin by loading the aggregation units using `TopmedPipeline::getobj()`:
+Begin by loading the aggregation units:
 ```{r agg_unit}
 library(dplyr)
-repo_path <- "https://github.com/UW-GAC/SISG_2020/raw/master"
+repo_path <- "https://github.com/smgogarten/GENESIS_workshop_2026/raw/main"
 if (!dir.exists("data")) dir.create("data")
-aggfile <- "data/variants_by_gene.RData"
+aggfile <- "data/variants_by_gene.rds"
 if (!file.exists(aggfile)) download.file(file.path(repo_path, aggfile), aggfile)
-aggunit <- TopmedPipeline::getobj(aggfile)
+aggunit <- readRDS(aggfile)
 names(aggunit)
 head(aggunit)
 
@@ -30,6 +30,7 @@ inner_join(aggunit, mult[2,1:2])
 We can run a burden test or SKAT on each of these units using `assocTestAggregate`. We define a `SeqVarListIterator` object where each list element is an aggregate unit. The constructor expects a `GRangesList`, so we use the TopmedPipeline function `aggregateGRangesList` to quickly convert our single dataframe to the required format. This function can account for multiallelic variants (the same chromosome, position, and ref, but different alt alleles).
 
 ```{r aggVarList}
+#remotes::install_github("UW-GAC/analysis_pipeline/TopmedPipeline")
 library(TopmedPipeline)
 library(SeqVarTools)
 library(GENESIS)
@@ -37,9 +38,9 @@ gdsfile <- "data/1KG_phase3_subset_chr1.gds"
 if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
 gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
 gds <- seqOpen(gdsfile)
-annotfile <- "data/sample_phenotype_pcs.RData"
+annotfile <- "data/sample_phenotype_pcs.rds"
 if (!file.exists(annotfile)) download.file(file.path(repo_path, annotfile), aggfile)
-annot <- getobj(annotfile)
+annot <- readRDS(annotfile)
 seqData <- SeqVarData(gds, sampleData=annot)
     
 # subset to chromosome 1
@@ -56,9 +57,9 @@ As in the previous section, we must load the null model before running the assoc
 
 ```{r assoc_aggregate}
 if (!exists("nullmod")) {
-    nmfile <- "data/null_mixed_model.RData"
+    nmfile <- "data/null_mixed_model.rds"
     if (!file.exists(nmfile)) download.file(file.path(repo_path, nmfile), nmfile)
-    nullmod <- getobj(nmfile)
+    nullmod <- readRDS(nmfile)
 }
 
 assoc <- assocTestAggregate(iterator, nullmod, test="Burden", AF.max=0.1, weight.beta=c(1,1))

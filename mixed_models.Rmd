@@ -8,22 +8,23 @@ The first step in an association test is to fit the null model. In addition to t
 
 ```{r null_model_mm}
 # sample annotation
-repo_path <- "https://github.com/UW-GAC/SISG_2020/raw/master"
+repo_path <- "https://github.com/smgogarten/GENESIS_workshop_2026/raw/main"
 if (!dir.exists("data")) dir.create("data")
-sampfile <- "data/sample_phenotype_annotation.RData"
+sampfile <- "data/sample_phenotype_annotation.rds"
 if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
-annot <- TopmedPipeline::getobj(sampfile)
+annot <- readRDS(sampfile)
 library(Biobase)
 head(pData(annot))
 
 # load the PCs
-pcfile <- "data/pcs.RData"
+pcfile <- "data/pcs.rds"
 if (!file.exists(pcfile)) download.file(file.path(repo_path, pcfile), pcfile)
-pcs <- TopmedPipeline::getobj(pcfile)
+pcs <- readRDS(pcfile)
 pcs <- pcs[,c("sample.id", "PC1", "PC2", "PC3", "PC4", "PC5")]
 head(pcs)
 
 # add PCs to the sample annotation
+library(dplyr)
 dat <- left_join(pData(annot), pcs, by="sample.id")
 pData(annot) <- dat
 save(annot, file="data/sample_phenotype_pcs.RData")
@@ -32,9 +33,9 @@ save(annot, file="data/sample_phenotype_pcs.RData")
 We create a kinship matrix from the output of `pcrelate`. We multiply the kinship values by 2 to get values equivalent to a GRM. This matrix is represented in R as a symmetric matrix object from the Matrix package.
 
 ```{r load_kinship}
-kinfile <- "data/pcrelate_kinship.RData"
+kinfile <- "data/pcrelate_kinship.rds"
 if (!file.exists(kinfile)) download.file(file.path(repo_path, kinfile), kinfile)
-pcrel <- TopmedPipeline::getobj(kinfile)
+pcrel <- readRDS(kinfile)
 library(GENESIS)
 kinship <- pcrelateToMatrix(pcrel, scaleKin=2, verbose=FALSE)
 dim(kinship)
@@ -44,10 +45,11 @@ kinship[1:5,1:5]
 We fit the null model, adding the PCs to the list of covariates, and specifying the kinship as the covariance matrix with the `cov.mat` argument. As before, we use `study` as a grouping variable.
 
 ```{r null_model_fit_mm}
-nullmod <- fitNullModel(annot, outcome="height", 
+keep <- annot$sample.id %in% colnames(kinship)
+nullmod <- fitNullModel(annot[keep,], outcome="height", 
                         covars=c("sex", "age", "study", paste0("PC", 1:5)), 
                         cov.mat=kinship, group.var="study", verbose=FALSE)
-save(nullmod, file="data/null_mixed_model.RData")
+saveRDS(nullmod, file="data/null_mixed_model.rds")
 ```
 
 ## Single-variant tests
