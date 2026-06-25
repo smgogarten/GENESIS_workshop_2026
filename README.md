@@ -1,5 +1,5 @@
-# SISG_2020
-Course materials for SISG Module 17: Computational Pipeline for WGS Data, July 29-31, 2020
+# GENESIS_workshop_2026
+Course materials for Biocondoctor Africa: GENESIS Workshop, July 2026
 
 See the rendered website at
-[https://uw-gac.github.io/SISG_2020](https://uw-gac.github.io/SISG_2020)
+[https://smgogarten.github.io/GENESIS_workshop_2026](https://smgogarten.github.io/GENESIS_workshop_2026)
