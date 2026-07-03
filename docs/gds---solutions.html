@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 GDS - Solutions | GENESIS workshop 2026</title>
   <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 GDS - Solutions | GENESIS workshop 2026" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-06-24" />
+<meta name="date" content="2026-07-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,8 +54,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -143,8 +144,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.1</b> Exploring a GDS file</a></li>
-<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="gds---solutions.html"><a href="gds---solutions.html"><i class="fa fa-check"></i><b>3</b> GDS - Solutions</a></li>
 <li class="chapter" data-level="4" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>4</b> Association tests</a>
@@ -157,11 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="computing-a-grm.html"><a href="computing-a-grm.html"><i class="fa fa-check"></i><b>5</b> Computing a GRM</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king"><i class="fa fa-check"></i><b>5.1</b> KING</a></li>
-<li class="chapter" data-level="5.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>5.2</b> PC-AiR</a></li>
-<li class="chapter" data-level="5.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>5.3</b> PC-Relate</a></li>
-<li class="chapter" data-level="5.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.4</b> Comparison with pedigree</a></li>
-<li class="chapter" data-level="5.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>5.5</b> Exercise</a></li>
+<li class="chapter" data-level="5.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#ld-pruning"><i class="fa fa-check"></i><b>5.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="5.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king-robust"><i class="fa fa-check"></i><b>5.2</b> KING-robust</a></li>
+<li class="chapter" data-level="5.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>5.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="5.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>5.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="5.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="5.6" data-path="computing-a-grm.html"><a href="computing-a-grm.html#advanced-notes"><i class="fa fa-check"></i><b>5.6</b> Advanced Notes</a></li>
+<li class="chapter" data-level="5.7" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>5.7</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>6</b> Mixed models</a>
 <ul>
@@ -202,12 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Set a filter selecting only multi-allelic variants. Inspect their genotypes using the different methods you learned above. Use the <code>alleleDosage</code> method to find dosage for the second (and third, etc.) alternate allele.</li>
 </ol>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="gds---solutions.html#cb52-1" tabindex="-1"></a><span class="fu">seqSetFilter</span>(gds, <span class="at">variant.sel=</span>multi.allelic)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="gds---solutions.html#cb71-1" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">seqOpen</span>(gdsfile)</span>
+<span id="cb71-2"><a href="gds---solutions.html#cb71-2" tabindex="-1"></a><span class="fu">seqSetFilter</span>(gds, <span class="at">variant.sel=</span>multi.allelic)</span></code></pre></div>
 <pre><code>## # of selected variants: 21</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="gds---solutions.html#cb54-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;genotype&quot;</span>)</span>
-<span id="cb54-2"><a href="gds---solutions.html#cb54-2" tabindex="-1"></a><span class="fu">dim</span>(geno)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="gds---solutions.html#cb73-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;genotype&quot;</span>)</span>
+<span id="cb73-2"><a href="gds---solutions.html#cb73-2" tabindex="-1"></a><span class="fu">dim</span>(geno)</span></code></pre></div>
 <pre><code>## [1]    2 1126   21</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="gds---solutions.html#cb56-1" tabindex="-1"></a>geno[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="gds---solutions.html#cb75-1" tabindex="-1"></a>geno[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##       sample
@@ -354,10 +367,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## allele [,1] [,2] [,3] [,4] [,5]
 ##   [1,]    0    0    0    0    0
 ##   [2,]    0    0    0    2    0</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="gds---solutions.html#cb58-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">getGenotype</span>(gds)</span>
-<span id="cb58-2"><a href="gds---solutions.html#cb58-2" tabindex="-1"></a><span class="fu">dim</span>(geno)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="gds---solutions.html#cb77-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">getGenotype</span>(gds)</span>
+<span id="cb77-2"><a href="gds---solutions.html#cb77-2" tabindex="-1"></a><span class="fu">dim</span>(geno)</span></code></pre></div>
 <pre><code>## [1] 1126   21</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="gds---solutions.html#cb60-1" tabindex="-1"></a><span class="fu">head</span>(geno)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="gds---solutions.html#cb79-1" tabindex="-1"></a><span class="fu">head</span>(geno)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    30    69    73    161   162   195   243   253   407   431   434  
 ##   HG00096 &quot;1|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;1|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;1|0&quot; &quot;0|1&quot;
@@ -374,8 +387,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00100 &quot;1|1&quot; &quot;2|0&quot; &quot;0|0&quot; &quot;0|2&quot; &quot;2|2&quot; &quot;2|2&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|2&quot;
 ##   HG00101 &quot;3|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;2|0&quot; &quot;2|2&quot; &quot;2|2&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;1|0&quot; &quot;0|0&quot;
 ##   HG00102 &quot;3|3&quot; &quot;0|2&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;2|2&quot; &quot;1|2&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|1&quot; &quot;0|2&quot;</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="gds---solutions.html#cb62-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">getGenotypeAlleles</span>(gds)</span>
-<span id="cb62-2"><a href="gds---solutions.html#cb62-2" tabindex="-1"></a><span class="fu">head</span>(geno)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="gds---solutions.html#cb81-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">getGenotypeAlleles</span>(gds)</span>
+<span id="cb81-2"><a href="gds---solutions.html#cb81-2" tabindex="-1"></a><span class="fu">head</span>(geno)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    30       69    73    161   162   195   243   253   407   431      
 ##   HG00096 &quot;GT|GTT&quot; &quot;A|A&quot; &quot;G|G&quot; &quot;A|G&quot; &quot;A|A&quot; &quot;A|A&quot; &quot;C|C&quot; &quot;G|G&quot; &quot;T|T&quot; &quot;TAA|TA&quot; 
@@ -400,8 +413,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00100 &quot;CT|CT&quot; &quot;CGTGA|CGTGA&quot; &quot;C|C&quot;     &quot;A|G&quot;
 ##   HG00101 &quot;CT|CT&quot; &quot;CGTGA|CGTGA&quot; &quot;CCATT|C&quot; &quot;A|A&quot;
 ##   HG00102 &quot;CT|CT&quot; &quot;CGTGA|CGTGA&quot; &quot;C|CCATT&quot; &quot;A|G&quot;</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="gds---solutions.html#cb64-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">refDosage</span>(gds)</span>
-<span id="cb64-2"><a href="gds---solutions.html#cb64-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="gds---solutions.html#cb83-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">refDosage</span>(gds)</span>
+<span id="cb83-2"><a href="gds---solutions.html#cb83-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    30 69 73 161 162 195 243 253 407 431 434 610 627 645 689 756 765 814
 ##   HG00096  1  2  2   1   2   2   2   2   2   1   1   0   2   2   1   0   0   2
@@ -418,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00100   2    2    1
 ##   HG00101   2    1    2
 ##   HG00102   2    1    1</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="gds---solutions.html#cb66-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">altDosage</span>(gds)</span>
-<span id="cb66-2"><a href="gds---solutions.html#cb66-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="gds---solutions.html#cb85-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">altDosage</span>(gds)</span>
+<span id="cb85-2"><a href="gds---solutions.html#cb85-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    30 69 73 161 162 195 243 253 407 431 434 610 627 645 689 756 765 814
 ##   HG00096  1  0  0   1   0   0   0   0   0   1   1   2   0   0   1   2   2   0
@@ -436,8 +449,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00100   0    0    1
 ##   HG00101   0    1    0
 ##   HG00102   0    1    1</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="gds---solutions.html#cb68-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">alleleDosage</span>(gds, <span class="at">n=</span><span class="dv">2</span>)</span>
-<span id="cb68-2"><a href="gds---solutions.html#cb68-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="gds---solutions.html#cb87-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">alleleDosage</span>(gds, <span class="at">n=</span><span class="dv">2</span>)</span>
+<span id="cb87-2"><a href="gds---solutions.html#cb87-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    30 69 73 161 162 195 243 253 407 431 434 610 627 645 689 756 765 814
 ##   HG00096  0  0  0   0   0   0   0   0   0   0   0   0   0   0   1   2   2   0
@@ -454,8 +467,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00100   0    0    1
 ##   HG00101   0    0    0
 ##   HG00102   0    0    1</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="gds---solutions.html#cb70-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">alleleDosage</span>(gds, <span class="at">n=</span><span class="dv">3</span>)</span>
-<span id="cb70-2"><a href="gds---solutions.html#cb70-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="gds---solutions.html#cb89-1" tabindex="-1"></a>dos <span class="ot">&lt;-</span> <span class="fu">alleleDosage</span>(gds, <span class="at">n=</span><span class="dv">3</span>)</span>
+<span id="cb89-2"><a href="gds---solutions.html#cb89-2" tabindex="-1"></a><span class="fu">head</span>(dos)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    30 69 73 161 162 195 243 253 407 431 434 610 627 645 689 756 765 814
 ##   HG00096  0  0  0   0   0   0   0   0   0   0   0   2   0   0   0   0   0   0
@@ -475,12 +488,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>Use the <code>hwe</code> function in SeqVarTools to run a Hardy-Weinberg Equilibrium test on each variant. Identify a variant with low p-value and inspect its genotypes. (Note that the HWE test is only valid for biallelic variants, and will return <code>NA</code> for multiallelic variants.)</li>
 </ol>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="gds---solutions.html#cb72-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="gds---solutions.html#cb91-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(gds)</span></code></pre></div>
 <pre><code>## # of selected samples: 1,126
 ## # of selected variants: 1,120</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="gds---solutions.html#cb74-1" tabindex="-1"></a>hwe.res <span class="ot">&lt;-</span> <span class="fu">hwe</span>(gds)</span>
-<span id="cb74-2"><a href="gds---solutions.html#cb74-2" tabindex="-1"></a>lowp <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(hwe.res<span class="sc">$</span>p) <span class="sc">&amp;</span> hwe.res<span class="sc">$</span>p <span class="sc">&lt;</span> <span class="fl">1e-4</span></span>
-<span id="cb74-3"><a href="gds---solutions.html#cb74-3" tabindex="-1"></a><span class="fu">head</span>(hwe.res[lowp,])</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="gds---solutions.html#cb93-1" tabindex="-1"></a>hwe.res <span class="ot">&lt;-</span> <span class="fu">hwe</span>(gds)</span>
+<span id="cb93-2"><a href="gds---solutions.html#cb93-2" tabindex="-1"></a>lowp <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(hwe.res<span class="sc">$</span>p) <span class="sc">&amp;</span> hwe.res<span class="sc">$</span>p <span class="sc">&lt;</span> <span class="fl">1e-4</span></span>
+<span id="cb93-3"><a href="gds---solutions.html#cb93-3" tabindex="-1"></a><span class="fu">head</span>(hwe.res[lowp,])</span></code></pre></div>
 <pre><code>##     variant.id nAA nAa naa     afreq            p         f
 ## 75          75 702 336  88 0.7726465 1.070663e-06 0.1506466
 ## 92          92 632 381 113 0.7304618 3.558878e-06 0.1407120
@@ -488,17 +501,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 105        105  93 272 761 0.2033748 7.851777e-16 0.2544970
 ## 114        114 299 482 345 0.4795737 1.745346e-06 0.1424409
 ## 150        150 471 447 208 0.6167851 8.020208e-08 0.1602251</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="gds---solutions.html#cb76-1" tabindex="-1"></a><span class="fu">seqSetFilter</span>(gds, <span class="at">variant.id=</span><span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="gds---solutions.html#cb95-1" tabindex="-1"></a><span class="fu">seqSetFilter</span>(gds, <span class="at">variant.id=</span><span class="dv">75</span>)</span></code></pre></div>
 <pre><code>## # of selected variants: 1</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="gds---solutions.html#cb78-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">getGenotype</span>(gds))</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="gds---solutions.html#cb97-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">getGenotype</span>(gds))</span></code></pre></div>
 <pre><code>## 
 ## 0|0 0|1 1|0 1|1 
 ## 702 165 171  88</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="gds---solutions.html#cb80-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">refDosage</span>(gds))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="gds---solutions.html#cb99-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">refDosage</span>(gds))</span></code></pre></div>
 <pre><code>## 
 ##   0   1   2 
 ##  88 336 702</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="gds---solutions.html#cb82-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="gds---solutions.html#cb101-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
 
 </div>
             </section>
@@ -521,42 +534,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

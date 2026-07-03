@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Association tests - Solutions | GENESIS workshop 2026</title>
   <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Association tests - Solutions | GENESIS workshop 2026" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-06-24" />
+<meta name="date" content="2026-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,8 +54,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -143,8 +144,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.1</b> Exploring a GDS file</a></li>
-<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.2</b> Exploring a GDS file</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>3</b> Association tests</a>
 <ul>
@@ -202,13 +204,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Logistic regression: <code>fitNullModel</code> can use a binary phenotype as the outcome variable by specifying the argument <code>family=binomial</code>. Use the <code>status</code> column in the sample annotation to fit a null model for simulated case/control status, with <code>sex</code> and <code>Population</code> as covariates. Then run a single-variant test using this model.</li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="association-tests---solutions.html#cb48-1" tabindex="-1"></a>nullmod.status <span class="ot">&lt;-</span> <span class="fu">fitNullModel</span>(annot, <span class="at">outcome=</span><span class="st">&quot;status&quot;</span>, <span class="at">covars=</span><span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;Population&quot;</span>), </span>
-<span id="cb48-2"><a href="association-tests---solutions.html#cb48-2" tabindex="-1"></a>                               <span class="at">family=</span>binomial, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb48-3"><a href="association-tests---solutions.html#cb48-3" tabindex="-1"></a><span class="fu">resetIterator</span>(iterator, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb48-4"><a href="association-tests---solutions.html#cb48-4" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestSingle</span>(iterator, nullmod.status, <span class="at">test=</span><span class="st">&quot;Score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="association-tests---solutions.html#cb52-1" tabindex="-1"></a>nullmod.status <span class="ot">&lt;-</span> <span class="fu">fitNullModel</span>(annot, <span class="at">outcome=</span><span class="st">&quot;status&quot;</span>, <span class="at">covars=</span><span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;Population&quot;</span>), </span>
+<span id="cb52-2"><a href="association-tests---solutions.html#cb52-2" tabindex="-1"></a>                               <span class="at">family=</span>binomial, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb52-3"><a href="association-tests---solutions.html#cb52-3" tabindex="-1"></a><span class="fu">resetIterator</span>(iterator, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb52-4"><a href="association-tests---solutions.html#cb52-4" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestSingle</span>(iterator, nullmod.status, <span class="at">test=</span><span class="st">&quot;Score&quot;</span>)</span></code></pre></div>
 <pre><code>## # of selected samples: 1,126</code></pre>
-<pre><code>## Using 6 CPU cores</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="association-tests---solutions.html#cb51-1" tabindex="-1"></a><span class="fu">head</span>(assoc)</span></code></pre></div>
+<pre><code>## Using 8 CPU cores</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="association-tests---solutions.html#cb55-1" tabindex="-1"></a><span class="fu">head</span>(assoc)</span></code></pre></div>
 <pre><code>##   variant.id chr     pos allele.index n.obs         freq MAC       Score
 ## 1          1   1  970546            1  1126 0.0039964476   9  0.20256722
 ## 2          2   1  985900            1  1126 0.0492895204 111 -2.64169956
@@ -226,25 +228,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>Inverse normal transform: use the function <code>nullModelInvNorm</code> to perform an inverse normal transform on the <code>height</code> variable. Compare these residuals with the residuals from the original null model.</li>
 </ol>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="association-tests---solutions.html#cb53-1" tabindex="-1"></a>nullmod.norm <span class="ot">&lt;-</span> <span class="fu">nullModelInvNorm</span>(nullmod, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb53-2"><a href="association-tests---solutions.html#cb53-2" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="association-tests---solutions.html#cb53-3" tabindex="-1"></a><span class="fu">summary</span>(nullmod<span class="sc">$</span>resid.marginal)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="association-tests---solutions.html#cb57-1" tabindex="-1"></a>nullmod.norm <span class="ot">&lt;-</span> <span class="fu">nullModelInvNorm</span>(nullmod, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb57-2"><a href="association-tests---solutions.html#cb57-2" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="association-tests---solutions.html#cb57-3" tabindex="-1"></a><span class="fu">summary</span>(nullmod<span class="sc">$</span>resid.marginal)</span></code></pre></div>
 <pre><code>## Length  Class   Mode 
 ##      0   NULL   NULL</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="association-tests---solutions.html#cb55-1" tabindex="-1"></a><span class="fu">summary</span>(nullmod.norm<span class="sc">$</span>resid.marginal)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="association-tests---solutions.html#cb59-1" tabindex="-1"></a><span class="fu">summary</span>(nullmod.norm<span class="sc">$</span>resid.marginal)</span></code></pre></div>
 <pre><code>## Length  Class   Mode 
 ##      0   NULL   NULL</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Repeat the previous exercise on logistic regression, this time running a sliding-window test.</li>
 </ol>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="association-tests---solutions.html#cb57-1" tabindex="-1"></a>nullmod.status <span class="ot">&lt;-</span> <span class="fu">fitNullModel</span>(annot, <span class="at">outcome=</span><span class="st">&quot;status&quot;</span>, <span class="at">covars=</span><span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;Population&quot;</span>), </span>
-<span id="cb57-2"><a href="association-tests---solutions.html#cb57-2" tabindex="-1"></a>                               <span class="at">family=</span>binomial, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb57-3"><a href="association-tests---solutions.html#cb57-3" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb57-4"><a href="association-tests---solutions.html#cb57-4" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarWindowIterator</span>(seqData, <span class="at">windowSize=</span><span class="dv">5000</span>, <span class="at">windowShift=</span><span class="dv">2000</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb57-5"><a href="association-tests---solutions.html#cb57-5" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;SKAT&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">25</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="association-tests---solutions.html#cb61-1" tabindex="-1"></a>nullmod.status <span class="ot">&lt;-</span> <span class="fu">fitNullModel</span>(annot, <span class="at">outcome=</span><span class="st">&quot;status&quot;</span>, <span class="at">covars=</span><span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;Population&quot;</span>), </span>
+<span id="cb61-2"><a href="association-tests---solutions.html#cb61-2" tabindex="-1"></a>                               <span class="at">family=</span>binomial, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb61-3"><a href="association-tests---solutions.html#cb61-3" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb61-4"><a href="association-tests---solutions.html#cb61-4" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarWindowIterator</span>(seqData, <span class="at">windowSize=</span><span class="dv">5000</span>, <span class="at">windowShift=</span><span class="dv">2000</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb61-5"><a href="association-tests---solutions.html#cb61-5" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;SKAT&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">25</span>))</span></code></pre></div>
 <pre><code>## # of selected samples: 1,126</code></pre>
-<pre><code>## Using 6 CPU cores</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="association-tests---solutions.html#cb60-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
+<pre><code>## Using 8 CPU cores</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="association-tests---solutions.html#cb64-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
 <pre><code>##   chr   start     end n.site n.alt n.sample.alt          Q        pval err
 ## 1   1  966001  971000      1     9            9   7.318095 0.643988693   0
 ## 2   1  982001  987000      1   111          107 154.178289 0.058811535   0
@@ -259,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 integration
 ## 5 integration
 ## 6 integration</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="association-tests---solutions.html#cb62-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="association-tests---solutions.html#cb66-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
 
 </div>
             </section>
@@ -282,42 +284,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

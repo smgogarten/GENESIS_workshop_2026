@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Computing a GRM | GENESIS workshop 2026</title>
   <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Computing a GRM | GENESIS workshop 2026" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-06-24" />
+<meta name="date" content="2026-07-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,8 +54,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -143,8 +144,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.1</b> Exploring a GDS file</a></li>
-<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>3</b> Association tests</a>
 <ul>
@@ -157,11 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="computing-a-grm.html"><a href="computing-a-grm.html"><i class="fa fa-check"></i><b>4</b> Computing a GRM</a></li>
 <li class="chapter" data-level="5" data-path="pc-relate.html"><a href="pc-relate.html"><i class="fa fa-check"></i><b>5</b> PC-Relate</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="pc-relate.html"><a href="pc-relate.html#king"><i class="fa fa-check"></i><b>5.1</b> KING</a></li>
-<li class="chapter" data-level="5.2" data-path="pc-relate.html"><a href="pc-relate.html#pc-air"><i class="fa fa-check"></i><b>5.2</b> PC-AiR</a></li>
-<li class="chapter" data-level="5.3" data-path="pc-relate.html"><a href="pc-relate.html#pc-relate-1"><i class="fa fa-check"></i><b>5.3</b> PC-Relate</a></li>
-<li class="chapter" data-level="5.4" data-path="pc-relate.html"><a href="pc-relate.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.4</b> Comparison with pedigree</a></li>
-<li class="chapter" data-level="5.5" data-path="pc-relate.html"><a href="pc-relate.html#exercise-1"><i class="fa fa-check"></i><b>5.5</b> Exercise</a></li>
+<li class="chapter" data-level="5.1" data-path="pc-relate.html"><a href="pc-relate.html#ld-pruning"><i class="fa fa-check"></i><b>5.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="5.2" data-path="pc-relate.html"><a href="pc-relate.html#king-robust"><i class="fa fa-check"></i><b>5.2</b> KING-robust</a></li>
+<li class="chapter" data-level="5.3" data-path="pc-relate.html"><a href="pc-relate.html#pc-air"><i class="fa fa-check"></i><b>5.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="5.4" data-path="pc-relate.html"><a href="pc-relate.html#pc-relate-1"><i class="fa fa-check"></i><b>5.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="5.5" data-path="pc-relate.html"><a href="pc-relate.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="5.6" data-path="pc-relate.html"><a href="pc-relate.html#advanced-notes"><i class="fa fa-check"></i><b>5.6</b> Advanced Notes</a></li>
+<li class="chapter" data-level="5.7" data-path="pc-relate.html"><a href="pc-relate.html#exercise-1"><i class="fa fa-check"></i><b>5.7</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>6</b> Mixed models</a>
 <ul>
@@ -199,8 +211,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="computing-a-grm" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">4</span> Computing a GRM<a href="computing-a-grm.html#computing-a-grm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>We can use the <a href="https://github.com/zhengxwen/SNPRelate">SNPRelate package</a> to compute a Genetic Relationship matrix (GRM). This method combines relatedness due to more distant ancestry and recent kinship into a single matrix.</p>
-<p>SNPRelate offers several algorithms for computing a GRM, including the commonly-used GCTA <a href="https://www.ncbi.nlm.nih.gov/pubmed/21167468">Yang et al 2011</a>. The most recent algorithm added to the package is “IndivBeta” <a href="https://www.ncbi.nlm.nih.gov/pubmed/28550018">Weir and Goudet 2017</a>.</p>
+<p>We can use the <a href="https://github.com/zhengxwen/SNPRelate">SNPRelate</a> package to compute a Genetic Relationship matrix (GRM) using GDS files. A GRM captures genetic correlation among samples due to both distant ancestry (i.e. population structure) and recent kinship (i.e. familial relatedness) in a single matrix.</p>
+<p>SNPRelate offers several algorithms for computing a GRM, including the commonly-used GCTA <a href="https://www.ncbi.nlm.nih.gov/pubmed/21167468">Yang et al 2011</a> (<code>method = "GCTA"</code>) and allelic matching based estimators described by <a href="https://www.ncbi.nlm.nih.gov/pubmed/28550018">Weir and Goudet 2017</a> (<code>method = "IndivBeta"</code>).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="computing-a-grm.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(SeqArray)</span></code></pre></div>
 <pre><code>## Loading required package: gdsfmt</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="computing-a-grm.html#cb3-1" tabindex="-1"></a>repo_path <span class="ot">&lt;-</span> <span class="st">&quot;https://github.com/smgogarten/GENESIS_workshop_2026/raw/main&quot;</span></span>
@@ -213,22 +225,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-8"><a href="computing-a-grm.html#cb3-8" tabindex="-1"></a><span class="fu">library</span>(SNPRelate)</span>
 <span id="cb3-9"><a href="computing-a-grm.html#cb3-9" tabindex="-1"></a>grm <span class="ot">&lt;-</span> <span class="fu">snpgdsGRM</span>(gds, <span class="at">method=</span><span class="st">&quot;GCTA&quot;</span>)</span></code></pre></div>
 <pre><code>## Genetic Relationship Matrix (GRM, GCTA):
-## Calculating allele counts/frequencies ...
-## [..................................................]  0%, ETC: ---    [==================================================] 100%, completed, 0s
+## Calculating allele counts/frequencies (1120 variants) ...
+## [..................................................]  0%, ETC: --- (1/1)    [==================================================] 100%, used 0s (1/1)    [==================================================] 100%, complete, 0s    
 ## # of selected variants: 1,107
-## Excluding 13 SNVs (monomorphic: TRUE, MAF: NaN, missing rate: NaN)
+## Excluding 13 SNVs (monomorphic: TRUE, MAF: NaN, missing rate: 0.01)
 ##     # of samples: 1,126
 ##     # of SNVs: 1,107
-##     using 1 thread
+##     using 1 thread/core
 ## CPU capabilities:
-## Wed Jun 24 21:59:37 2026    (internal increment: 436)
-## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 1s
-## Wed Jun 24 21:59:38 2026    Done.</code></pre>
+## 2026-07-03 16:33:50    (internal increment: 668)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 0s
+## 2026-07-03 16:33:50    Done.</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="computing-a-grm.html#cb5-1" tabindex="-1"></a><span class="fu">names</span>(grm)</span></code></pre></div>
 <pre><code>## [1] &quot;sample.id&quot; &quot;snp.id&quot;    &quot;method&quot;    &quot;grm&quot;</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="computing-a-grm.html#cb7-1" tabindex="-1"></a><span class="fu">dim</span>(grm<span class="sc">$</span>grm)</span></code></pre></div>
 <pre><code>## [1] 1126 1126</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="computing-a-grm.html#cb9-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="computing-a-grm.html#cb9-1" tabindex="-1"></a><span class="co"># look at the top corner of the matrix</span></span>
+<span id="cb9-2"><a href="computing-a-grm.html#cb9-2" tabindex="-1"></a>grm<span class="sc">$</span>grm[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##            [,1]        [,2]       [,3]       [,4]        [,5]
+## [1,] 2.24542126  0.02407128 0.02166515 0.02811221  0.01037635
+## [2,] 0.02407128  1.72181561 0.02471537 0.03011554 -0.01032435
+## [3,] 0.02166515  0.02471537 0.31482882 0.01837674  0.04781789
+## [4,] 0.02811221  0.03011554 0.01837674 0.19735556  0.07583944
+## [5,] 0.01037635 -0.01032435 0.04781789 0.07583944  0.24513044</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="computing-a-grm.html#cb11-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
 </div>
             </section>
 
@@ -250,42 +270,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

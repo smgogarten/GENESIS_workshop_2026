@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Variant annotation | GENESIS workshop 2026</title>
+  <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Variant annotation | GENESIS workshop 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
+  <meta name="github-repo" content="smgogarten/GENESIS_workshop_2026" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Variant annotation | GENESIS workshop 2026" />
+  
+  <meta name="twitter:description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
+  
+
+
+
+<meta name="date" content="2026-07-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mixed-models.html"/>
+<link rel="next" href="aggregate-tests.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1</b> Schedule</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-packages-used"><i class="fa fa-check"></i><b>1.2</b> R packages used</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>1.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>3</b> Association tests</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="association-tests.html"><a href="association-tests.html#null-model"><i class="fa fa-check"></i><b>3.1</b> Null model</a></li>
+<li class="chapter" data-level="3.2" data-path="association-tests.html"><a href="association-tests.html#single-variant-tests"><i class="fa fa-check"></i><b>3.2</b> Single-variant tests</a></li>
+<li class="chapter" data-level="3.3" data-path="association-tests.html"><a href="association-tests.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="association-tests.html"><a href="association-tests.html#sliding-window-tests"><i class="fa fa-check"></i><b>3.4</b> Sliding window tests</a></li>
+<li class="chapter" data-level="3.5" data-path="association-tests.html"><a href="association-tests.html#exercise"><i class="fa fa-check"></i><b>3.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="computing-a-grm.html"><a href="computing-a-grm.html"><i class="fa fa-check"></i><b>4</b> Computing a GRM</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#ld-pruning"><i class="fa fa-check"></i><b>4.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="4.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king-robust"><i class="fa fa-check"></i><b>4.2</b> KING-robust</a></li>
+<li class="chapter" data-level="4.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>4.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="4.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>4.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="4.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>4.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="4.6" data-path="computing-a-grm.html"><a href="computing-a-grm.html#advanced-notes"><i class="fa fa-check"></i><b>4.6</b> Advanced Notes</a></li>
+<li class="chapter" data-level="4.7" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>4.7</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>5</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="mixed-models.html"><a href="mixed-models.html#null-model-1"><i class="fa fa-check"></i><b>5.1</b> Null model</a></li>
+<li class="chapter" data-level="5.2" data-path="mixed-models.html"><a href="mixed-models.html#single-variant-tests-1"><i class="fa fa-check"></i><b>5.2</b> Single-variant tests</a></li>
+<li class="chapter" data-level="5.3" data-path="mixed-models.html"><a href="mixed-models.html#exercise-2"><i class="fa fa-check"></i><b>5.3</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variant-annotation.html"><a href="variant-annotation.html"><i class="fa fa-check"></i><b>6</b> Variant annotation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="variant-annotation.html"><a href="variant-annotation.html#using-bioconductor-annotation-resources"><i class="fa fa-check"></i><b>6.1</b> Using Bioconductor annotation resources</a></li>
+<li class="chapter" data-level="6.2" data-path="variant-annotation.html"><a href="variant-annotation.html#aggregating-and-filtering-variants-using-annotation"><i class="fa fa-check"></i><b>6.2</b> Aggregating and filtering variants using annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aggregate-tests.html"><a href="aggregate-tests.html"><i class="fa fa-check"></i><b>7</b> Aggregate tests</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="aggregate-tests.html"><a href="aggregate-tests.html#aggregate-unit-for-association-testing-exercise"><i class="fa fa-check"></i><b>7.1</b> Aggregate unit for association testing exercise</a></li>
+<li class="chapter" data-level="7.2" data-path="aggregate-tests.html"><a href="aggregate-tests.html#association-testing-with-aggregate-units"><i class="fa fa-check"></i><b>7.2</b> Association testing with aggregate units</a></li>
+<li class="chapter" data-level="7.3" data-path="aggregate-tests.html"><a href="aggregate-tests.html#exercise-3"><i class="fa fa-check"></i><b>7.3</b> Exercise</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GENESIS workshop 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="variant-annotation" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Variant annotation<a href="variant-annotation.html#variant-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="using-bioconductor-annotation-resources" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Using Bioconductor annotation resources<a href="variant-annotation.html#using-bioconductor-annotation-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we illustrate defining aggregate units based on known genes.</p>
+<p>First, we load the null mixed model and open the GDS file.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="variant-annotation.html#cb1-1" tabindex="-1"></a>modfile <span class="ot">&lt;-</span> <span class="st">&quot;data/null_mixed_model.rds&quot;</span></span>
+<span id="cb1-2"><a href="variant-annotation.html#cb1-2" tabindex="-1"></a>nullmod <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(modfile)</span>
+<span id="cb1-3"><a href="variant-annotation.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="variant-annotation.html#cb1-4" tabindex="-1"></a>sampfile <span class="ot">&lt;-</span> <span class="st">&quot;data/sample_phenotype_annotation.rds&quot;</span></span>
+<span id="cb1-5"><a href="variant-annotation.html#cb1-5" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(sampfile)</span>
+<span id="cb1-6"><a href="variant-annotation.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="variant-annotation.html#cb1-7" tabindex="-1"></a>gdsfile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset_chr1.gds&quot;</span></span>
+<span id="cb1-8"><a href="variant-annotation.html#cb1-8" tabindex="-1"></a><span class="fu">library</span>(SeqVarTools)</span></code></pre></div>
+<pre><code>## Loading required package: SeqArray</code></pre>
+<pre><code>## Loading required package: gdsfmt</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="variant-annotation.html#cb4-1" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">seqOpen</span>(gdsfile)</span>
+<span id="cb4-2"><a href="variant-annotation.html#cb4-2" tabindex="-1"></a>seqData <span class="ot">&lt;-</span> <span class="fu">SeqVarData</span>(gds, <span class="at">sampleData=</span>annot)</span></code></pre></div>
+<p>We use the human genome annotation from Bioconductor to identify genes.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="variant-annotation.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(GenomeInfoDb)</span></code></pre></div>
+<pre><code>## Loading required package: BiocGenerics</code></pre>
+<pre><code>## Loading required package: generics</code></pre>
+<pre><code>## 
+## Attaching package: &#39;generics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+##     setequal, union</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+##     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+##     get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+##     rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+##     unsplit, which.max, which.min</code></pre>
+<pre><code>## Loading required package: S4Vectors</code></pre>
+<pre><code>## Loading required package: stats4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:utils&#39;:
+## 
+##     findMatches</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     expand.grid, I, unname</code></pre>
+<pre><code>## Loading required package: IRanges</code></pre>
+<pre><code>## Loading required package: Seqinfo</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="variant-annotation.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(GenomicRanges)</span>
+<span id="cb20-2"><a href="variant-annotation.html#cb20-2" tabindex="-1"></a><span class="fu">library</span>(TxDb.Hsapiens.UCSC.hg19.knownGene)</span></code></pre></div>
+<pre><code>## Loading required package: GenomicFeatures</code></pre>
+<pre><code>## Loading required package: AnnotationDbi</code></pre>
+<pre><code>## Loading required package: Biobase</code></pre>
+<pre><code>## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
+##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="variant-annotation.html#cb25-1" tabindex="-1"></a><span class="co"># return the variants in seqData as a GRanges object</span></span>
+<span id="cb25-2"><a href="variant-annotation.html#cb25-2" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">granges</span>(gds)</span>
+<span id="cb25-3"><a href="variant-annotation.html#cb25-3" tabindex="-1"></a>gr</span></code></pre></div>
+<pre><code>## GRanges object with 1120 ranges and 0 metadata columns:
+##        seqnames              ranges strand
+##           &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt;
+##      1        1              970546      *
+##      2        1              985900      *
+##      3        1             1025045      *
+##      4        1             1265550      *
+##      5        1             1472676      *
+##    ...      ...                 ...    ...
+##   1116        1           248715186      *
+##   1117        1 248715606-248715610      *
+##   1118        1           248761613      *
+##   1119        1           248894546      *
+##   1120        1           249149558      *
+##   -------
+##   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="variant-annotation.html#cb27-1" tabindex="-1"></a><span class="co"># find variants that overlap with each gene</span></span>
+<span id="cb27-2"><a href="variant-annotation.html#cb27-2" tabindex="-1"></a>txdb <span class="ot">&lt;-</span> TxDb.Hsapiens.UCSC.hg19.knownGene</span>
+<span id="cb27-3"><a href="variant-annotation.html#cb27-3" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">renameSeqlevels</span>(gr, <span class="fu">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="fu">seqlevels</span>(gr)))</span>
+<span id="cb27-4"><a href="variant-annotation.html#cb27-4" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">transcriptsByOverlaps</span>(txdb, gr, <span class="at">columns=</span><span class="st">&quot;GENEID&quot;</span>)</span>
+<span id="cb27-5"><a href="variant-annotation.html#cb27-5" tabindex="-1"></a><span class="co"># simplistic example - define genes as overlapping transcripts</span></span>
+<span id="cb27-6"><a href="variant-annotation.html#cb27-6" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">reduce</span>(ts)</span>
+<span id="cb27-7"><a href="variant-annotation.html#cb27-7" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">renameSeqlevels</span>(genes, <span class="fu">sub</span>(<span class="st">&quot;chr&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">seqlevels</span>(genes)))</span>
+<span id="cb27-8"><a href="variant-annotation.html#cb27-8" tabindex="-1"></a>genes</span></code></pre></div>
+<pre><code>## GRanges object with 628 ranges and 0 metadata columns:
+##         seqnames              ranges strand
+##            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt;
+##     [1]        1       955500-991499      +
+##     [2]        1     2158827-2241652      +
+##     [3]        1     2985732-3355185      +
+##     [4]        1     4036193-4153122      +
+##     [5]        1     4631541-4654076      +
+##     ...      ...                 ...    ...
+##   [624]        1 246935139-247002913      -
+##   [625]        1 247108849-247242038      -
+##   [626]        1 247460714-247495169      -
+##   [627]        1 248647546-248806275      -
+##   [628]        1 249144205-249153284      -
+##   -------
+##   seqinfo: 298 sequences (2 circular) from hg19 genome</code></pre>
+<p>We run a burden test, setting a maximum alternate allele frequency to exclude common variants.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="variant-annotation.html#cb29-1" tabindex="-1"></a><span class="fu">library</span>(GENESIS)</span>
+<span id="cb29-2"><a href="variant-annotation.html#cb29-2" tabindex="-1"></a><span class="co"># create an iterator where each successive unit is a different gene</span></span>
+<span id="cb29-3"><a href="variant-annotation.html#cb29-3" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarRangeIterator</span>(seqData, <span class="at">variantRanges=</span>genes, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb29-4"><a href="variant-annotation.html#cb29-4" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="variant-annotation.html#cb29-5" tabindex="-1"></a><span class="co"># do a burden test on the rare variants in each gene</span></span>
+<span id="cb29-6"><a href="variant-annotation.html#cb29-6" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">AF.max=</span><span class="fl">0.05</span>, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>)</span></code></pre></div>
+<pre><code>## # of selected samples: 100</code></pre>
+<pre><code>## Using 8 CPU cores</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="variant-annotation.html#cb32-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
+<pre><code>##   n.site n.alt n.sample.alt        Score   Score.SE Score.Stat Score.pval
+## 1      2    12           12 -0.307814558 0.26357660 -1.1678372 0.24287243
+## 2      1     1            1  0.024908204 0.07345671  0.3390868 0.73454432
+## 3      1     2            2  0.200506079 0.11801693  1.6989604 0.08932665
+## 4      1     6            6 -0.106628030 0.17547492 -0.6076540 0.54341700
+## 5      0     0            0           NA         NA         NA         NA
+## 6      2     4            4 -0.005743665 0.16583076 -0.0346357 0.97237023
+##          Est    Est.SE          PVE
+## 1 -4.4307319  3.793964 1.515382e-02
+## 2  4.6161448 13.613460 1.277554e-03
+## 3 14.3959044  8.473361 3.207185e-02
+## 4 -3.4629107  5.698820 4.102704e-03
+## 5         NA        NA           NA
+## 6 -0.2088617  6.030244 1.332924e-05</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="variant-annotation.html#cb34-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
+<pre><code>## [[1]]
+##   variant.id chr    pos allele.index n.obs  freq MAC weight
+## 1          1   1 970546            1   100 0.015   3      1
+## 2          2   1 985900            1   100 0.045   9      1
+## 
+## [[2]]
+##   variant.id chr     pos allele.index n.obs  freq MAC weight
+## 1          7   1 2185887            1   100 0.005   1      1
+## 
+## [[3]]
+##   variant.id chr     pos allele.index n.obs freq MAC weight
+## 2         15   1 3293503            1   100 0.01   2      1
+## 
+## [[4]]
+##   variant.id chr     pos allele.index n.obs freq MAC weight
+## 1         19   1 4054245            1   100 0.03   6      1
+## 
+## [[5]]
+## [1] variant.id   chr          pos          allele.index n.obs       
+## [6] freq         MAC          weight      
+## &lt;0 rows&gt; (or 0-length row.names)
+## 
+## [[6]]
+##   variant.id chr     pos allele.index n.obs freq MAC weight
+## 1         36   1 6489967            1   100 0.01   2      1
+## 2         37   1 6503405            1   100 0.01   2      1</code></pre>
+</div>
+<div id="aggregating-and-filtering-variants-using-annotation" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Aggregating and filtering variants using annotation<a href="variant-annotation.html#aggregating-and-filtering-variants-using-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Alternatively, we may want to import annotation from other software, such as ANNOVAR or WGSA. The output formats of variant annotation software can be quite complex, but for this exercise we use fairly simple tab-separated text files.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="variant-annotation.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:AnnotationDbi&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following object is masked from &#39;package:Biobase&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following objects are masked from &#39;package:GenomicRanges&#39;:
+## 
+##     intersect, setdiff, union</code></pre>
+<pre><code>## The following object is masked from &#39;package:Seqinfo&#39;:
+## 
+##     intersect</code></pre>
+<pre><code>## The following objects are masked from &#39;package:IRanges&#39;:
+## 
+##     collapse, desc, intersect, setdiff, slice, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:S4Vectors&#39;:
+## 
+##     first, intersect, rename, setdiff, setequal, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:BiocGenerics&#39;:
+## 
+##     combine, intersect, setdiff, setequal, union</code></pre>
+<pre><code>## The following object is masked from &#39;package:generics&#39;:
+## 
+##     explain</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="variant-annotation.html#cb48-1" tabindex="-1"></a>snv_annotation <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/snv_parsed.tsv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">na.strings=</span><span class="st">&quot;.&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-2"><a href="variant-annotation.html#cb48-2" tabindex="-1"></a>indel_annotation <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/indel_parsed.tsv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">na.strings=</span><span class="st">&quot;.&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-3"><a href="variant-annotation.html#cb48-3" tabindex="-1"></a>combined_annotation <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(snv_annotation, indel_annotation)</span></code></pre></div>
+<p>Here we remove variants that are not associated with a gene, group the variants by gene, and filter the variants for intron_variants with a CADD_phred score greater than 3 in just a few lines of code:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="variant-annotation.html#cb49-1" tabindex="-1"></a>combined_annotation <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="variant-annotation.html#cb49-2" tabindex="-1"></a>  <span class="fu">filter</span>(VEP_ensembl_Gene_ID <span class="sc">!=</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># remove variants not annotated with a Gene_ID</span></span>
+<span id="cb49-3"><a href="variant-annotation.html#cb49-3" tabindex="-1"></a>  <span class="fu">group_by</span>(VEP_ensembl_Gene_ID) <span class="sc">%&gt;%</span> <span class="co"># aggregate by gene</span></span>
+<span id="cb49-4"><a href="variant-annotation.html#cb49-4" tabindex="-1"></a>  <span class="fu">filter</span>(CADD_phred <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="co"># filter variants to keep only CADD_phred greater than 3</span></span>
+<span id="cb49-5"><a href="variant-annotation.html#cb49-5" tabindex="-1"></a>  <span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(VEP_ensembl_Consequence, <span class="st">&quot;intron_variant&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># keep intron variants</span></span>
+<span id="cb49-6"><a href="variant-annotation.html#cb49-6" tabindex="-1"></a>  <span class="fu">glimpse</span>() <span class="co"># view the result - 592 variants</span></span></code></pre></div>
+<pre><code>## Rows: 592
+## Columns: 7
+## Groups: VEP_ensembl_Gene_ID [170]
+## $ CHROM                   &lt;int&gt; 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22…
+## $ POS                     &lt;int&gt; 15699830, 15699830, 16437047, 16445862, 168137…
+## $ REF                     &lt;chr&gt; &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;C&quot;, &quot;C&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;…
+## $ ALT                     &lt;chr&gt; &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;T&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;…
+## $ VEP_ensembl_Gene_ID     &lt;chr&gt; &quot;ENSG00000198062&quot;, &quot;ENSG00000198062&quot;, &quot;ENSG000…
+## $ VEP_ensembl_Consequence &lt;chr&gt; &quot;intron_variant,NMD_transcript_variant&quot;, &quot;intr…
+## $ CADD_phred              &lt;dbl&gt; 3.612, 3.612, 9.729, 3.895, 7.530, 5.332, 5.33…</code></pre>
+<p>Now that you’ve got a set of variants that you can aggregate into genic units, the data needs to be reformatted for input to the GENESIS analysis pipeline. The input to the GENESIS pipeline is a data frame with variables called <code>group_id</code>, <code>chr</code>, <code>pos</code>, <code>ref</code>, and <code>alt</code>. Prepare this data frame and save it for testing (You do not need to filter the variants for this exercise):</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="variant-annotation.html#cb51-1" tabindex="-1"></a>aggregates <span class="ot">&lt;-</span></span>
+<span id="cb51-2"><a href="variant-annotation.html#cb51-2" tabindex="-1"></a>  combined_annotation <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="variant-annotation.html#cb51-3" tabindex="-1"></a>  <span class="fu">filter</span>(VEP_ensembl_Gene_ID <span class="sc">!=</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># remove variants not annotated with a Gene_ID</span></span>
+<span id="cb51-4"><a href="variant-annotation.html#cb51-4" tabindex="-1"></a>  <span class="fu">group_by</span>(VEP_ensembl_Gene_ID) <span class="sc">%&gt;%</span> <span class="co"># aggregate by gene</span></span>
+<span id="cb51-5"><a href="variant-annotation.html#cb51-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">group_id =</span> VEP_ensembl_Gene_ID,</span>
+<span id="cb51-6"><a href="variant-annotation.html#cb51-6" tabindex="-1"></a>         <span class="at">chr =</span> CHROM,</span>
+<span id="cb51-7"><a href="variant-annotation.html#cb51-7" tabindex="-1"></a>         <span class="at">pos =</span> POS,</span>
+<span id="cb51-8"><a href="variant-annotation.html#cb51-8" tabindex="-1"></a>         <span class="at">ref =</span> REF,</span>
+<span id="cb51-9"><a href="variant-annotation.html#cb51-9" tabindex="-1"></a>         <span class="at">alt =</span> ALT) <span class="sc">%&gt;%</span></span>
+<span id="cb51-10"><a href="variant-annotation.html#cb51-10" tabindex="-1"></a>  glimpse <span class="co"># inspect the tibble</span></span></code></pre></div>
+<pre><code>## Rows: 2,603
+## Columns: 5
+## Groups: group_id [598]
+## $ group_id &lt;chr&gt; &quot;ENSG00000230643&quot;, &quot;ENSG00000226474&quot;, &quot;ENSG00000231565&quot;, &quot;ENS…
+## $ chr      &lt;int&gt; 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 2…
+## $ pos      &lt;int&gt; 15589963, 15613723, 15613723, 15628559, 15699830, 15699830, 1…
+## $ ref      &lt;chr&gt; &quot;G&quot;, &quot;A&quot;, &quot;A&quot;, &quot;C&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;…
+## $ alt      &lt;chr&gt; &quot;T&quot;, &quot;G&quot;, &quot;G&quot;, &quot;T&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;…</code></pre>
+<p>You can also compute some summary information about these aggregates, such as counting how many genic units we’re using:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="variant-annotation.html#cb53-1" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(aggregates<span class="sc">$</span>group_id))</span></code></pre></div>
+<pre><code>## [1] 598</code></pre>
+<p>We can look at the distribution of the number of variants per aggregation unit:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="variant-annotation.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb55-2"><a href="variant-annotation.html#cb55-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> aggregates <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group_id) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb55-3"><a href="variant-annotation.html#cb55-3" tabindex="-1"></a><span class="fu">ggplot</span>(counts, <span class="fu">aes</span>(<span class="at">x =</span> n)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot_agg_units-1.png" alt="" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mixed-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="aggregate-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

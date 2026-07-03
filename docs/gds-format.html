@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 GDS format | GENESIS workshop 2026</title>
   <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 GDS format | GENESIS workshop 2026" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-06-24" />
+<meta name="date" content="2026-07-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,8 +54,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -143,8 +144,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.1</b> Exploring a GDS file</a></li>
-<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="gds---solutions.html"><a href="gds---solutions.html"><i class="fa fa-check"></i><b>3</b> GDS - Solutions</a></li>
 <li class="chapter" data-level="4" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>4</b> Association tests</a>
@@ -157,11 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="computing-a-grm.html"><a href="computing-a-grm.html"><i class="fa fa-check"></i><b>5</b> Computing a GRM</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king"><i class="fa fa-check"></i><b>5.1</b> KING</a></li>
-<li class="chapter" data-level="5.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>5.2</b> PC-AiR</a></li>
-<li class="chapter" data-level="5.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>5.3</b> PC-Relate</a></li>
-<li class="chapter" data-level="5.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.4</b> Comparison with pedigree</a></li>
-<li class="chapter" data-level="5.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>5.5</b> Exercise</a></li>
+<li class="chapter" data-level="5.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#ld-pruning"><i class="fa fa-check"></i><b>5.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="5.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king-robust"><i class="fa fa-check"></i><b>5.2</b> KING-robust</a></li>
+<li class="chapter" data-level="5.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>5.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="5.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>5.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="5.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="5.6" data-path="computing-a-grm.html"><a href="computing-a-grm.html#advanced-notes"><i class="fa fa-check"></i><b>5.6</b> Advanced Notes</a></li>
+<li class="chapter" data-level="5.7" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>5.7</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>6</b> Mixed models</a>
 <ul>
@@ -200,28 +212,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gds-format" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">2</span> GDS format<a href="gds-format.html#gds-format" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>GDS is Genomic Data Structure, a storage format that can efficiently store genomic data and provide fast random access to subsets of the data. For more information on GDS for sequence data, read the <a href="https://github.com/zhengxwen/SeqArray/blob/master/vignettes/SeqArrayTutorial.Rmd">SeqArray package vignette</a>.</p>
-<div id="exploring-a-gds-file" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Exploring a GDS file<a href="gds-format.html#exploring-a-gds-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="install-packages" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Install packages<a href="gds-format.html#install-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="gds-format.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;GGally&quot;</span>))</span>
+<span id="cb1-2"><a href="gds-format.html#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;survey&quot;</span>, <span class="st">&quot;CompQuadForm&quot;</span>))</span>
+<span id="cb1-3"><a href="gds-format.html#cb1-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb1-4"><a href="gds-format.html#cb1-4" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GENESIS&quot;</span>)</span>
+<span id="cb1-5"><a href="gds-format.html#cb1-5" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;GenomeInfoDb&quot;</span>, <span class="st">&quot;TxDb.Hsapiens.UCSC.hg19.knownGene&quot;</span>))</span></code></pre></div>
+</div>
+<div id="convert-a-vcf-to-gds" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Convert a VCF to GDS<a href="gds-format.html#convert-a-vcf-to-gds" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To use the R packages developed at the University of Washington for sequence data, we first need to convert a VCF file to GDS. (If the file is BCF, use <a href="bcftools">https://samtools.github.io/bcftools/bcftools.html</a> to convert to VCF.)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="gds-format.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(SeqArray)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="gds-format.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(SeqArray)</span></code></pre></div>
 <pre><code>## Loading required package: gdsfmt</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="gds-format.html#cb3-1" tabindex="-1"></a>repo_path <span class="ot">&lt;-</span> <span class="st">&quot;https://github.com/smgogarten/GENESIS_workshop_2026/raw/main&quot;</span></span>
-<span id="cb3-2"><a href="gds-format.html#cb3-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>)) <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
-<span id="cb3-3"><a href="gds-format.html#cb3-3" tabindex="-1"></a>vcffile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset_chr1.vcf.gz&quot;</span></span>
-<span id="cb3-4"><a href="gds-format.html#cb3-4" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(vcffile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, vcffile), vcffile)</span>
-<span id="cb3-5"><a href="gds-format.html#cb3-5" tabindex="-1"></a>gdsfile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset_chr1.gds&quot;</span></span>
-<span id="cb3-6"><a href="gds-format.html#cb3-6" tabindex="-1"></a><span class="fu">seqVCF2GDS</span>(vcffile, gdsfile, <span class="at">fmt.import=</span><span class="st">&quot;GT&quot;</span>, <span class="at">storage.option=</span><span class="st">&quot;LZMA_RA&quot;</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<p>We can interact with the GDS file using the SeqArray package.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="gds-format.html#cb4-1" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">seqOpen</span>(gdsfile)</span>
-<span id="cb4-2"><a href="gds-format.html#cb4-2" tabindex="-1"></a>gds</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="gds-format.html#cb4-1" tabindex="-1"></a>repo_path <span class="ot">&lt;-</span> <span class="st">&quot;https://github.com/smgogarten/GENESIS_workshop_2026/raw/main&quot;</span></span>
+<span id="cb4-2"><a href="gds-format.html#cb4-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>)) <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb4-3"><a href="gds-format.html#cb4-3" tabindex="-1"></a>vcffile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset_chr1.vcf.gz&quot;</span></span>
+<span id="cb4-4"><a href="gds-format.html#cb4-4" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(vcffile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, vcffile), vcffile)</span>
+<span id="cb4-5"><a href="gds-format.html#cb4-5" tabindex="-1"></a>gdsfile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset_chr1.gds&quot;</span></span>
+<span id="cb4-6"><a href="gds-format.html#cb4-6" tabindex="-1"></a><span class="fu">seqVCF2GDS</span>(vcffile, gdsfile, <span class="at">fmt.import=</span><span class="st">&quot;GT&quot;</span>, <span class="at">storage.option=</span><span class="st">&quot;LZMA_RA&quot;</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="exploring-a-gds-file" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Exploring a GDS file<a href="gds-format.html#exploring-a-gds-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="open-a-gds" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Open a GDS<a href="gds-format.html#open-a-gds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can interact with the GDS file using the <a href="https://bioconductor.org/packages/release/bioc/html/SeqArray.html">SeqArray R package</a>. The first thing we need to do is open a connection to a GDS file on disk using the <code>seqOpen</code> function. Note that opening a GDS file does <em>not</em> load all of the data into memory.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="gds-format.html#cb5-1" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">seqOpen</span>(gdsfile)</span>
+<span id="cb5-2"><a href="gds-format.html#cb5-2" tabindex="-1"></a>gds</span></code></pre></div>
 <pre><code>## Object of class &quot;SeqVarGDSClass&quot;
-## File: /Users/stephanie/Bioconductor/GENESIS_workshop_2026/data/1KG_phase3_subset_chr1.gds (70.5K)
+## File: /Users/sdmorris/Work/Bioconductor/GENESIS_workshop_2026/data/1KG_phase3_subset_chr1.gds (70.5K)
 ## +    [  ] *
 ## |--+ description   [  ] *
 ## |--+ sample.id   { Str8 1126 LZMA_ra(9.66%), 877B } *
 ## |--+ variant.id   { Int32 1120 LZMA_ra(17.5%), 793B } *
-## |--+ position   { Int32 1120 LZMA_ra(78.5%), 3.4K } *
 ## |--+ chromosome   { Str8 1120 LZMA_ra(4.55%), 109B } *
+## |--+ position   { Int32 1120 LZMA_ra(78.5%), 3.4K } *
 ## |--+ allele   { Str8 1120 LZMA_ra(26.0%), 1.2K } *
 ## |--+ genotype   [  ] *
 ## |  |--+ data   { Bit2 2x1126x1121 LZMA_ra(8.34%), 51.4K } *
@@ -238,31 +263,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## |  |--+ info   [  ]
 ## |  \--+ format   [  ]
 ## \--+ sample.annotation   [  ]</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="gds-format.html#cb6-1" tabindex="-1"></a><span class="co"># the unique sample identifier comes from the VCF header</span></span>
-<span id="cb6-2"><a href="gds-format.html#cb6-2" tabindex="-1"></a>sample.id <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;sample.id&quot;</span>)</span>
-<span id="cb6-3"><a href="gds-format.html#cb6-3" tabindex="-1"></a><span class="fu">length</span>(sample.id)</span></code></pre></div>
+</div>
+<div id="reading-data" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Reading Data<a href="gds-format.html#reading-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>seqGetData</code> function is the basic function for reading in data from a GDS file.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="gds-format.html#cb7-1" tabindex="-1"></a><span class="co"># the unique sample identifier comes from the VCF header</span></span>
+<span id="cb7-2"><a href="gds-format.html#cb7-2" tabindex="-1"></a>sample.id <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;sample.id&quot;</span>)</span>
+<span id="cb7-3"><a href="gds-format.html#cb7-3" tabindex="-1"></a><span class="fu">length</span>(sample.id)</span></code></pre></div>
 <pre><code>## [1] 1126</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="gds-format.html#cb8-1" tabindex="-1"></a><span class="fu">head</span>(sample.id)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="gds-format.html#cb9-1" tabindex="-1"></a><span class="fu">head</span>(sample.id)</span></code></pre></div>
 <pre><code>## [1] &quot;HG00096&quot; &quot;HG00097&quot; &quot;HG00099&quot; &quot;HG00100&quot; &quot;HG00101&quot; &quot;HG00102&quot;</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="gds-format.html#cb10-1" tabindex="-1"></a><span class="co"># a unique integer ID is assigned to each variant</span></span>
-<span id="cb10-2"><a href="gds-format.html#cb10-2" tabindex="-1"></a>variant.id <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;variant.id&quot;</span>)</span>
-<span id="cb10-3"><a href="gds-format.html#cb10-3" tabindex="-1"></a><span class="fu">length</span>(variant.id)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="gds-format.html#cb11-1" tabindex="-1"></a><span class="co"># a unique integer ID is assigned to each variant</span></span>
+<span id="cb11-2"><a href="gds-format.html#cb11-2" tabindex="-1"></a>variant.id <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;variant.id&quot;</span>)</span>
+<span id="cb11-3"><a href="gds-format.html#cb11-3" tabindex="-1"></a><span class="fu">length</span>(variant.id)</span></code></pre></div>
 <pre><code>## [1] 1120</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="gds-format.html#cb12-1" tabindex="-1"></a><span class="fu">head</span>(variant.id)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="gds-format.html#cb13-1" tabindex="-1"></a><span class="fu">head</span>(variant.id)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="gds-format.html#cb14-1" tabindex="-1"></a><span class="co"># reference allele frequency of each variant</span></span>
-<span id="cb14-2"><a href="gds-format.html#cb14-2" tabindex="-1"></a>afreq <span class="ot">&lt;-</span> <span class="fu">seqAlleleFreq</span>(gds)</span>
-<span id="cb14-3"><a href="gds-format.html#cb14-3" tabindex="-1"></a><span class="fu">hist</span>(afreq, <span class="at">breaks=</span><span class="dv">50</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/seqarray-1.png" width="672" /></p>
-<p>We can define a filter on the <code>gds</code> object. After using the <code>seqSetFilter</code> command, all subsequent reads from the <code>gds</code> object are restricted to the selected subset of data, until a new filter is defined or <code>seqResetFilter</code> is called.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="gds-format.html#cb15-1" tabindex="-1"></a><span class="fu">seqSetFilter</span>(gds, <span class="at">variant.id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">sample.id=</span>sample.id[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="gds-format.html#cb15-1" tabindex="-1"></a>chr <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;chromosome&quot;</span>)</span>
+<span id="cb15-2"><a href="gds-format.html#cb15-2" tabindex="-1"></a><span class="fu">head</span>(chr)</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="gds-format.html#cb17-1" tabindex="-1"></a>pos <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;position&quot;</span>)</span>
+<span id="cb17-2"><a href="gds-format.html#cb17-2" tabindex="-1"></a><span class="fu">head</span>(pos)</span></code></pre></div>
+<pre><code>## [1]  970546  985900 1025045 1265550 1472676 1735725</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="gds-format.html#cb19-1" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;annotation/id&quot;</span>)</span>
+<span id="cb19-2"><a href="gds-format.html#cb19-2" tabindex="-1"></a><span class="fu">head</span>(id)</span></code></pre></div>
+<pre><code>## [1] &quot;&quot;           &quot;rs17160776&quot; &quot;&quot;           &quot;&quot;           &quot;rs78293298&quot;
+## [6] &quot;&quot;</code></pre>
+<p>There are additional useful functions for summary level data, such as calculating allele frequencies.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="gds-format.html#cb21-1" tabindex="-1"></a><span class="co"># reference allele frequency of each variant</span></span>
+<span id="cb21-2"><a href="gds-format.html#cb21-2" tabindex="-1"></a>afreq <span class="ot">&lt;-</span> <span class="fu">seqAlleleFreq</span>(gds)</span>
+<span id="cb21-3"><a href="gds-format.html#cb21-3" tabindex="-1"></a><span class="fu">hist</span>(afreq, <span class="at">breaks=</span><span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/ref_freq-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="gds-format.html#cb22-1" tabindex="-1"></a><span class="co"># minor allele frequency of each variant</span></span>
+<span id="cb22-2"><a href="gds-format.html#cb22-2" tabindex="-1"></a>maf <span class="ot">&lt;-</span> <span class="fu">seqAlleleFreq</span>(gds, <span class="at">minor =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-3"><a href="gds-format.html#cb22-3" tabindex="-1"></a><span class="fu">head</span>(maf)</span></code></pre></div>
+<pre><code>## [1] 0.0039964476 0.0492895204 0.0004440497 0.0008880995 0.0071047957
+## [6] 0.0022202487</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="gds-format.html#cb24-1" tabindex="-1"></a><span class="fu">summary</span>(maf)</span></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.000000 0.000444 0.001332 0.037846 0.012877 0.498668</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="gds-format.html#cb26-1" tabindex="-1"></a><span class="fu">hist</span>(maf, <span class="at">breaks=</span><span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/minor_freq-1.png" alt="" width="672" /></p>
+<p>We can define a filter on the <code>gds</code> object. After using the <code>seqSetFilter</code> command, all subsequent reads from the <code>gds</code> object are restricted to the selected subset of data, until a new filter is defined or <code>seqResetFilter</code> is called to clear the filter.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="gds-format.html#cb27-1" tabindex="-1"></a><span class="fu">seqSetFilter</span>(gds, <span class="at">variant.id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">sample.id=</span>sample.id[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## # of selected samples: 5
 ## # of selected variants: 10</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="gds-format.html#cb29-1" tabindex="-1"></a><span class="co"># only returns data for the filtered variants</span></span>
+<span id="cb29-2"><a href="gds-format.html#cb29-2" tabindex="-1"></a><span class="fu">seqGetData</span>(gds, <span class="st">&quot;sample.id&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;HG00096&quot; &quot;HG00097&quot; &quot;HG00099&quot; &quot;HG00100&quot; &quot;HG00101&quot;</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="gds-format.html#cb31-1" tabindex="-1"></a><span class="co"># only returns data for the filtered variants</span></span>
+<span id="cb31-2"><a href="gds-format.html#cb31-2" tabindex="-1"></a><span class="fu">seqGetData</span>(gds, <span class="st">&quot;variant.id&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="gds-format.html#cb33-1" tabindex="-1"></a><span class="fu">seqGetData</span>(gds, <span class="st">&quot;position&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1]  970546  985900 1025045 1265550 1472676 1735725 2185887 2283689 2629401
+## [10] 2710895</code></pre>
+</div>
+<div id="genotype-data" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Genotype Data<a href="gds-format.html#genotype-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Genotype data is stored in a 3-dimensional array, where the first dimension is always 2 for diploid genotypes. The second and third dimensions are samples and variants, respectively. The values of the array denote alleles: <code>0</code> is the reference allele and <code>1</code> is the alternate allele. For multiallelic variants, other alternate alleles are represented as integers <code>&gt; 1</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="gds-format.html#cb17-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;genotype&quot;</span>)</span>
-<span id="cb17-2"><a href="gds-format.html#cb17-2" tabindex="-1"></a><span class="fu">dim</span>(geno)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="gds-format.html#cb35-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">seqGetData</span>(gds, <span class="st">&quot;genotype&quot;</span>)</span>
+<span id="cb35-2"><a href="gds-format.html#cb35-2" tabindex="-1"></a><span class="fu">dim</span>(geno)</span></code></pre></div>
 <pre><code>## [1]  2  5 10</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="gds-format.html#cb19-1" tabindex="-1"></a>geno[,,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="gds-format.html#cb37-1" tabindex="-1"></a><span class="co"># print the first two variants</span></span>
+<span id="cb37-2"><a href="gds-format.html#cb37-2" tabindex="-1"></a>geno[,,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##       sample
@@ -276,11 +339,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## allele [,1] [,2] [,3] [,4] [,5]
 ##   [1,]    0    0    0    0    0
 ##   [2,]    0    0    0    0    0</code></pre>
-<p>The <a href="http://bioconductor.org/packages/SeqVarTools">SeqVarTools package</a> has some additional functions for interacting with SeqArray-format GDS files.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="gds-format.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(SeqVarTools)</span>
-<span id="cb21-2"><a href="gds-format.html#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="gds-format.html#cb21-3" tabindex="-1"></a><span class="co"># return genotypes in matrix format</span></span>
-<span id="cb21-4"><a href="gds-format.html#cb21-4" tabindex="-1"></a><span class="fu">getGenotype</span>(gds)</span></code></pre></div>
+<p>The <a href="http://bioconductor.org/packages/SeqVarTools">SeqVarTools package</a> has some additional functions for interacting with SeqArray-format GDS files. There are functions providing more intuitive ways to read in genotypes. What does each of the following functions return?</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="gds-format.html#cb39-1" tabindex="-1"></a><span class="fu">library</span>(SeqVarTools)</span>
+<span id="cb39-2"><a href="gds-format.html#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="gds-format.html#cb39-3" tabindex="-1"></a><span class="co"># return genotypes in matrix format</span></span>
+<span id="cb39-4"><a href="gds-format.html#cb39-4" tabindex="-1"></a><span class="fu">getGenotype</span>(gds)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    1     2     3     4     5     6     7     8     9     10   
 ##   HG00096 &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot;
@@ -288,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00099 &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot;
 ##   HG00100 &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot;
 ##   HG00101 &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot; &quot;0|0&quot;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="gds-format.html#cb23-1" tabindex="-1"></a><span class="fu">getGenotypeAlleles</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="gds-format.html#cb41-1" tabindex="-1"></a><span class="fu">getGenotypeAlleles</span>(gds)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    1     2     3     4     5     6     7     8     9     10   
 ##   HG00096 &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;T|T&quot; &quot;G|G&quot; &quot;G|G&quot; &quot;A|A&quot; &quot;A|A&quot; &quot;C|C&quot;
@@ -296,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00099 &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;T|T&quot; &quot;G|G&quot; &quot;G|G&quot; &quot;A|A&quot; &quot;A|A&quot; &quot;C|C&quot;
 ##   HG00100 &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;T|T&quot; &quot;G|G&quot; &quot;G|G&quot; &quot;A|A&quot; &quot;A|A&quot; &quot;C|C&quot;
 ##   HG00101 &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;C|C&quot; &quot;T|T&quot; &quot;G|G&quot; &quot;G|G&quot; &quot;A|A&quot; &quot;A|A&quot; &quot;C|C&quot;</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="gds-format.html#cb25-1" tabindex="-1"></a><span class="fu">refDosage</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="gds-format.html#cb43-1" tabindex="-1"></a><span class="fu">refDosage</span>(gds)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    1 2 3 4 5 6 7 8 9 10
 ##   HG00096 2 2 2 2 2 2 2 2 2  2
@@ -304,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00099 2 2 2 2 2 2 2 2 2  2
 ##   HG00100 2 2 2 2 2 2 2 2 2  2
 ##   HG00101 2 2 2 2 2 2 2 2 2  2</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="gds-format.html#cb27-1" tabindex="-1"></a><span class="fu">altDosage</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="gds-format.html#cb45-1" tabindex="-1"></a><span class="fu">altDosage</span>(gds)</span></code></pre></div>
 <pre><code>##          variant
 ## sample    1 2 3 4 5 6 7 8 9 10
 ##   HG00096 0 0 0 0 0 0 0 0 0  0
@@ -312,13 +375,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   HG00099 0 0 0 0 0 0 0 0 0  0
 ##   HG00100 0 0 0 0 0 0 0 0 0  0
 ##   HG00101 0 0 0 0 0 0 0 0 0  0</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="gds-format.html#cb29-1" tabindex="-1"></a><span class="co"># look at reference and alternate alleles</span></span>
-<span id="cb29-2"><a href="gds-format.html#cb29-2" tabindex="-1"></a><span class="fu">refChar</span>(gds)</span></code></pre></div>
+</div>
+<div id="variant-information" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Variant Information<a href="gds-format.html#variant-information" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are functions to extract variant-level information.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="gds-format.html#cb47-1" tabindex="-1"></a><span class="co"># look at reference and alternate alleles</span></span>
+<span id="cb47-2"><a href="gds-format.html#cb47-2" tabindex="-1"></a><span class="fu">refChar</span>(gds)</span></code></pre></div>
 <pre><code>##  [1] &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;T&quot; &quot;G&quot; &quot;G&quot; &quot;A&quot; &quot;A&quot; &quot;C&quot;</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="gds-format.html#cb31-1" tabindex="-1"></a><span class="fu">altChar</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="gds-format.html#cb49-1" tabindex="-1"></a><span class="fu">altChar</span>(gds)</span></code></pre></div>
 <pre><code>##  [1] &quot;G&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;C&quot; &quot;A&quot; &quot;A&quot; &quot;T&quot; &quot;C&quot; &quot;T&quot;</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="gds-format.html#cb33-1" tabindex="-1"></a><span class="co"># data.frame of variant information</span></span>
-<span id="cb33-2"><a href="gds-format.html#cb33-2" tabindex="-1"></a><span class="fu">variantInfo</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="gds-format.html#cb51-1" tabindex="-1"></a><span class="co"># data.frame of variant information</span></span>
+<span id="cb51-2"><a href="gds-format.html#cb51-2" tabindex="-1"></a><span class="fu">variantInfo</span>(gds)</span></code></pre></div>
 <pre><code>##    variant.id chr     pos ref alt
 ## 1           1   1  970546   C   G
 ## 2           2   1  985900   C   T
@@ -330,50 +397,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8           8   1 2283689   A   T
 ## 9           9   1 2629401   A   C
 ## 10         10   1 2710895   C   T</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="gds-format.html#cb35-1" tabindex="-1"></a><span class="co"># reset the filter to all variants and samples</span></span>
-<span id="cb35-2"><a href="gds-format.html#cb35-2" tabindex="-1"></a><span class="fu">seqResetFilter</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="gds-format.html#cb53-1" tabindex="-1"></a><span class="co"># reset the filter to all variants and samples</span></span>
+<span id="cb53-2"><a href="gds-format.html#cb53-2" tabindex="-1"></a><span class="fu">seqResetFilter</span>(gds)</span></code></pre></div>
 <pre><code>## # of selected samples: 1,126
 ## # of selected variants: 1,120</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="gds-format.html#cb37-1" tabindex="-1"></a><span class="co"># how many alleles for each variant?</span></span>
-<span id="cb37-2"><a href="gds-format.html#cb37-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">seqNumAllele</span>(gds)</span>
-<span id="cb37-3"><a href="gds-format.html#cb37-3" tabindex="-1"></a><span class="fu">table</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="gds-format.html#cb55-1" tabindex="-1"></a><span class="co"># how many alleles for each variant?</span></span>
+<span id="cb55-2"><a href="gds-format.html#cb55-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">seqNumAllele</span>(gds)</span>
+<span id="cb55-3"><a href="gds-format.html#cb55-3" tabindex="-1"></a><span class="fu">table</span>(n)</span></code></pre></div>
 <pre><code>## n
 ##    2    3    4 
 ## 1099   20    1</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="gds-format.html#cb39-1" tabindex="-1"></a><span class="co"># some variants have more than one alternate allele</span></span>
-<span id="cb39-2"><a href="gds-format.html#cb39-2" tabindex="-1"></a>multi.allelic <span class="ot">&lt;-</span> <span class="fu">which</span>(n <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
-<span id="cb39-3"><a href="gds-format.html#cb39-3" tabindex="-1"></a><span class="fu">altChar</span>(gds)[multi.allelic]</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="gds-format.html#cb57-1" tabindex="-1"></a><span class="co"># some variants have more than one alternate allele</span></span>
+<span id="cb57-2"><a href="gds-format.html#cb57-2" tabindex="-1"></a>multi.allelic <span class="ot">&lt;-</span> <span class="fu">which</span>(n <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb57-3"><a href="gds-format.html#cb57-3" tabindex="-1"></a><span class="fu">altChar</span>(gds)[multi.allelic]</span></code></pre></div>
 <pre><code>##  [1] &quot;GT,G&quot;            &quot;G,T&quot;             &quot;A,T&quot;             &quot;A,T&quot;            
 ##  [5] &quot;ATG,ATGTG&quot;       &quot;C,G&quot;             &quot;A,T&quot;             &quot;C,T&quot;            
 ##  [9] &quot;A,C&quot;             &quot;TAA,T&quot;           &quot;GTTA,GTTT&quot;       &quot;GCC,GCCC,G&quot;     
 ## [13] &quot;A,C&quot;             &quot;A,C&quot;             &quot;A,C&quot;             &quot;CAAGCAT,CGAGCAT&quot;
 ## [17] &quot;CATTATT,C&quot;       &quot;AT,C&quot;            &quot;TGTGA,C&quot;         &quot;CCATT,CCATTCATT&quot;
 ## [21] &quot;C,G&quot;</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="gds-format.html#cb41-1" tabindex="-1"></a><span class="co"># extract a particular alternate allele</span></span>
-<span id="cb41-2"><a href="gds-format.html#cb41-2" tabindex="-1"></a><span class="co"># first alternate</span></span>
-<span id="cb41-3"><a href="gds-format.html#cb41-3" tabindex="-1"></a><span class="fu">altChar</span>(gds, <span class="at">n=</span><span class="dv">1</span>)[multi.allelic]</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="gds-format.html#cb59-1" tabindex="-1"></a><span class="co"># extract a particular alternate allele</span></span>
+<span id="cb59-2"><a href="gds-format.html#cb59-2" tabindex="-1"></a><span class="co"># first alternate</span></span>
+<span id="cb59-3"><a href="gds-format.html#cb59-3" tabindex="-1"></a><span class="fu">altChar</span>(gds, <span class="at">n=</span><span class="dv">1</span>)[multi.allelic]</span></code></pre></div>
 <pre><code>##  [1] &quot;GT&quot;      &quot;G&quot;       &quot;A&quot;       &quot;A&quot;       &quot;ATG&quot;     &quot;C&quot;       &quot;A&quot;      
 ##  [8] &quot;C&quot;       &quot;A&quot;       &quot;TAA&quot;     &quot;GTTA&quot;    &quot;GCC&quot;     &quot;A&quot;       &quot;A&quot;      
 ## [15] &quot;A&quot;       &quot;CAAGCAT&quot; &quot;CATTATT&quot; &quot;AT&quot;      &quot;TGTGA&quot;   &quot;CCATT&quot;   &quot;C&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="gds-format.html#cb43-1" tabindex="-1"></a><span class="co"># second alternate</span></span>
-<span id="cb43-2"><a href="gds-format.html#cb43-2" tabindex="-1"></a><span class="fu">altChar</span>(gds, <span class="at">n=</span><span class="dv">2</span>)[multi.allelic]</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="gds-format.html#cb61-1" tabindex="-1"></a><span class="co"># second alternate</span></span>
+<span id="cb61-2"><a href="gds-format.html#cb61-2" tabindex="-1"></a><span class="fu">altChar</span>(gds, <span class="at">n=</span><span class="dv">2</span>)[multi.allelic]</span></code></pre></div>
 <pre><code>##  [1] &quot;G&quot;         &quot;T&quot;         &quot;T&quot;         &quot;T&quot;         &quot;ATGTG&quot;     &quot;G&quot;        
 ##  [7] &quot;T&quot;         &quot;T&quot;         &quot;C&quot;         &quot;T&quot;         &quot;GTTT&quot;      &quot;GCCC&quot;     
 ## [13] &quot;C&quot;         &quot;C&quot;         &quot;C&quot;         &quot;CGAGCAT&quot;   &quot;C&quot;         &quot;C&quot;        
 ## [19] &quot;C&quot;         &quot;CCATTCATT&quot; &quot;G&quot;</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="gds-format.html#cb45-1" tabindex="-1"></a><span class="co"># how many variants are SNVs vs INDELs?</span></span>
-<span id="cb45-2"><a href="gds-format.html#cb45-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">isSNV</span>(gds, <span class="at">biallelic=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="gds-format.html#cb63-1" tabindex="-1"></a><span class="co"># how many variants are SNVs vs INDELs?</span></span>
+<span id="cb63-2"><a href="gds-format.html#cb63-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">isSNV</span>(gds, <span class="at">biallelic=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ##   110  1010</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="gds-format.html#cb47-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">isSNV</span>(gds, <span class="at">biallelic=</span><span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="gds-format.html#cb65-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">isSNV</span>(gds, <span class="at">biallelic=</span><span class="cn">FALSE</span>))</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ##    99  1021</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="gds-format.html#cb49-1" tabindex="-1"></a><span class="co"># 11 SNVs are multi-allelic</span></span></code></pre></div>
-<p>We can also return variant information as a <code>GRanges</code> object from the GenomicRanges package. This format for representing sequence data is common across many Bioconductor packages. Chromosome is stored in the <code>seqnames</code> column. The <code>ranges</code> column has variant position, which can be a single base pair or a range.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="gds-format.html#cb50-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">granges</span>(gds)</span>
-<span id="cb50-2"><a href="gds-format.html#cb50-2" tabindex="-1"></a>gr</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="gds-format.html#cb67-1" tabindex="-1"></a><span class="co"># 11 SNVs are multi-allelic</span></span></code></pre></div>
+<p>We can also return variant information as a <code>GRanges</code> object from the GenomicRanges package. This format for representing sequence data is common across many Bioconductor packages. Chromosome is stored in the <code>seqnames</code> column. The <code>ranges</code> column has variant position, which can be a single base pair or a range. We will use <code>GRanges</code> objects when we analyze sets of variants (e.g. in genes).</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="gds-format.html#cb68-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">granges</span>(gds)</span>
+<span id="cb68-2"><a href="gds-format.html#cb68-2" tabindex="-1"></a>gr</span></code></pre></div>
 <pre><code>## GRanges object with 1120 ranges and 0 metadata columns:
 ##        seqnames              ranges strand
 ##           &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt;
@@ -391,8 +458,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   -------
 ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 </div>
-<div id="exercises" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Exercises<a href="gds-format.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="close-a-gds" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Close a GDS<a href="gds-format.html#close-a-gds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Always use the <code>seqClose</code> command to close your connection to a GDS file when you are done working with it. Trying to open an already opened GDS will result in an error.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="gds-format.html#cb70-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+</div>
+</div>
+<div id="exercises" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Exercises<a href="gds-format.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Set a filter selecting only multi-allelic variants. Inspect their genotypes using the different methods you learned above. Use the <code>alleleDosage</code> method to find dosage for the second (and third, etc.) alternate allele.</p></li>
 <li><p>Use the <code>hwe</code> function in SeqVarTools to run a Hardy-Weinberg Equilibrium test on each variant. Identify a variant with low p-value and inspect its genotypes. (Note that the HWE test is only valid for biallelic variants, and will return <code>NA</code> for multiallelic variants.)</p></li>
@@ -419,42 +492,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
