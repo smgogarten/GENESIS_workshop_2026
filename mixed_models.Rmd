@@ -55,6 +55,27 @@ saveRDS(nullmod, file="data/null_mixed_model.rds")
 ## Single-variant tests
 
 Now we can run a single-variant test, accounting for relatedness between the subjects.
+```{r qqPlot}
+library(ggplot2)
+qqPlot <- function(pval) {
+    pval <- pval[!is.na(pval)]
+    n <- length(pval)
+    x <- 1:n
+    dat <- data.frame(obs=sort(pval),
+                      exp=x/n,
+                      upper=qbeta(0.025, x, rev(x)),
+                      lower=qbeta(0.975, x, rev(x)))
+    
+    ggplot(dat, aes(-log10(exp), -log10(obs))) +
+        geom_line(aes(-log10(exp), -log10(upper)), color="gray") +
+        geom_line(aes(-log10(exp), -log10(lower)), color="gray") +
+        geom_point() +
+        geom_abline(intercept=0, slope=1, color="red") +
+        xlab(expression(paste(-log[10], "(expected P)"))) +
+        ylab(expression(paste(-log[10], "(observed P)"))) +
+        theme_bw()
+}    
+```
 
 ```{r assoc_single_mm}
 library(SeqVarTools)

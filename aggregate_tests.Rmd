@@ -27,13 +27,27 @@ inner_join(aggunit, mult[2,1:2])
 
 ## Association testing with aggregate units
 
-We can run a burden test or SKAT on each of these units using `assocTestAggregate`. We define a `SeqVarListIterator` object where each list element is an aggregate unit. The constructor expects a `GRangesList`, so we use the TopmedPipeline function `aggregateGRangesList` to quickly convert our single dataframe to the required format. This function can account for multiallelic variants (the same chromosome, position, and ref, but different alt alleles).
+We can run a burden test or SKAT on each of these units using `assocTestAggregate`. We define a `SeqVarListIterator` object where each list element is an aggregate unit. The constructor expects a `GRangesList`, so we use the function `aggregateGRangesList` to quickly convert our single dataframe to the required format. This function can account for multiallelic variants (the same chromosome, position, and ref, but different alt alleles).
 
 ```{r aggVarList}
 #remotes::install_github("UW-GAC/analysis_pipeline/TopmedPipeline")
-library(TopmedPipeline)
+#library(TopmedPipeline)
 library(SeqVarTools)
 library(GENESIS)
+
+aggregateGRangesList <- function(variants) {
+    stopifnot(all(c("group_id", "chr", "pos") %in% names(variants)))
+    groups <- unique(variants$group_id)
+    cols <- setdiff(names(variants), c("group_id", "chr", "pos"))
+    GenomicRanges::GRangesList(lapply(setNames(groups, groups), function(g) {
+        x <- variants[variants$group_id == g,]
+        gr <- GenomicRanges::GRanges(seqnames=x$chr, 
+                                     ranges=IRanges::IRanges(start=x$pos, width=1))
+        GenomicRanges::mcols(gr) <- x[,cols]
+        gr
+    }))
+}
+
 gdsfile <- "data/1KG_phase3_subset_chr1.gds"
 if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
 gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
@@ -55,6 +69,28 @@ iterator <- SeqVarListIterator(seqData, variantRanges=aggVarList, verbose=FALSE)
 
 As in the previous section, we must load the null model before running the association test.
 
+```{r qqPlot}
+library(ggplot2)
+qqPlot <- function(pval) {
+    pval <- pval[!is.na(pval)]
+    n <- length(pval)
+    x <- 1:n
+    dat <- data.frame(obs=sort(pval),
+                      exp=x/n,
+                      upper=qbeta(0.025, x, rev(x)),
+                      lower=qbeta(0.975, x, rev(x)))
+    
+    ggplot(dat, aes(-log10(exp), -log10(obs))) +
+        geom_line(aes(-log10(exp), -log10(upper)), color="gray") +
+        geom_line(aes(-log10(exp), -log10(lower)), color="gray") +
+        geom_point() +
+        geom_abline(intercept=0, slope=1, color="red") +
+        xlab(expression(paste(-log[10], "(expected P)"))) +
+        ylab(expression(paste(-log[10], "(observed P)"))) +
+        theme_bw()
+}    
+```
+
 ```{r assoc_aggregate}
 if (!exists("nullmod")) {
     nmfile <- "data/null_mixed_model.rds"
@@ -74,11 +110,24 @@ qqPlot(assoc$results$Score.pval)
 
 ## Exercise
 
-Since we are working with a subset of the data, many of the genes listed in `group_id` have a very small number of variants. Create a new set of units based on position rather than gene name, using the TopmedPipeline function `aggregateGRanges`. Then run SKAT using those units and a `SeqVarRangeIterator`.
+Since we are working with a subset of the data, many of the genes listed in `group_id` have a very small number of variants. Create a new set of units based on position rather than gene name, using the function `aggregateGRanges`. Then run SKAT using those units and a `SeqVarRangeIterator`.
+
+```{r aggregateGRanges}
+aggregateGRanges <- function(groups) {
+    stopifnot(all(c("group_id", "chr", "start", "end") %in% names(groups)))
+    cols <- setdiff(names(groups), c("group_id", "chr", "start", "end"))
+    gr <- GenomicRanges::GRanges(seqnames=groups$chr,
+                  ranges=IRanges::IRanges(start=groups$start, end=groups$end))
+    names(gr) <- groups$group_id
+    GenomicRanges::mcols(gr) <- groups[,cols]
+    gr
+}
+```
+
 
 # Annotation - Solutions
 
-Since we are working with a subset of the data, many of the genes listed in `group_id` have a very small number of variants. Create a new set of units based on position rather than gene name, using the TopmedPipeline function `aggregateGRanges`. Then run SKAT using those units and a `SeqVarRangeIterator`.
+Since we are working with a subset of the data, many of the genes listed in `group_id` have a very small number of variants. Create a new set of units based on position rather than gene name, using the function `aggregateGRanges`. Then run SKAT using those units and a `SeqVarRangeIterator`.
 
 ```{r exercise_aggregate}
 minp <- min(aggunit1$pos)

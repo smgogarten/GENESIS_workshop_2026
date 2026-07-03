@@ -5,8 +5,9 @@ These exercises introduce association testing: how to find which genetic variant
 ## Null model
 
 The first step in an association test is to fit the null model. We will need an `AnnotatedDataFrame` with phenotypes. 
-We have a sample annotation with a `sample.id` column matched to the GDS file, and a phenotype file with `subject_id`. (In this example, we use the 1000 Genomes IDs for both sample and subject ID.) For TOPMed data, it is also important to match by study, as subject IDs are not unique across studies.
+We have a sample annotation with a `sample.id` column matched to the GDS file, and a phenotype file with `subject_id`. (In this example, we use the 1000 Genomes IDs for both sample and subject ID.)
 
+When designing a study, we generally advise using separate IDs for samples (sequencing instances) and subjects (individuals with phenotypes) and maintaining a sample to subject mapping file. This practice can be beneficial for quality control purposes; for example, when sample swaps are detected, the mapping between sequencing (indexed by `sample.id`) and phenotype (indexed by `subject.id`) data can easily be updated, rather than needing to modify and re-write phenotype data or sequencing metrics files.
 
 ```{r null_model}
 # sample annotation
@@ -38,7 +39,7 @@ annot <- AnnotatedDataFrame(dat, meta)
 saveRDS(annot, file="data/sample_phenotype_annotation.rds")
 ```
 
-We will test for an association between genotype and height, adjusting for sex, age, and study as covariates. If the sample set involves multiple distinct groups with different variances for the phenotype, we recommend allowing the model to use heterogeneous variance among groups with the parameter `group.var`. We saw in a previous exercise that the variance differs by study.
+We will test for an association between genotype and height, adjusting for sex, age, and study as covariates. If the sample set involves multiple distinct groups with different variances for the phenotype, we recommend allowing the model to use heterogeneous variance among groups with the parameter `group.var`. In this example, we assume that the variance differs by study.
 
 ```{r null_model_fit}
 library(GENESIS)

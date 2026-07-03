@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Population structure and relatedness | GENESIS workshop 2026</title>
+  <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Population structure and relatedness | GENESIS workshop 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
+  <meta name="github-repo" content="smgogarten/GENESIS_workshop_2026" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Population structure and relatedness | GENESIS workshop 2026" />
+  
+  <meta name="twitter:description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
+  
+
+
+
+<meta name="date" content="2026-07-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="association-tests.html"/>
+<link rel="next" href="mixed-models.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1</b> Schedule</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-packages-used"><i class="fa fa-check"></i><b>1.2</b> R packages used</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>1.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>3</b> Association tests</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="association-tests.html"><a href="association-tests.html#null-model"><i class="fa fa-check"></i><b>3.1</b> Null model</a></li>
+<li class="chapter" data-level="3.2" data-path="association-tests.html"><a href="association-tests.html#single-variant-tests"><i class="fa fa-check"></i><b>3.2</b> Single-variant tests</a></li>
+<li class="chapter" data-level="3.3" data-path="association-tests.html"><a href="association-tests.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="association-tests.html"><a href="association-tests.html#sliding-window-tests"><i class="fa fa-check"></i><b>3.4</b> Sliding window tests</a></li>
+<li class="chapter" data-level="3.5" data-path="association-tests.html"><a href="association-tests.html#exercise"><i class="fa fa-check"></i><b>3.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html"><i class="fa fa-check"></i><b>4</b> Population structure and relatedness</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#computing-a-grm"><i class="fa fa-check"></i><b>4.1</b> Computing a GRM</a></li>
+<li class="chapter" data-level="4.2" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-relate"><i class="fa fa-check"></i><b>4.2</b> PC-Relate</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#ld-pruning"><i class="fa fa-check"></i><b>4.2.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="4.2.2" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#king-robust"><i class="fa fa-check"></i><b>4.2.2</b> KING-robust</a></li>
+<li class="chapter" data-level="4.2.3" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-air"><i class="fa fa-check"></i><b>4.2.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="4.2.4" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-relate-1"><i class="fa fa-check"></i><b>4.2.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="4.2.5" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>4.2.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="4.2.6" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#advanced-notes"><i class="fa fa-check"></i><b>4.2.6</b> Advanced Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#exercise-1"><i class="fa fa-check"></i><b>4.3</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>5</b> Mixed models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="mixed-models.html"><a href="mixed-models.html#null-model-1"><i class="fa fa-check"></i><b>5.1</b> Null model</a></li>
+<li class="chapter" data-level="5.2" data-path="mixed-models.html"><a href="mixed-models.html#single-variant-tests-1"><i class="fa fa-check"></i><b>5.2</b> Single-variant tests</a></li>
+<li class="chapter" data-level="5.3" data-path="mixed-models.html"><a href="mixed-models.html#exercise-2"><i class="fa fa-check"></i><b>5.3</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variant-annotation.html"><a href="variant-annotation.html"><i class="fa fa-check"></i><b>6</b> Variant annotation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="variant-annotation.html"><a href="variant-annotation.html#using-bioconductor-annotation-resources"><i class="fa fa-check"></i><b>6.1</b> Using Bioconductor annotation resources</a></li>
+<li class="chapter" data-level="6.2" data-path="variant-annotation.html"><a href="variant-annotation.html#aggregating-and-filtering-variants-using-annotation"><i class="fa fa-check"></i><b>6.2</b> Aggregating and filtering variants using annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aggregate-tests.html"><a href="aggregate-tests.html"><i class="fa fa-check"></i><b>7</b> Aggregate tests</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="aggregate-tests.html"><a href="aggregate-tests.html#aggregate-unit-for-association-testing-exercise"><i class="fa fa-check"></i><b>7.1</b> Aggregate unit for association testing exercise</a></li>
+<li class="chapter" data-level="7.2" data-path="aggregate-tests.html"><a href="aggregate-tests.html#association-testing-with-aggregate-units"><i class="fa fa-check"></i><b>7.2</b> Association testing with aggregate units</a></li>
+<li class="chapter" data-level="7.3" data-path="aggregate-tests.html"><a href="aggregate-tests.html#exercise-3"><i class="fa fa-check"></i><b>7.3</b> Exercise</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GENESIS workshop 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="population-structure-and-relatedness" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Population structure and relatedness<a href="population-structure-and-relatedness.html#population-structure-and-relatedness" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Population structure due to genetic ancestry and genetic correlation due to sample relatedness are important factors to consider when performing association tests as their presence can lead to mis-calibration of test statistics and false positive associations. This tutorial demonstrates how to perform population structure and relatedness inference using the <a href="https://bioconductor.org/packages/release/bioc/html/GENESIS.html">GENESIS</a> and <a href="https://www.bioconductor.org/packages/release/bioc/html/SNPRelate.html">SNPRelate</a> R/Bioconductor packages. We use the results of this inference to perform association tests in the mixed model tutorial.</p>
+<div id="computing-a-grm" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Computing a GRM<a href="population-structure-and-relatedness.html#computing-a-grm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can use the <a href="https://github.com/zhengxwen/SNPRelate">SNPRelate</a> package to compute a Genetic Relationship matrix (GRM) using GDS files. A GRM captures genetic correlation among samples due to both distant ancestry (i.e. population structure) and recent kinship (i.e. familial relatedness) in a single matrix.</p>
+<p>SNPRelate offers several algorithms for computing a GRM, including the commonly-used GCTA <a href="https://www.ncbi.nlm.nih.gov/pubmed/21167468">Yang et al 2011</a> (<code>method = "GCTA"</code>) and allelic matching based estimators described by <a href="https://www.ncbi.nlm.nih.gov/pubmed/28550018">Weir and Goudet 2017</a> (<code>method = "IndivBeta"</code>).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="population-structure-and-relatedness.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(SeqArray)</span></code></pre></div>
+<pre><code>## Loading required package: gdsfmt</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="population-structure-and-relatedness.html#cb3-1" tabindex="-1"></a>repo_path <span class="ot">&lt;-</span> <span class="st">&quot;https://github.com/smgogarten/GENESIS_workshop_2026/raw/main&quot;</span></span>
+<span id="cb3-2"><a href="population-structure-and-relatedness.html#cb3-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>)) <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb3-3"><a href="population-structure-and-relatedness.html#cb3-3" tabindex="-1"></a>gdsfile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset_chr1.gds&quot;</span></span>
+<span id="cb3-4"><a href="population-structure-and-relatedness.html#cb3-4" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(gdsfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, gdsfile), gdsfile)</span>
+<span id="cb3-5"><a href="population-structure-and-relatedness.html#cb3-5" tabindex="-1"></a>gdsfmt<span class="sc">::</span><span class="fu">showfile.gds</span>(<span class="at">closeall=</span><span class="cn">TRUE</span>) <span class="co"># make sure file is not already open</span></span>
+<span id="cb3-6"><a href="population-structure-and-relatedness.html#cb3-6" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">seqOpen</span>(gdsfile)</span>
+<span id="cb3-7"><a href="population-structure-and-relatedness.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="population-structure-and-relatedness.html#cb3-8" tabindex="-1"></a><span class="fu">library</span>(SNPRelate)</span>
+<span id="cb3-9"><a href="population-structure-and-relatedness.html#cb3-9" tabindex="-1"></a>grm <span class="ot">&lt;-</span> <span class="fu">snpgdsGRM</span>(gds, <span class="at">method=</span><span class="st">&quot;GCTA&quot;</span>)</span></code></pre></div>
+<pre><code>## Genetic Relationship Matrix (GRM, GCTA):
+## Calculating allele counts/frequencies (1120 variants) ...
+## [..................................................]  0%, ETC: --- (1/1)    [==================================================] 100%, used 0s (1/1)    [==================================================] 100%, complete, 0s    
+## # of selected variants: 1,107
+## Excluding 13 SNVs (monomorphic: TRUE, MAF: NaN, missing rate: 0.01)
+##     # of samples: 1,126
+##     # of SNVs: 1,107
+##     using 1 thread/core
+## CPU capabilities:
+## 2026-07-03 16:42:49    (internal increment: 668)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 0s
+## 2026-07-03 16:42:49    Done.</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="population-structure-and-relatedness.html#cb5-1" tabindex="-1"></a><span class="fu">names</span>(grm)</span></code></pre></div>
+<pre><code>## [1] &quot;sample.id&quot; &quot;snp.id&quot;    &quot;method&quot;    &quot;grm&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="population-structure-and-relatedness.html#cb7-1" tabindex="-1"></a><span class="fu">dim</span>(grm<span class="sc">$</span>grm)</span></code></pre></div>
+<pre><code>## [1] 1126 1126</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="population-structure-and-relatedness.html#cb9-1" tabindex="-1"></a><span class="co"># look at the top corner of the matrix</span></span>
+<span id="cb9-2"><a href="population-structure-and-relatedness.html#cb9-2" tabindex="-1"></a>grm<span class="sc">$</span>grm[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##            [,1]        [,2]       [,3]       [,4]        [,5]
+## [1,] 2.24542126  0.02407128 0.02166515 0.02811221  0.01037635
+## [2,] 0.02407128  1.72181561 0.02471537 0.03011554 -0.01032435
+## [3,] 0.02166515  0.02471537 0.31482882 0.01837674  0.04781789
+## [4,] 0.02811221  0.03011554 0.01837674 0.19735556  0.07583944
+## [5,] 0.01037635 -0.01032435 0.04781789 0.07583944  0.24513044</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="population-structure-and-relatedness.html#cb11-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+</div>
+<div id="pc-relate" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> PC-Relate<a href="population-structure-and-relatedness.html#pc-relate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To disentangle distant ancestry (i.e. population structure) from recent kinship (i.e. familial relatedness), we implement the analysis described in <a href="https://www.cell.com/ajhg/fulltext/S0002-9297(15)00496-6">Conomos et al., 2016</a>. This approach uses the <a href="http://www.ncbi.nlm.nih.gov/pubmed/20926424">KING-robust</a>, <a href="http://www.ncbi.nlm.nih.gov/pubmed/25810074">PC-AiR</a>, and <a href="http://www.ncbi.nlm.nih.gov/pubmed/26748516">PC-Relate</a> methods.</p>
+<div id="ld-pruning" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> LD-pruning<a href="population-structure-and-relatedness.html#ld-pruning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We generally advise that population structure and relatedness inference be performed using a set of (nearly) independent genetic variants. To find this set of variants, we perform linkage-disequilibrium (LD) pruning on the study sample set. We typically use an LD threshold of <code>r^2 &lt; 0.1</code> to select variants. We use the <a href="https://github.com/zhengxwen/SNPRelate">SNPRelate</a> package to perform LD-pruning with GDS files.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="population-structure-and-relatedness.html#cb12-1" tabindex="-1"></a><span class="co"># use a GDS file with all chromosomes</span></span>
+<span id="cb12-2"><a href="population-structure-and-relatedness.html#cb12-2" tabindex="-1"></a><span class="fu">library</span>(SeqArray)</span>
+<span id="cb12-3"><a href="population-structure-and-relatedness.html#cb12-3" tabindex="-1"></a>gdsfile <span class="ot">&lt;-</span> <span class="st">&quot;data/1KG_phase3_subset.gds&quot;</span></span>
+<span id="cb12-4"><a href="population-structure-and-relatedness.html#cb12-4" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(gdsfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, gdsfile), gdsfile)</span>
+<span id="cb12-5"><a href="population-structure-and-relatedness.html#cb12-5" tabindex="-1"></a>gdsfmt<span class="sc">::</span><span class="fu">showfile.gds</span>(<span class="at">closeall=</span><span class="cn">TRUE</span>) <span class="co"># make sure file is not already open</span></span>
+<span id="cb12-6"><a href="population-structure-and-relatedness.html#cb12-6" tabindex="-1"></a>gds <span class="ot">&lt;-</span> <span class="fu">seqOpen</span>(gdsfile)</span>
+<span id="cb12-7"><a href="population-structure-and-relatedness.html#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="population-structure-and-relatedness.html#cb12-8" tabindex="-1"></a><span class="co"># use a subset of 100 samples to make things run faster</span></span>
+<span id="cb12-9"><a href="population-structure-and-relatedness.html#cb12-9" tabindex="-1"></a>sampfile <span class="ot">&lt;-</span> <span class="st">&quot;data/samples_subset100.RData&quot;</span></span>
+<span id="cb12-10"><a href="population-structure-and-relatedness.html#cb12-10" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(sampfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, sampfile), sampfile)</span>
+<span id="cb12-11"><a href="population-structure-and-relatedness.html#cb12-11" tabindex="-1"></a>sample.id <span class="ot">&lt;-</span> <span class="fu">get</span>(<span class="fu">load</span>(sampfile))</span>
+<span id="cb12-12"><a href="population-structure-and-relatedness.html#cb12-12" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="population-structure-and-relatedness.html#cb12-13" tabindex="-1"></a><span class="co"># LD pruning to get variant set</span></span>
+<span id="cb12-14"><a href="population-structure-and-relatedness.html#cb12-14" tabindex="-1"></a><span class="fu">library</span>(SNPRelate)</span>
+<span id="cb12-15"><a href="population-structure-and-relatedness.html#cb12-15" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) <span class="co"># LD pruning has a random element; so make this reproducible</span></span>
+<span id="cb12-16"><a href="population-structure-and-relatedness.html#cb12-16" tabindex="-1"></a>snpset <span class="ot">&lt;-</span> <span class="fu">snpgdsLDpruning</span>(gds, <span class="at">sample.id=</span>sample.id, <span class="at">method=</span><span class="st">&quot;corr&quot;</span>, </span>
+<span id="cb12-17"><a href="population-structure-and-relatedness.html#cb12-17" tabindex="-1"></a>                          <span class="at">slide.max.bp=</span><span class="fl">10e6</span>, <span class="at">ld.threshold=</span><span class="fu">sqrt</span>(<span class="fl">0.1</span>))</span></code></pre></div>
+<pre><code>## SNV pruning based on LD:
+## Excluding 1,120 SNVs on non-autosomes
+## Calculating allele counts/frequencies (24640 variants) ...
+## [..................................................]  0%, ETC: --- (1/1)    [==================================================] 100%, used 0s (1/1)    [==================================================] 100%, complete, 0s    
+## # of selected variants: 10,967
+## Excluding 13,673 SNVs (monomorphic: TRUE, MAF: 0.005, missing rate: 0.01)
+##     # of samples: 100
+##     # of SNVs: 10,967
+##     using 1 thread/core
+##     sliding window: 10,000,000 basepairs, Inf SNPs
+##     |LD| threshold: 0.316228
+##     method: correlation
+## Chrom 1: |====================|====================|
+##     31.34%, 351 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 2: |====================|====================|
+##     31.25%, 350 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 3: |====================|====================|
+##     30.45%, 341 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 4: |====================|====================|
+##     31.25%, 350 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 5: |====================|====================|
+##     29.55%, 331 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 6: |====================|====================|
+##     31.25%, 350 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 7: |====================|====================|
+##     28.66%, 321 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 8: |====================|====================|
+##     26.16%, 293 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 9: |====================|====================|
+##     28.57%, 320 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 10: |====================|====================|
+##     28.66%, 321 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 11: |====================|====================|
+##     26.88%, 301 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 12: |====================|====================|
+##     28.84%, 323 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 13: |====================|====================|
+##     25.18%, 282 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 14: |====================|====================|
+##     24.73%, 277 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 15: |====================|====================|
+##     22.86%, 256 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 16: |====================|====================|
+##     22.68%, 254 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 17: |====================|====================|
+##     21.61%, 242 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 18: |====================|====================|
+##     23.21%, 260 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 19: |====================|====================|
+##     21.61%, 242 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 20: |====================|====================|
+##     20.89%, 234 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 21: |====================|====================|
+##     18.93%, 212 / 1,120 (Fri Jul  3 16:42:49 2026)
+## Chrom 22: |====================|====================|
+##     17.23%, 193 / 1,120 (Fri Jul  3 16:42:49 2026)
+## 6,404 markers are selected in total.</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="population-structure-and-relatedness.html#cb14-1" tabindex="-1"></a><span class="fu">sapply</span>(snpset, length)</span></code></pre></div>
+<pre><code>##  chr1  chr2  chr3  chr4  chr5  chr6  chr7  chr8  chr9 chr10 chr11 chr12 chr13 
+##   351   350   341   350   331   350   321   293   320   321   301   323   282 
+## chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 
+##   277   256   254   242   260   242   234   212   193</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="population-structure-and-relatedness.html#cb16-1" tabindex="-1"></a>pruned <span class="ot">&lt;-</span> <span class="fu">unlist</span>(snpset, <span class="at">use.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="king-robust" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> KING-robust<a href="population-structure-and-relatedness.html#king-robust" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Step 1 is to get initial kinship estimates using <a href="http://www.ncbi.nlm.nih.gov/pubmed/20926424">KING-robust</a>, which is robust to discrete population structure but not ancestry admixture. KING-robust will be able to identify close relatives (e.g. 1st and 2nd degree) reliably, but may identify spurious pairs or miss more distant pairs of relatives in the presence of admixture. KING is available as its own software, but the KING-robust algorithm is also available in SNPRelate via the function <code>snpgdsIBDKING</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="population-structure-and-relatedness.html#cb17-1" tabindex="-1"></a><span class="co"># KING</span></span>
+<span id="cb17-2"><a href="population-structure-and-relatedness.html#cb17-2" tabindex="-1"></a>king <span class="ot">&lt;-</span> <span class="fu">snpgdsIBDKING</span>(gds, <span class="at">sample.id=</span>sample.id, <span class="at">snp.id=</span>pruned)</span></code></pre></div>
+<pre><code>## IBD analysis (KING method of moment) on genotypes:
+## Calculating allele counts/frequencies (6404 variants) ...
+## [..................................................]  0%, ETC: --- (1/1)    [==================================================] 100%, used 0s (1/1)    [==================================================] 100%, complete, 0s    
+## # of selected variants: 6,404
+##     # of samples: 100
+##     # of SNVs: 6,404
+##     using 1 thread/core
+## No family is specified, and all individuals are treated as singletons.
+## Relationship inference in the presence of population stratification.
+## CPU capabilities:
+## 2026-07-03 16:42:49    (internal increment: 65536)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 0s
+## 2026-07-03 16:42:49    Done.</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="population-structure-and-relatedness.html#cb19-1" tabindex="-1"></a><span class="fu">names</span>(king)</span></code></pre></div>
+<pre><code>## [1] &quot;sample.id&quot; &quot;snp.id&quot;    &quot;afreq&quot;     &quot;IBS0&quot;      &quot;kinship&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="population-structure-and-relatedness.html#cb21-1" tabindex="-1"></a><span class="co"># extract the kinship estimates</span></span>
+<span id="cb21-2"><a href="population-structure-and-relatedness.html#cb21-2" tabindex="-1"></a>kingMat <span class="ot">&lt;-</span> king<span class="sc">$</span>kinship</span>
+<span id="cb21-3"><a href="population-structure-and-relatedness.html#cb21-3" tabindex="-1"></a><span class="fu">colnames</span>(kingMat) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(kingMat) <span class="ot">&lt;-</span> king<span class="sc">$</span>sample.id</span>
+<span id="cb21-4"><a href="population-structure-and-relatedness.html#cb21-4" tabindex="-1"></a><span class="fu">dim</span>(kingMat)</span></code></pre></div>
+<pre><code>## [1] 100 100</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="population-structure-and-relatedness.html#cb23-1" tabindex="-1"></a><span class="co"># look at the top corner of the matrix</span></span>
+<span id="cb23-2"><a href="population-structure-and-relatedness.html#cb23-2" tabindex="-1"></a>kingMat[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##             HG00110     HG00116      HG00120      HG00128      HG00136
+## HG00110  0.50000000 -0.01556777 -0.034798535 -0.015262515 -0.050671551
+## HG00116 -0.01556777  0.50000000  0.100763807  0.014173703 -0.025571600
+## HG00120 -0.03479853  0.10076381  0.500000000  0.002412545 -0.027677497
+## HG00128 -0.01526252  0.01417370  0.002412545  0.500000000 -0.001809409
+## HG00136 -0.05067155 -0.02557160 -0.027677497 -0.001809409  0.500000000</code></pre>
+<p>We extract pairwise kinship estimates and IBS0 values (the proportion of variants for which the pair of indivdiuals share 0 alleles identical by state) to plot.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="population-structure-and-relatedness.html#cb25-1" tabindex="-1"></a>kinship <span class="ot">&lt;-</span> <span class="fu">snpgdsIBDSelection</span>(king)</span>
+<span id="cb25-2"><a href="population-structure-and-relatedness.html#cb25-2" tabindex="-1"></a><span class="fu">head</span>(kinship)</span></code></pre></div>
+<pre><code>##       ID1     ID2       IBS0     kinship
+## 1 HG00110 HG00116 0.02545284 -0.01556777
+## 2 HG00110 HG00120 0.02717052 -0.03479853
+## 3 HG00110 HG00128 0.02435978 -0.01526252
+## 4 HG00110 HG00136 0.02951280 -0.05067155
+## 5 HG00110 HG00137 0.02779513 -0.05006105
+## 6 HG00110 HG00141 0.02841974 -0.05006105</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="population-structure-and-relatedness.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-2"><a href="population-structure-and-relatedness.html#cb27-2" tabindex="-1"></a><span class="fu">ggplot</span>(kinship, <span class="fu">aes</span>(IBS0, kinship)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="population-structure-and-relatedness.html#cb27-3" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">2</span><span class="sc">^</span>(<span class="sc">-</span><span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">2</span>)<span class="sc">/</span><span class="dv">2</span>), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="population-structure-and-relatedness.html#cb27-4" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="population-structure-and-relatedness.html#cb27-5" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;kinship estimate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="population-structure-and-relatedness.html#cb27-6" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/king_plot-1.png" alt="" width="672" /></p>
+<p>We see a few parent-offspring, full sibling, 2nd degree, and 3rd degree relative pairs. The abundance of negative estimates represent pairs of individuals who have ancestry from different populations – the magnitude of the negative relationship is informative of how different their ancestries are; more on this below.</p>
+</div>
+<div id="pc-air" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> PC-AiR<a href="population-structure-and-relatedness.html#pc-air" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The next step is <a href="http://www.ncbi.nlm.nih.gov/pubmed/25810074">PC-AiR</a>, which provides robust population structure inference in samples with kinship and pedigree structure. PC-AiR is available in the GENESIS package via the function <code>pcair</code>. The steps in <code>pcair</code> can also be performed individually, which is illustrated below.</p>
+<p>First, PC-AiR partitions the full sample set into a set of mutually unrelated samples that is maximally informative about all ancestries in the sample (i.e. the unrelated set) and their relatives (i.e. the related set). We use a 3rd degree kinship threshold (<code>kin.thresh = 2^(-9/2)</code>), which corresponds to first cousins – this defines anyone less related than first cousins as “unrelated”. We use the negative KING-robust estimates as “ancestry divergence” measures (<code>divMat</code>) to identify pairs of samples with different ancestry – we preferentially select individuals with many negative estimates for the unrelated set to ensure ancestry representation. For now, we also use the KING-robust estimates as our kinship measures (<code>kinMat</code>); more on this below.</p>
+<p>Once the unrelated and related sets are identified, PC-AiR performs a standard Principal Component Analysis (PCA) on the unrelated set of individuals and then projects the relatives onto the PCs. Under the hood, PC-AiR uses the SNPRelate package for efficient PC computation and projection.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="population-structure-and-relatedness.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(GENESIS)</span>
+<span id="cb28-2"><a href="population-structure-and-relatedness.html#cb28-2" tabindex="-1"></a>sampset <span class="ot">&lt;-</span> <span class="fu">pcairPartition</span>(<span class="at">kinobj=</span>kingMat, <span class="at">kin.thresh=</span><span class="dv">2</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">9</span><span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb28-3"><a href="population-structure-and-relatedness.html#cb28-3" tabindex="-1"></a>                          <span class="at">divobj=</span>kingMat, <span class="at">div.thresh=</span><span class="sc">-</span><span class="dv">2</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">9</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## Using kinobj and divobj to partition samples into unrelated and related sets</code></pre>
+<pre><code>## Working with 100 samples</code></pre>
+<pre><code>## Identifying relatives for each sample using kinship threshold 0.0441941738241592</code></pre>
+<pre><code>## Identifying pairs of divergent samples using divergence threshold -0.0441941738241592</code></pre>
+<pre><code>## Partitioning samples into unrelated and related sets...</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="population-structure-and-relatedness.html#cb34-1" tabindex="-1"></a><span class="fu">names</span>(sampset)</span></code></pre></div>
+<pre><code>## [1] &quot;rels&quot;   &quot;unrels&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="population-structure-and-relatedness.html#cb36-1" tabindex="-1"></a><span class="fu">sapply</span>(sampset, length)</span></code></pre></div>
+<pre><code>##   rels unrels 
+##     15     85</code></pre>
+<p>Using the SNPRelate package, we run PCA on the unrelated set and project values for the related set. We use the same LD pruned set of variants again.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="population-structure-and-relatedness.html#cb38-1" tabindex="-1"></a><span class="co"># run PCA on unrelated set</span></span>
+<span id="cb38-2"><a href="population-structure-and-relatedness.html#cb38-2" tabindex="-1"></a>pca.unrel <span class="ot">&lt;-</span> <span class="fu">snpgdsPCA</span>(gds, <span class="at">sample.id=</span>sampset<span class="sc">$</span>unrels, <span class="at">snp.id=</span>pruned)</span></code></pre></div>
+<pre><code>## Principal Component Analysis (PCA) on genotypes:
+## Calculating allele counts/frequencies (6404 variants) ...
+## [..................................................]  0%, ETC: --- (1/1)    [==================================================] 100%, used 0s (1/1)    [==================================================] 100%, complete, 0s    
+## # of selected variants: 6,170
+## Excluding 234 SNVs (monomorphic: TRUE, MAF: NaN, missing rate: 0.01)
+##     # of samples: 85
+##     # of SNVs: 6,170
+##     using 1 thread/core
+##     # of principal components: 32
+## CPU capabilities:
+## 2026-07-03 16:42:51    (internal increment: 8864)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 0s
+## 2026-07-03 16:42:51    Begin (eigenvalues and eigenvectors)
+## 2026-07-03 16:42:51    Done.</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="population-structure-and-relatedness.html#cb40-1" tabindex="-1"></a><span class="co"># project values for relatives</span></span>
+<span id="cb40-2"><a href="population-structure-and-relatedness.html#cb40-2" tabindex="-1"></a>snp.load <span class="ot">&lt;-</span> <span class="fu">snpgdsPCASNPLoading</span>(pca.unrel, <span class="at">gdsobj=</span>gds)</span></code></pre></div>
+<pre><code>## SNP Loading:
+##     # of samples: 85
+##     # of SNPs: 6,170
+##     using 1 thread/core
+##     using the top 32 eigenvectors
+## 2026-07-03 16:42:51    (internal increment: 65536)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 0s
+## 2026-07-03 16:42:51    Done.</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="population-structure-and-relatedness.html#cb42-1" tabindex="-1"></a>samp.load <span class="ot">&lt;-</span> <span class="fu">snpgdsPCASampLoading</span>(snp.load, <span class="at">gdsobj=</span>gds, <span class="at">sample.id=</span>sampset<span class="sc">$</span>rels)</span></code></pre></div>
+<pre><code>## Sample Loading:
+##     # of samples: 15
+##     # of SNPs: 6,170
+##     using 1 thread/core
+##     using the top 32 eigenvectors
+## 2026-07-03 16:42:51    (internal increment: 65536)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 0s
+## 2026-07-03 16:42:51    Done.</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="population-structure-and-relatedness.html#cb44-1" tabindex="-1"></a><span class="co"># combine unrelated and related PCs and order as in GDS file</span></span>
+<span id="cb44-2"><a href="population-structure-and-relatedness.html#cb44-2" tabindex="-1"></a>pcs <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pca.unrel<span class="sc">$</span>eigenvect, samp.load<span class="sc">$</span>eigenvect)</span>
+<span id="cb44-3"><a href="population-structure-and-relatedness.html#cb44-3" tabindex="-1"></a><span class="fu">rownames</span>(pcs) <span class="ot">&lt;-</span> <span class="fu">c</span>(pca.unrel<span class="sc">$</span>sample.id, samp.load<span class="sc">$</span>sample.id)</span>
+<span id="cb44-4"><a href="population-structure-and-relatedness.html#cb44-4" tabindex="-1"></a>samp.ord <span class="ot">&lt;-</span> <span class="fu">match</span>(sample.id, <span class="fu">rownames</span>(pcs))</span>
+<span id="cb44-5"><a href="population-structure-and-relatedness.html#cb44-5" tabindex="-1"></a>pcs <span class="ot">&lt;-</span> pcs[samp.ord,]</span></code></pre></div>
+<p>We need to determine which PCs are ancestry informative. To do this we need population information for the 1000 Genomes samples. This information is stored in an <code>AnnotatedDataFrame</code>, which is a data.frame with optional metadata describing the columns. The class is defined in the Biobase package. We load the stored object.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="population-structure-and-relatedness.html#cb45-1" tabindex="-1"></a><span class="fu">library</span>(Biobase)</span></code></pre></div>
+<pre><code>## Loading required package: BiocGenerics</code></pre>
+<pre><code>## Loading required package: generics</code></pre>
+<pre><code>## 
+## Attaching package: &#39;generics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+##     setequal, union</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+##     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+##     get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+##     rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+##     unsplit, which.max, which.min</code></pre>
+<pre><code>## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
+##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="population-structure-and-relatedness.html#cb54-1" tabindex="-1"></a>sampfile <span class="ot">&lt;-</span> <span class="st">&quot;data/sample_annotation.RData&quot;</span></span>
+<span id="cb54-2"><a href="population-structure-and-relatedness.html#cb54-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(sampfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, sampfile), sampfile)</span>
+<span id="cb54-3"><a href="population-structure-and-relatedness.html#cb54-3" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">get</span>(<span class="fu">load</span>(sampfile))</span>
+<span id="cb54-4"><a href="population-structure-and-relatedness.html#cb54-4" tabindex="-1"></a>annot</span></code></pre></div>
+<pre><code>## An object of class &#39;AnnotatedDataFrame&#39;
+##   rowNames: 1 2 ... 2504 (1126 total)
+##   varLabels: sample.id subject.id ... status (6 total)
+##   varMetadata: labelDescription</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="population-structure-and-relatedness.html#cb56-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">pData</span>(annot))</span></code></pre></div>
+<pre><code>##   sample.id subject.id Population          Population.Description sex status
+## 1   HG00096    HG00096        GBR British in England and Scotland   M      0
+## 2   HG00097    HG00097        GBR British in England and Scotland   F      1
+## 3   HG00099    HG00099        GBR British in England and Scotland   F      0
+## 4   HG00100    HG00100        GBR British in England and Scotland   F      1
+## 5   HG00101    HG00101        GBR British in England and Scotland   M      0
+## 6   HG00102    HG00102        GBR British in England and Scotland   F      0</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="population-structure-and-relatedness.html#cb58-1" tabindex="-1"></a><span class="fu">varMetadata</span>(annot)</span></code></pre></div>
+<pre><code>##                                     labelDescription
+## sample.id                          sample identifier
+## subject.id                        subject identifier
+## Population                   population abbreviation
+## Population.Description        population description
+## sex                                              sex
+## status                 simulated case/control status</code></pre>
+<p>We make a parallel coordinates plot, color-coding by 1000 Genomes population. We load the <a href="http://dplyr.tidyverse.org">dplyr</a> package for data.frame manipulation.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="population-structure-and-relatedness.html#cb60-1" tabindex="-1"></a>pc.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pcs)</span>
+<span id="cb60-2"><a href="population-structure-and-relatedness.html#cb60-2" tabindex="-1"></a><span class="fu">names</span>(pc.df) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(pcs)</span>
+<span id="cb60-3"><a href="population-structure-and-relatedness.html#cb60-3" tabindex="-1"></a>pc.df<span class="sc">$</span>sample.id <span class="ot">&lt;-</span> <span class="fu">row.names</span>(pcs)</span>
+<span id="cb60-4"><a href="population-structure-and-relatedness.html#cb60-4" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="population-structure-and-relatedness.html#cb60-5" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Biobase&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following objects are masked from &#39;package:BiocGenerics&#39;:
+## 
+##     combine, intersect, setdiff, setequal, union</code></pre>
+<pre><code>## The following object is masked from &#39;package:generics&#39;:
+## 
+##     explain</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="population-structure-and-relatedness.html#cb67-1" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">pData</span>(annot) <span class="sc">%&gt;%</span></span>
+<span id="cb67-2"><a href="population-structure-and-relatedness.html#cb67-2" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">select</span>(sample.id, Population)</span>
+<span id="cb67-3"><a href="population-structure-and-relatedness.html#cb67-3" tabindex="-1"></a>pc.df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pc.df, annot, <span class="at">by=</span><span class="st">&quot;sample.id&quot;</span>)</span>
+<span id="cb67-4"><a href="population-structure-and-relatedness.html#cb67-4" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="population-structure-and-relatedness.html#cb67-5" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb67-6"><a href="population-structure-and-relatedness.html#cb67-6" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb67-7"><a href="population-structure-and-relatedness.html#cb67-7" tabindex="-1"></a>pop.cols <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">&quot;Paired&quot;</span>),</span>
+<span id="cb67-8"><a href="population-structure-and-relatedness.html#cb67-8" tabindex="-1"></a>                 <span class="fu">c</span>(<span class="st">&quot;ACB&quot;</span>, <span class="st">&quot;ASW&quot;</span>, <span class="st">&quot;CEU&quot;</span>, <span class="st">&quot;GBR&quot;</span>, <span class="st">&quot;CHB&quot;</span>, <span class="st">&quot;JPT&quot;</span>, <span class="st">&quot;CLM&quot;</span>, <span class="st">&quot;MXL&quot;</span>, <span class="st">&quot;LWK&quot;</span>, <span class="st">&quot;YRI&quot;</span>, <span class="st">&quot;GIH&quot;</span>, <span class="st">&quot;PUR&quot;</span>))</span>
+<span id="cb67-9"><a href="population-structure-and-relatedness.html#cb67-9" tabindex="-1"></a><span class="fu">ggparcoord</span>(pc.df, <span class="at">columns=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">groupColumn=</span><span class="st">&quot;Population&quot;</span>, <span class="at">scale=</span><span class="st">&quot;uniminmax&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-10"><a href="population-structure-and-relatedness.html#cb67-10" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values=</span>pop.cols) <span class="sc">+</span></span>
+<span id="cb67-11"><a href="population-structure-and-relatedness.html#cb67-11" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;PC&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pcair_parcoord-1.png" alt="" width="672" /></p>
+</div>
+<div id="pc-relate-1" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> PC-Relate<a href="population-structure-and-relatedness.html#pc-relate-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first 2 PCs separate populations, so we use them to compute kinship estimates adjusting for ancestry. The PC-Relate function expects a <code>SeqVarIterator</code> object.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="population-structure-and-relatedness.html#cb68-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(gds, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb68-2"><a href="population-structure-and-relatedness.html#cb68-2" tabindex="-1"></a><span class="fu">library</span>(SeqVarTools)</span>
+<span id="cb68-3"><a href="population-structure-and-relatedness.html#cb68-3" tabindex="-1"></a>seqData <span class="ot">&lt;-</span> <span class="fu">SeqVarData</span>(gds)</span>
+<span id="cb68-4"><a href="population-structure-and-relatedness.html#cb68-4" tabindex="-1"></a><span class="fu">seqSetFilter</span>(seqData, <span class="at">variant.id=</span>pruned)</span></code></pre></div>
+<pre><code>## # of selected variants: 6,404</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="population-structure-and-relatedness.html#cb70-1" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarBlockIterator</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb70-2"><a href="population-structure-and-relatedness.html#cb70-2" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="population-structure-and-relatedness.html#cb70-3" tabindex="-1"></a>pcrel <span class="ot">&lt;-</span> <span class="fu">pcrelate</span>(iterator, <span class="at">pcs=</span>pcs[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">training.set=</span>sampset<span class="sc">$</span>unrels, </span>
+<span id="cb70-4"><a href="population-structure-and-relatedness.html#cb70-4" tabindex="-1"></a>                  <span class="at">sample.include=</span>sample.id)</span></code></pre></div>
+<pre><code>## Using 8 CPU cores</code></pre>
+<pre><code>## 100 samples to be included in the analysis...</code></pre>
+<pre><code>## Betas for 2 PC(s) will be calculated using 85 samples in training.set...</code></pre>
+<pre><code>## Running PC-Relate analysis for 100 samples using 6404 SNPs in 1 blocks...</code></pre>
+<pre><code>## Performing Small Sample Correction...</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="population-structure-and-relatedness.html#cb76-1" tabindex="-1"></a><span class="fu">names</span>(pcrel)</span></code></pre></div>
+<pre><code>## [1] &quot;kinBtwn&quot; &quot;kinSelf&quot;</code></pre>
+<p>PC-Relate is an iterative method. Now that we have ancestry-adjusted kinship estimates, we can use them to better adjust for ancestry in the PCs. This time we use the <code>pcair</code> function, which combines partitioning the sample set and running PCA in one step. First we need to make a kinship matrix from the PC-Relate results. The KING matrix is still used for ancestry divergence.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="population-structure-and-relatedness.html#cb78-1" tabindex="-1"></a>pcrelMat <span class="ot">&lt;-</span> <span class="fu">pcrelateToMatrix</span>(pcrel, <span class="at">scaleKin=</span><span class="dv">1</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb78-2"><a href="population-structure-and-relatedness.html#cb78-2" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="population-structure-and-relatedness.html#cb78-3" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb78-4"><a href="population-structure-and-relatedness.html#cb78-4" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">pcair</span>(seqData,</span>
+<span id="cb78-5"><a href="population-structure-and-relatedness.html#cb78-5" tabindex="-1"></a>             <span class="at">kinobj=</span>pcrelMat, <span class="at">kin.thresh=</span><span class="dv">2</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">9</span><span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb78-6"><a href="population-structure-and-relatedness.html#cb78-6" tabindex="-1"></a>             <span class="at">divobj=</span>kingMat, <span class="at">div.thresh=</span><span class="sc">-</span><span class="dv">2</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">9</span><span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb78-7"><a href="population-structure-and-relatedness.html#cb78-7" tabindex="-1"></a>             <span class="at">sample.include=</span>sample.id, <span class="at">snp.include=</span>pruned,</span>
+<span id="cb78-8"><a href="population-structure-and-relatedness.html#cb78-8" tabindex="-1"></a>             <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb78-9"><a href="population-structure-and-relatedness.html#cb78-9" tabindex="-1"></a><span class="fu">names</span>(pca)</span></code></pre></div>
+<pre><code>##  [1] &quot;vectors&quot;    &quot;values&quot;     &quot;rels&quot;       &quot;unrels&quot;     &quot;kin.thresh&quot;
+##  [6] &quot;div.thresh&quot; &quot;sample.id&quot;  &quot;nsamp&quot;      &quot;nsnps&quot;      &quot;varprop&quot;   
+## [11] &quot;call&quot;       &quot;method&quot;</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="population-structure-and-relatedness.html#cb80-1" tabindex="-1"></a>pcs <span class="ot">&lt;-</span> pca<span class="sc">$</span>vectors</span>
+<span id="cb80-2"><a href="population-structure-and-relatedness.html#cb80-2" tabindex="-1"></a>pc.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pcs)</span>
+<span id="cb80-3"><a href="population-structure-and-relatedness.html#cb80-3" tabindex="-1"></a><span class="fu">names</span>(pc.df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(pcs))</span>
+<span id="cb80-4"><a href="population-structure-and-relatedness.html#cb80-4" tabindex="-1"></a>pc.df<span class="sc">$</span>sample.id <span class="ot">&lt;-</span> <span class="fu">row.names</span>(pcs)</span>
+<span id="cb80-5"><a href="population-structure-and-relatedness.html#cb80-5" tabindex="-1"></a>pc.df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pc.df, annot, <span class="at">by=</span><span class="st">&quot;sample.id&quot;</span>)</span>
+<span id="cb80-6"><a href="population-structure-and-relatedness.html#cb80-6" tabindex="-1"></a></span>
+<span id="cb80-7"><a href="population-structure-and-relatedness.html#cb80-7" tabindex="-1"></a><span class="fu">ggplot</span>(pc.df, <span class="fu">aes</span>(PC1, PC2, <span class="at">color=</span>Population)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb80-8"><a href="population-structure-and-relatedness.html#cb80-8" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values=</span>pop.cols)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pcair_2-1.png" alt="" width="672" /></p>
+<p>Now we use the revised PCs to compute new kinship estimates. One can run the iteration multiple times and check for conversion, but usually two rounds are sufficient.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="population-structure-and-relatedness.html#cb81-1" tabindex="-1"></a><span class="fu">seqSetFilter</span>(seqData, <span class="at">variant.id=</span>pruned)</span></code></pre></div>
+<pre><code>## # of selected variants: 6,404</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="population-structure-and-relatedness.html#cb83-1" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarBlockIterator</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb83-2"><a href="population-structure-and-relatedness.html#cb83-2" tabindex="-1"></a>pcrel <span class="ot">&lt;-</span> <span class="fu">pcrelate</span>(iterator, <span class="at">pcs=</span>pcs[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">training.set=</span>pca<span class="sc">$</span>unrels, </span>
+<span id="cb83-3"><a href="population-structure-and-relatedness.html#cb83-3" tabindex="-1"></a>                  <span class="at">sample.include=</span>sample.id)</span></code></pre></div>
+<pre><code>## Using 8 CPU cores</code></pre>
+<pre><code>## 100 samples to be included in the analysis...</code></pre>
+<pre><code>## Betas for 2 PC(s) will be calculated using 86 samples in training.set...</code></pre>
+<pre><code>## Running PC-Relate analysis for 100 samples using 6404 SNPs in 1 blocks...</code></pre>
+<pre><code>## Performing Small Sample Correction...</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="population-structure-and-relatedness.html#cb89-1" tabindex="-1"></a><span class="fu">save</span>(pcrel, <span class="at">file=</span><span class="st">&quot;data/pcrelate_kinship.RData&quot;</span>)</span></code></pre></div>
+<p>We plot the kinship estimates from PC-Relate, and notice that the values for less related pairs are much better behaved.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="population-structure-and-relatedness.html#cb90-1" tabindex="-1"></a>kinship <span class="ot">&lt;-</span> pcrel<span class="sc">$</span>kinBtwn</span>
+<span id="cb90-2"><a href="population-structure-and-relatedness.html#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="population-structure-and-relatedness.html#cb90-3" tabindex="-1"></a><span class="fu">ggplot</span>(kinship, <span class="fu">aes</span>(k0, kin)) <span class="sc">+</span></span>
+<span id="cb90-4"><a href="population-structure-and-relatedness.html#cb90-4" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">2</span><span class="sc">^</span>(<span class="sc">-</span><span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">2</span>)<span class="sc">/</span><span class="dv">2</span>), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb90-5"><a href="population-structure-and-relatedness.html#cb90-5" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb90-6"><a href="population-structure-and-relatedness.html#cb90-6" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;kinship estimate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb90-7"><a href="population-structure-and-relatedness.html#cb90-7" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/pcrelate_plot-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="population-structure-and-relatedness.html#cb91-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+</div>
+<div id="comparison-with-pedigree" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Comparison with pedigree<a href="population-structure-and-relatedness.html#comparison-with-pedigree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can detect pedigree errors and sample identity problems by comparing the pedigree with empirical kinship estimates. We use a function from the GWASTools package, <code>pedigreePairwiseRelatedness</code>, to get expected pairwise relationships based on the pedigree.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="population-structure-and-relatedness.html#cb92-1" tabindex="-1"></a>pedfile <span class="ot">&lt;-</span> <span class="st">&quot;data/pedigree.rds&quot;</span></span>
+<span id="cb92-2"><a href="population-structure-and-relatedness.html#cb92-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(pedfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, pedfile), pedfile)</span>
+<span id="cb92-3"><a href="population-structure-and-relatedness.html#cb92-3" tabindex="-1"></a>ped <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(pedfile)</span>
+<span id="cb92-4"><a href="population-structure-and-relatedness.html#cb92-4" tabindex="-1"></a><span class="fu">head</span>(ped)</span></code></pre></div>
+<pre><code>##   family individ  father  mother sex
+## 1   BB01 HG01879       0       0   M
+## 2   BB01 HG01880       0       0   F
+## 3   BB01 HG01881 HG01879 HG01880   F
+## 4   BB02 HG01882       0       0   M
+## 5   BB02 HG01883       0       0   F
+## 6   BB02 HG01888 HG01882 HG01883   M</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="population-structure-and-relatedness.html#cb94-1" tabindex="-1"></a>pw <span class="ot">&lt;-</span> GWASTools<span class="sc">::</span><span class="fu">pedigreePairwiseRelatedness</span>(ped)</span>
+<span id="cb94-2"><a href="population-structure-and-relatedness.html#cb94-2" tabindex="-1"></a><span class="fu">names</span>(pw)</span></code></pre></div>
+<pre><code>## [1] &quot;inbred.fam&quot;  &quot;inbred.KC&quot;   &quot;relativeprs&quot;</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="population-structure-and-relatedness.html#cb96-1" tabindex="-1"></a>rel <span class="ot">&lt;-</span> pw<span class="sc">$</span>relativeprs</span>
+<span id="cb96-2"><a href="population-structure-and-relatedness.html#cb96-2" tabindex="-1"></a><span class="fu">head</span>(rel)</span></code></pre></div>
+<pre><code>##   Individ1 Individ2 relation kinship family
+## 1  HG01879  HG01880        U    0.00   BB01
+## 2  HG01879  HG01881       PO    0.25   BB01
+## 3  HG01880  HG01881       PO    0.25   BB01
+## 4  HG01882  HG01883        U    0.00   BB02
+## 5  HG01882  HG01888       PO    0.25   BB02
+## 6  HG01883  HG01888       PO    0.25   BB02</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="population-structure-and-relatedness.html#cb98-1" tabindex="-1"></a><span class="fu">table</span>(rel<span class="sc">$</span>relation)</span></code></pre></div>
+<pre><code>## 
+##   Av   FS GpGc  HAv   HS   PO    U 
+##    2    6   16    1    3  616  330</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="population-structure-and-relatedness.html#cb100-1" tabindex="-1"></a><span class="fu">distinct</span>(rel, relation, kinship) <span class="sc">%&gt;%</span></span>
+<span id="cb100-2"><a href="population-structure-and-relatedness.html#cb100-2" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="sc">-</span>kinship)</span></code></pre></div>
+<pre><code>##   relation kinship
+## 1       PO  0.2500
+## 2       FS  0.2500
+## 3       HS  0.1250
+## 4     GpGc  0.1250
+## 5       Av  0.1250
+## 6      HAv  0.0625
+## 7        U  0.0000</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="population-structure-and-relatedness.html#cb102-1" tabindex="-1"></a><span class="do">## assign degrees to expected relationship pairs</span></span>
+<span id="cb102-2"><a href="population-structure-and-relatedness.html#cb102-2" tabindex="-1"></a>rel <span class="ot">&lt;-</span> rel <span class="sc">%&gt;%</span></span>
+<span id="cb102-3"><a href="population-structure-and-relatedness.html#cb102-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">exp.rel=</span><span class="fu">ifelse</span>(kinship <span class="sc">==</span> <span class="fl">0.125</span>, <span class="st">&quot;Deg2&quot;</span>, <span class="fu">ifelse</span>(kinship <span class="sc">==</span> <span class="fl">0.0625</span>, <span class="st">&quot;Deg3&quot;</span>, relation)),</span>
+<span id="cb102-4"><a href="population-structure-and-relatedness.html#cb102-4" tabindex="-1"></a>           <span class="at">pair=</span>GWASTools<span class="sc">::</span><span class="fu">pasteSorted</span>(Individ1, Individ2)) <span class="sc">%&gt;%</span></span>
+<span id="cb102-5"><a href="population-structure-and-relatedness.html#cb102-5" tabindex="-1"></a>    <span class="fu">select</span>(pair, family, relation, exp.rel)</span>
+<span id="cb102-6"><a href="population-structure-and-relatedness.html#cb102-6" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="population-structure-and-relatedness.html#cb102-7" tabindex="-1"></a><span class="do">## assign degrees to observed relationship pairs</span></span>
+<span id="cb102-8"><a href="population-structure-and-relatedness.html#cb102-8" tabindex="-1"></a>cut.dup <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">^</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb102-9"><a href="population-structure-and-relatedness.html#cb102-9" tabindex="-1"></a>cut.deg1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">^</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb102-10"><a href="population-structure-and-relatedness.html#cb102-10" tabindex="-1"></a>cut.deg2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">^</span>(<span class="dv">7</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb102-11"><a href="population-structure-and-relatedness.html#cb102-11" tabindex="-1"></a>cut.deg3 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">^</span>(<span class="dv">9</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb102-12"><a href="population-structure-and-relatedness.html#cb102-12" tabindex="-1"></a>cut.k0 <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb102-13"><a href="population-structure-and-relatedness.html#cb102-13" tabindex="-1"></a>kinship <span class="ot">&lt;-</span> kinship <span class="sc">%&gt;%</span></span>
+<span id="cb102-14"><a href="population-structure-and-relatedness.html#cb102-14" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">obs.rel=</span><span class="fu">ifelse</span>(kin <span class="sc">&gt;</span> cut.dup, <span class="st">&quot;Dup&quot;</span>,</span>
+<span id="cb102-15"><a href="population-structure-and-relatedness.html#cb102-15" tabindex="-1"></a>                   <span class="fu">ifelse</span>(kin <span class="sc">&gt;</span> cut.deg1 <span class="sc">&amp;</span> k0 <span class="sc">&lt;</span> cut.k0, <span class="st">&quot;PO&quot;</span>,</span>
+<span id="cb102-16"><a href="population-structure-and-relatedness.html#cb102-16" tabindex="-1"></a>                   <span class="fu">ifelse</span>(kin <span class="sc">&gt;</span> cut.deg1, <span class="st">&quot;FS&quot;</span>,</span>
+<span id="cb102-17"><a href="population-structure-and-relatedness.html#cb102-17" tabindex="-1"></a>                   <span class="fu">ifelse</span>(kin <span class="sc">&gt;</span> cut.deg2, <span class="st">&quot;Deg2&quot;</span>,</span>
+<span id="cb102-18"><a href="population-structure-and-relatedness.html#cb102-18" tabindex="-1"></a>                   <span class="fu">ifelse</span>(kin <span class="sc">&gt;</span> cut.deg3, <span class="st">&quot;Deg3&quot;</span>, <span class="st">&quot;U&quot;</span>))))))</span>
+<span id="cb102-19"><a href="population-structure-and-relatedness.html#cb102-19" tabindex="-1"></a><span class="fu">table</span>(kinship<span class="sc">$</span>obs.rel)</span></code></pre></div>
+<pre><code>## 
+## Deg2 Deg3   FS   PO    U 
+##    4   13    2    7 4924</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="population-structure-and-relatedness.html#cb104-1" tabindex="-1"></a><span class="co"># merge observed and expected relationships</span></span>
+<span id="cb104-2"><a href="population-structure-and-relatedness.html#cb104-2" tabindex="-1"></a>kin.obs <span class="ot">&lt;-</span> kinship <span class="sc">%&gt;%</span></span>
+<span id="cb104-3"><a href="population-structure-and-relatedness.html#cb104-3" tabindex="-1"></a>    <span class="fu">select</span>(ID1, ID2, kin, k0, obs.rel) <span class="sc">%&gt;%</span></span>
+<span id="cb104-4"><a href="population-structure-and-relatedness.html#cb104-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pair=</span>GWASTools<span class="sc">::</span><span class="fu">pasteSorted</span>(ID1, ID2)) <span class="sc">%&gt;%</span></span>
+<span id="cb104-5"><a href="population-structure-and-relatedness.html#cb104-5" tabindex="-1"></a>    <span class="fu">left_join</span>(rel, <span class="at">by=</span><span class="st">&quot;pair&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb104-6"><a href="population-structure-and-relatedness.html#cb104-6" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>pair) <span class="sc">%&gt;%</span></span>
+<span id="cb104-7"><a href="population-structure-and-relatedness.html#cb104-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">exp.rel=</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(exp.rel), <span class="st">&quot;U&quot;</span>, exp.rel)) <span class="sc">%&gt;%</span></span>
+<span id="cb104-8"><a href="population-structure-and-relatedness.html#cb104-8" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span>(exp.rel <span class="sc">==</span> <span class="st">&quot;U&quot;</span> <span class="sc">&amp;</span> obs.rel <span class="sc">==</span> <span class="st">&quot;U&quot;</span>))</span>
+<span id="cb104-9"><a href="population-structure-and-relatedness.html#cb104-9" tabindex="-1"></a><span class="fu">table</span>(kin.obs<span class="sc">$</span>exp.rel, kin.obs<span class="sc">$</span>obs.rel)</span></code></pre></div>
+<pre><code>##    
+##     Deg2 Deg3 FS PO
+##   U    4   13  2  7</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="population-structure-and-relatedness.html#cb106-1" tabindex="-1"></a><span class="fu">ggplot</span>(kin.obs, <span class="fu">aes</span>(k0, kin, <span class="at">color=</span>obs.rel)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/pedigree-1.png" alt="" width="672" /></p>
+<p>All the observed relationships were unexpected. These samples are from 1000 Genomes sequencing, and known relatives were excluded from the released data. Here we have detected some cryptic relatives that were not annotated in the pedigree.</p>
+</div>
+<div id="advanced-notes" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> Advanced Notes<a href="population-structure-and-relatedness.html#advanced-notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In large samples (tens of thousands or more), the KING-robust and PC-Relate analyses can be very time consuming, so we suggest the following alternative procedure for deconvoluting ancestry and relatedness:</p>
+<ol style="list-style-type: decimal">
+<li>Use the <a href="https://www.kingrelatedness.com/manual.shtml#IBDSEG">KING-IBDseg method</a> to estimate kinship for all pairs of individuals. This method uses a fast algorithm to approximate IBD segments based on identity by state and works well in the presence of ancestry admixture – in our experience, it gives very similar results to PC-Relate. The software to run KING-IBDseg uses PLINK files.</li>
+<li>Perform a PC-AiR analysis to infer population structure using the KING-IBDseg estimates as the kinship estimates and using no ancestry divergence measures (in large samples, the PC-AiR algorithm works well even without the ancestry divergence).</li>
+</ol>
+</div>
+</div>
+<div id="exercise-1" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Exercise<a href="population-structure-and-relatedness.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Complete one round of iteration using all samples from the test dataset and plot the results. Be sure to examine the parallel coordinates plot to determine the appropriate number of PCs to give as an argument to <code>pcrelate</code>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="association-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mixed-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

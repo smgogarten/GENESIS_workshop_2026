@@ -40,3 +40,4 @@ association-testing-with-aggregate-units
 exercise-3
 pc-relate-1
 mixed-models---solutions
+population-structure-and-relatedness

@@ -56,7 +56,6 @@ Download the workshop data and exercises: https://github.com/UW-GAC/GENESIS_work
 - [SeqVarTools](http://bioconductor.org/packages/release/bioc/html/SeqVarTools.html)
 - [GENESIS](http://bioconductor.org/packages/release/bioc/html/GENESIS.html)
 - [SNPRelate](http://bioconductor.org/packages/release/bioc/html/SNPRelate.html)
-- [TopmedPipeline](https://github.com/UW-GAC/analysis_pipeline/tree/master/TopmedPipeline)
 - [tidyverse](https://www.tidyverse.org)
 - [GGally](https://cran.r-project.org/web/packages/GGally)
 

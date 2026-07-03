@@ -1,8 +1,12 @@
-# Computing a GRM
+# Population structure and relatedness
 
-We can use the [SNPRelate package](https://github.com/zhengxwen/SNPRelate) to compute a Genetic Relationship matrix (GRM). This method combines relatedness due to more distant ancestry and recent kinship into a single matrix.
+Population structure due to genetic ancestry and genetic correlation due to sample relatedness are important factors to consider when performing association tests as their presence can lead to mis-calibration of test statistics and false positive associations. This tutorial demonstrates how to perform population structure and relatedness inference using the [GENESIS](https://bioconductor.org/packages/release/bioc/html/GENESIS.html) and [SNPRelate](https://www.bioconductor.org/packages/release/bioc/html/SNPRelate.html) R/Bioconductor packages. We use the results of this inference to perform association tests in the mixed model tutorial.
 
-SNPRelate offers several algorithms for computing a GRM, including the commonly-used GCTA [Yang et al 2011](https://www.ncbi.nlm.nih.gov/pubmed/21167468). The most recent algorithm added to the package is "IndivBeta" [Weir and Goudet 2017](https://www.ncbi.nlm.nih.gov/pubmed/28550018).
+## Computing a GRM
+
+We can use the [SNPRelate](https://github.com/zhengxwen/SNPRelate) package to compute a Genetic Relationship matrix (GRM) using GDS files.  A GRM captures genetic correlation among samples due to both distant ancestry (i.e. population structure) and recent kinship (i.e. familial relatedness) in a single matrix.
+
+SNPRelate offers several algorithms for computing a GRM, including the commonly-used GCTA [Yang et al 2011](https://www.ncbi.nlm.nih.gov/pubmed/21167468) (`method = "GCTA"`) and allelic matching based estimators described by [Weir and Goudet 2017](https://www.ncbi.nlm.nih.gov/pubmed/28550018) (`method = "IndivBeta"`).
 
 ```{r grm}
 library(SeqArray)
@@ -18,19 +22,22 @@ grm <- snpgdsGRM(gds, method="GCTA")
 names(grm)
 dim(grm$grm)
 
+# look at the top corner of the matrix
+grm$grm[1:5,1:5]
+
 seqClose(gds)
 ```
 
 
-# PC-Relate
+## PC-Relate
 
-To disentangle ancestry from recent familial relatedness, we use the [PC-Relate](http://www.ncbi.nlm.nih.gov/pubmed/26748516) method.
+To disentangle distant ancestry (i.e. population structure) from recent kinship (i.e. familial relatedness), we implement the analysis described in [Conomos et al., 2016](https://www.cell.com/ajhg/fulltext/S0002-9297(15)00496-6). This approach uses the [KING-robust](http://www.ncbi.nlm.nih.gov/pubmed/20926424), [PC-AiR](http://www.ncbi.nlm.nih.gov/pubmed/25810074), and [PC-Relate](http://www.ncbi.nlm.nih.gov/pubmed/26748516) methods.
 
-## KING
+### LD-pruning
 
-Step 1 is to get initial estimates of kinship using [KING](http://www.ncbi.nlm.nih.gov/pubmed/20926424), which is robust to population structure but not admixture. The KING algorithm is available in SNPRelate. We select a subset of variants for this calculation with LD pruning.
+We generally advise that population structure and relatedness inference be performed using a set of (nearly) independent genetic variants. To find this set of variants, we perform linkage-disequilibrium (LD) pruning on the study sample set. We typically use an LD threshold of `r^2 < 0.1` to select variants. We use the [SNPRelate](https://github.com/zhengxwen/SNPRelate) package to perform LD-pruning with GDS files. 
 
-```{r king}
+```{r ld-pruning}
 # use a GDS file with all chromosomes
 library(SeqArray)
 gdsfile <- "data/1KG_phase3_subset.gds"
@@ -50,16 +57,26 @@ snpset <- snpgdsLDpruning(gds, sample.id=sample.id, method="corr",
                           slide.max.bp=10e6, ld.threshold=sqrt(0.1))
 sapply(snpset, length)
 pruned <- unlist(snpset, use.names=FALSE)
+```
 
+### KING-robust
+
+Step 1 is to get initial kinship estimates using [KING-robust](http://www.ncbi.nlm.nih.gov/pubmed/20926424), which is robust to discrete population structure but not ancestry admixture. KING-robust will be able to identify close relatives (e.g. 1st and 2nd degree) reliably, but may identify spurious pairs or miss more distant pairs of relatives in the presence of admixture. KING is available as its own software, but the KING-robust algorithm is also available in SNPRelate via the function `snpgdsIBDKING`.
+
+```{r king}
 # KING
 king <- snpgdsIBDKING(gds, sample.id=sample.id, snp.id=pruned)
 names(king)
-dim(king$kinship)
+
+# extract the kinship estimates
 kingMat <- king$kinship
 colnames(kingMat) <- rownames(kingMat) <- king$sample.id
+dim(kingMat)
+# look at the top corner of the matrix
+kingMat[1:5,1:5]
 ```
 
-We extract pairwise kinship estimates and IBS0 to plot.
+We extract pairwise kinship estimates and IBS0 values (the proportion of variants for which the pair of indivdiuals share 0 alleles identical by state) to plot.
 
 ```{r king_plot}
 kinship <- snpgdsIBDSelection(king)
@@ -73,11 +90,15 @@ ggplot(kinship, aes(IBS0, kinship)) +
     theme_bw()
 ```
 
-## PC-AiR
+We see a few parent-offspring, full sibling, 2nd degree, and 3rd degree relative pairs. The abundance of negative estimates represent pairs of individuals who have ancestry from different populations -- the magnitude of the negative relationship is informative of how different their ancestries are; more on this below.
 
-The next step is [PC-AiR](http://www.ncbi.nlm.nih.gov/pubmed/25810074), in which we select a set of unrelated samples that is maximally informative about all ancestries in the sample. We use this unrelated set for Principal Component Analysis (PCA), then project the relatives onto the PCs.
+### PC-AiR
 
-First, we partition the samples into a related and unrelated set. We use a kinship threshold of degree 3, which corresponds to first cousins. This defines anyone less related than first cousins as "unrelated". We load the GENESIS package. In the first iteration, we use the KING estimates for both kinship (`kinMat`) and ancestry divergence (`divMat`). KING kinship estimates are negative for samples with different ancestry.
+The next step is [PC-AiR](http://www.ncbi.nlm.nih.gov/pubmed/25810074), which provides robust population structure inference in samples with kinship and pedigree structure. PC-AiR is available in the GENESIS package via the function `pcair`. The steps in `pcair` can also be performed individually, which is illustrated below.
+
+First, PC-AiR partitions the full sample set into a set of mutually unrelated samples that is maximally informative about all ancestries in the sample (i.e. the unrelated set) and their relatives (i.e. the related set). We use a 3rd degree kinship threshold (`kin.thresh = 2^(-9/2)`), which corresponds to first cousins -- this defines anyone less related than first cousins as "unrelated". We use the negative KING-robust estimates as "ancestry divergence" measures (`divMat`) to identify pairs of samples with different ancestry -- we preferentially select individuals with many negative estimates for the unrelated set to ensure ancestry representation. For now, we also use the KING-robust estimates as our kinship measures (`kinMat`); more on this below.
+
+Once the unrelated and related sets are identified, PC-AiR performs a standard Principal Component Analysis (PCA) on the unrelated set of individuals and then projects the relatives onto the PCs. Under the hood, PC-AiR uses the SNPRelate package for efficient PC computation and projection.
 
 ```{r pcair_partition}
 library(GENESIS)
@@ -138,7 +159,7 @@ ggparcoord(pc.df, columns=1:12, groupColumn="Population", scale="uniminmax") +
 ```
 
 
-## PC-Relate
+### PC-Relate
 
 The first 2 PCs separate populations, so we use them to compute kinship estimates adjusting for ancestry. The PC-Relate function expects a `SeqVarIterator` object.
 
@@ -204,7 +225,7 @@ seqClose(gds)
 ```
 
 
-## Comparison with pedigree
+### Comparison with pedigree
 
 We can detect pedigree errors and sample identity problems by comparing the pedigree with empirical kinship estimates. We use a function from the GWASTools package, `pedigreePairwiseRelatedness`, to get expected pairwise relationships based on the pedigree.
 
@@ -256,6 +277,12 @@ ggplot(kin.obs, aes(k0, kin, color=obs.rel)) + geom_point()
 
 All the observed relationships were unexpected. These samples are from 1000 Genomes sequencing, and known relatives were excluded from the released data. Here we have detected some cryptic relatives that were not annotated in the pedigree.
 
+### Advanced Notes
+
+In large samples (tens of thousands or more), the KING-robust and PC-Relate analyses can be very time consuming, so we suggest the following alternative procedure for deconvoluting ancestry and relatedness:
+
+1. Use the [KING-IBDseg method](https://www.kingrelatedness.com/manual.shtml#IBDSEG) to estimate kinship for all pairs of individuals. This method uses a fast algorithm to approximate IBD segments based on identity by state and works well in the presence of ancestry admixture -- in our experience, it gives very similar results to PC-Relate. The software to run KING-IBDseg uses PLINK files.
+2. Perform a PC-AiR analysis to infer population structure using the KING-IBDseg estimates as the kinship estimates and using no ancestry divergence measures (in large samples, the PC-AiR algorithm works well even without the ancestry divergence).
 
 ## Exercise
 

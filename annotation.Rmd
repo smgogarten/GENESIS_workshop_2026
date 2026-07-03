@@ -23,6 +23,7 @@ seqData <- SeqVarData(gds, sampleData=annot)
 We use the human genome annotation from Bioconductor to identify genes.
 
 ```{r}
+library(GenomeInfoDb)
 library(GenomicRanges)
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 
@@ -43,6 +44,7 @@ genes
 We run a burden test, setting a maximum alternate allele frequency to exclude common variants.
 
 ```{r}
+library(GENESIS)
 # create an iterator where each successive unit is a different gene
 iterator <- SeqVarRangeIterator(seqData, variantRanges=genes, verbose=FALSE)
 
@@ -96,6 +98,7 @@ length(unique(aggregates$group_id))
 
 We can look at the distribution of the number of variants per aggregation unit:
 ```{r plot_agg_units}
+library(ggplot2)
 counts <- aggregates %>% group_by(group_id) %>% summarize(n = n())
 ggplot(counts, aes(x = n)) + geom_bar()
 ```
