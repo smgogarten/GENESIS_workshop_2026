@@ -15,40 +15,41 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE)
 
 # Introduction
 
-This site contains course materials for Course materials for Biocondoctor Africa: GENESIS workshop on July 22 and 29, 2026.
+This site contains course materials for Biocondoctor Africa: GENESIS workshop on July 22 and 29, 2026.
 Data used is located in the [github repository](https://github.com/smgogarten/GENESIS_workshop_2026) from which the site is built.
 
 Slides for lectures are linked below in the schedule.
 
-## Schedule
-
 Background material (not covered in workshop): [GWAS crash course](https://drive.google.com/file/d/1jIAraJ2g4B9iMaw4ADH_lerWic11fxCd/view)
+
+## Schedule
 
 **Wednesday, July 22**
 
 - Introduction and Genomic Data Storage
-    - Intro to Genomic Data Storage  ([slides](https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf))
+    - Intro to Genomic Data Storage  ([slides](https://docs.google.com/presentation/d/1gh_oEq60hlH04obl3aLp5E9jsRDl_gFNcuDeZQMHMf0/preview?slide=id.g2e0ee4e7d66_0_176))
     - Demo - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
 - Association tests
     - GENESIS for association tests  ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf))
-    - Demo: intro to association tests - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
-    - Demo: aggregate tests [Sliding window tests](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
+    - Demo - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
+- Population Structure and Relatedness
+    - R packages for PCA and relatedness ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf))
+    - Demo - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
     
 
 **Wednesday, July 29**
 
-- Population Structure and Relatedness
-    - R packages for PCA and relatedness ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf))
-    - Demo - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
 - Mixed models
     - Demo - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
 - Variant annotation
-    -Variant annotation  ([slides](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf))
+    - Variant annotation  ([slides](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf))
     - Demo - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
+- Aggregate tests
+    - Demo - [Aggregate tests](https://uw-gac.github.io/SISG_2020/aggregate_tests.html)
 
 
 
-Download the workshop data and exercises: https://github.com/UW-GAC/GENESIS_workshop_2026/archive/main.zip
+Download the workshop data and exercises: https://github.com/smgogarten/GENESIS_workshop_2026/archive/refs/heads/main.zip
 
 ## R packages used
 

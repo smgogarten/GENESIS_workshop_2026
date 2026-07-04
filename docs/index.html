@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>GENESIS workshop 2026</title>
   <meta name="description" content="Course materials for Bioconductor Africa: GENESIS workshop 2026" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="GENESIS workshop 2026" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-06-24" />
+<meta name="date" content="2026-07-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -79,8 +79,17 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.1</b> Exploring a GDS file</a></li>
-<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>3</b> Association tests</a>
 <ul>
@@ -90,13 +99,19 @@
 <li class="chapter" data-level="3.4" data-path="association-tests.html"><a href="association-tests.html#sliding-window-tests"><i class="fa fa-check"></i><b>3.4</b> Sliding window tests</a></li>
 <li class="chapter" data-level="3.5" data-path="association-tests.html"><a href="association-tests.html#exercise"><i class="fa fa-check"></i><b>3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="computing-a-grm.html"><a href="computing-a-grm.html"><i class="fa fa-check"></i><b>4</b> Computing a GRM</a>
+<li class="chapter" data-level="4" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html"><i class="fa fa-check"></i><b>4</b> Population structure and relatedness</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king"><i class="fa fa-check"></i><b>4.1</b> KING</a></li>
-<li class="chapter" data-level="4.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>4.2</b> PC-AiR</a></li>
-<li class="chapter" data-level="4.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>4.3</b> PC-Relate</a></li>
-<li class="chapter" data-level="4.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>4.4</b> Comparison with pedigree</a></li>
-<li class="chapter" data-level="4.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>4.5</b> Exercise</a></li>
+<li class="chapter" data-level="4.1" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#computing-a-grm"><i class="fa fa-check"></i><b>4.1</b> Computing a GRM</a></li>
+<li class="chapter" data-level="4.2" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-relate"><i class="fa fa-check"></i><b>4.2</b> PC-Relate</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#ld-pruning"><i class="fa fa-check"></i><b>4.2.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="4.2.2" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#king-robust"><i class="fa fa-check"></i><b>4.2.2</b> KING-robust</a></li>
+<li class="chapter" data-level="4.2.3" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-air"><i class="fa fa-check"></i><b>4.2.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="4.2.4" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-relate-1"><i class="fa fa-check"></i><b>4.2.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="4.2.5" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>4.2.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="4.2.6" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#advanced-notes"><i class="fa fa-check"></i><b>4.2.6</b> Advanced Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#exercise-1"><i class="fa fa-check"></i><b>4.3</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>5</b> Mixed models</a>
 <ul>
@@ -134,48 +149,51 @@
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">GENESIS workshop 2026</h1>
-<p class="date"><em>2026-06-24</em></p>
+<p class="date"><em>2026-07-03</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This site contains course materials for Course materials for Biocondoctor Africa: GENESIS workshop on July 22 and 29, 2026.
-Data used is located in the <a href="https://github.com/smgogarten/GENESIS_workshop_2026">github repository</a> from which the site is built, as well as in the <a href="https://github.com/UW-GAC/analysis_pipeline">TOPMed analysis pipeline</a>.</p>
+<p>This site contains course materials for Biocondoctor Africa: GENESIS workshop on July 22 and 29, 2026.
+Data used is located in the <a href="https://github.com/smgogarten/GENESIS_workshop_2026">github repository</a> from which the site is built.</p>
 <p>Slides for lectures are linked below in the schedule.</p>
+<p>Background material (not covered in workshop): <a href="https://drive.google.com/file/d/1jIAraJ2g4B9iMaw4ADH_lerWic11fxCd/view">GWAS crash course</a></p>
 <div id="schedule" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Background material (not covered in workshop): <a href="https://drive.google.com/file/d/1jIAraJ2g4B9iMaw4ADH_lerWic11fxCd/view">GWAS crash course</a></p>
 <p><strong>Wednesday, July 22</strong></p>
 <ul>
 <li>Introduction and Genomic Data Storage
 <ul>
-<li>Intro to Genomic Data Storage (<a href="https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf">slides</a>)</li>
+<li>Intro to Genomic Data Storage (<a href="https://docs.google.com/presentation/d/1gh_oEq60hlH04obl3aLp5E9jsRDl_gFNcuDeZQMHMf0/preview?slide=id.g2e0ee4e7d66_0_176">slides</a>)</li>
 <li>Demo - <a href="https://uw-gac.github.io/SISG_2020/gds-format.html">GDS format in R</a></li>
 </ul></li>
 <li>Association tests
 <ul>
 <li>GENESIS for association tests (<a href="https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf">slides</a>)</li>
-<li>Demo: intro to association tests - <a href="https://uw-gac.github.io/SISG_2020/association-tests.html">Association tests in R</a></li>
-<li>Demo: aggregate tests <a href="https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests">Sliding window tests</a></li>
+<li>Demo - <a href="https://uw-gac.github.io/SISG_2020/association-tests.html">Association tests in R</a></li>
 </ul></li>
-</ul>
-<p><strong>Wednesday, July 29</strong></p>
-<ul>
 <li>Population Structure and Relatedness
 <ul>
 <li>R packages for PCA and relatedness (<a href="https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf">slides</a>)</li>
 <li>Demo - <a href="https://uw-gac.github.io/SISG_2020/computing-a-grm.html">Population structure and relatedness in R</a></li>
 </ul></li>
+</ul>
+<p><strong>Wednesday, July 29</strong></p>
+<ul>
 <li>Mixed models
 <ul>
 <li>Demo - <a href="https://uw-gac.github.io/SISG_2020/mixed-models.html">Mixed models in R</a></li>
 </ul></li>
 <li>Variant annotation
--Variant annotation (<a href="https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf">slides</a>)
 <ul>
+<li>Variant annotation (<a href="https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf">slides</a>)</li>
 <li>Demo - <a href="https://uw-gac.github.io/SISG_2020/variant-annotation.html">Using variant annotation</a></li>
 </ul></li>
+<li>Aggregate tests
+<ul>
+<li>Demo - <a href="https://uw-gac.github.io/SISG_2020/aggregate_tests.html">Aggregate tests</a></li>
+</ul></li>
 </ul>
-<p>Download the workshop data and exercises: <a href="https://github.com/UW-GAC/GENESIS_workshop_2026/archive/main.zip" class="uri">https://github.com/UW-GAC/GENESIS_workshop_2026/archive/main.zip</a></p>
+<p>Download the workshop data and exercises: <a href="https://github.com/smgogarten/GENESIS_workshop_2026/archive/refs/heads/main.zip" class="uri">https://github.com/smgogarten/GENESIS_workshop_2026/archive/refs/heads/main.zip</a></p>
 </div>
 <div id="r-packages-used" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> R packages used<a href="index.html#r-packages-used" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -184,7 +202,6 @@ Data used is located in the <a href="https://github.com/smgogarten/GENESIS_works
 <li><a href="http://bioconductor.org/packages/release/bioc/html/SeqVarTools.html">SeqVarTools</a></li>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/GENESIS.html">GENESIS</a></li>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/SNPRelate.html">SNPRelate</a></li>
-<li><a href="https://github.com/UW-GAC/analysis_pipeline/tree/master/TopmedPipeline">TopmedPipeline</a></li>
 <li><a href="https://www.tidyverse.org">tidyverse</a></li>
 <li><a href="https://cran.r-project.org/web/packages/GGally">GGally</a></li>
 </ul>
@@ -220,42 +237,42 @@ Data used is located in the <a href="https://github.com/smgogarten/GENESIS_works
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

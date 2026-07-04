@@ -55,7 +55,7 @@ saveRDS(nullmod, file="data/null_mixed_model.rds")
 ## Single-variant tests
 
 Now we can run a single-variant test, accounting for relatedness between the subjects.
-```{r qqPlot}
+```{r qqPlot1}
 library(ggplot2)
 qqPlot <- function(pval) {
     pval <- pval[!is.na(pval)]

@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-07-02" />
+<meta name="date" content="2026-07-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="association-tests.html"/>
-<link rel="next" href="computing-a-grm.html"/>
+<link rel="next" href="population-structure-and-relatedness.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -145,8 +145,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="gds-format.html"><a href="gds-format.html"><i class="fa fa-check"></i><b>2</b> GDS format</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="gds-format.html"><a href="gds-format.html#install-packages"><i class="fa fa-check"></i><b>2.1</b> Install packages</a></li>
-<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.2</b> Exploring a GDS file</a></li>
-<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a></li>
+<li class="chapter" data-level="2.2" data-path="gds-format.html"><a href="gds-format.html#convert-a-vcf-to-gds"><i class="fa fa-check"></i><b>2.2</b> Convert a VCF to GDS</a></li>
+<li class="chapter" data-level="2.3" data-path="gds-format.html"><a href="gds-format.html#exploring-a-gds-file"><i class="fa fa-check"></i><b>2.3</b> Exploring a GDS file</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="gds-format.html"><a href="gds-format.html#open-a-gds"><i class="fa fa-check"></i><b>2.3.1</b> Open a GDS</a></li>
+<li class="chapter" data-level="2.3.2" data-path="gds-format.html"><a href="gds-format.html#reading-data"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="gds-format.html"><a href="gds-format.html#genotype-data"><i class="fa fa-check"></i><b>2.3.3</b> Genotype Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="gds-format.html"><a href="gds-format.html#variant-information"><i class="fa fa-check"></i><b>2.3.4</b> Variant Information</a></li>
+<li class="chapter" data-level="2.3.5" data-path="gds-format.html"><a href="gds-format.html#close-a-gds"><i class="fa fa-check"></i><b>2.3.5</b> Close a GDS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="gds-format.html"><a href="gds-format.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="association-tests.html"><a href="association-tests.html"><i class="fa fa-check"></i><b>3</b> Association tests</a>
 <ul>
@@ -157,13 +165,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="association-tests.html"><a href="association-tests.html#exercise"><i class="fa fa-check"></i><b>3.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="association-tests---solutions.html"><a href="association-tests---solutions.html"><i class="fa fa-check"></i><b>4</b> Association tests - Solutions</a></li>
-<li class="chapter" data-level="5" data-path="computing-a-grm.html"><a href="computing-a-grm.html"><i class="fa fa-check"></i><b>5</b> Computing a GRM</a>
+<li class="chapter" data-level="5" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html"><i class="fa fa-check"></i><b>5</b> Population structure and relatedness</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="computing-a-grm.html"><a href="computing-a-grm.html#king"><i class="fa fa-check"></i><b>5.1</b> KING</a></li>
-<li class="chapter" data-level="5.2" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-air"><i class="fa fa-check"></i><b>5.2</b> PC-AiR</a></li>
-<li class="chapter" data-level="5.3" data-path="computing-a-grm.html"><a href="computing-a-grm.html#pc-relate"><i class="fa fa-check"></i><b>5.3</b> PC-Relate</a></li>
-<li class="chapter" data-level="5.4" data-path="computing-a-grm.html"><a href="computing-a-grm.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.4</b> Comparison with pedigree</a></li>
-<li class="chapter" data-level="5.5" data-path="computing-a-grm.html"><a href="computing-a-grm.html#exercise-1"><i class="fa fa-check"></i><b>5.5</b> Exercise</a></li>
+<li class="chapter" data-level="5.1" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#computing-a-grm"><i class="fa fa-check"></i><b>5.1</b> Computing a GRM</a></li>
+<li class="chapter" data-level="5.2" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-relate"><i class="fa fa-check"></i><b>5.2</b> PC-Relate</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#ld-pruning"><i class="fa fa-check"></i><b>5.2.1</b> LD-pruning</a></li>
+<li class="chapter" data-level="5.2.2" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#king-robust"><i class="fa fa-check"></i><b>5.2.2</b> KING-robust</a></li>
+<li class="chapter" data-level="5.2.3" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-air"><i class="fa fa-check"></i><b>5.2.3</b> PC-AiR</a></li>
+<li class="chapter" data-level="5.2.4" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#pc-relate-1"><i class="fa fa-check"></i><b>5.2.4</b> PC-Relate</a></li>
+<li class="chapter" data-level="5.2.5" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#comparison-with-pedigree"><i class="fa fa-check"></i><b>5.2.5</b> Comparison with pedigree</a></li>
+<li class="chapter" data-level="5.2.6" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#advanced-notes"><i class="fa fa-check"></i><b>5.2.6</b> Advanced Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="population-structure-and-relatedness.html"><a href="population-structure-and-relatedness.html#exercise-1"><i class="fa fa-check"></i><b>5.3</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="mixed-models.html"><a href="mixed-models.html"><i class="fa fa-check"></i><b>6</b> Mixed models</a>
 <ul>
@@ -270,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="association-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="computing-a-grm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="population-structure-and-relatedness.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -69,7 +69,7 @@ iterator <- SeqVarListIterator(seqData, variantRanges=aggVarList, verbose=FALSE)
 
 As in the previous section, we must load the null model before running the association test.
 
-```{r qqPlot}
+```{r qqPlot2}
 library(ggplot2)
 qqPlot <- function(pval) {
     pval <- pval[!is.na(pval)]
