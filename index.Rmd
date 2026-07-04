@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE)
 
 # Introduction
 
-This site contains course materials for Biocondoctor Africa: GENESIS workshop on July 22 and 29, 2026.
+This site contains course materials for Bioconductor Africa: GENESIS workshop on July 22 and 29, 2026.
 Data used is located in the [github repository](https://github.com/smgogarten/GENESIS_workshop_2026) from which the site is built.
 
 Slides for lectures are linked below in the schedule.
