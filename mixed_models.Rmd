@@ -27,7 +27,7 @@ head(pcs)
 library(dplyr)
 dat <- left_join(pData(annot), pcs, by="sample.id")
 pData(annot) <- dat
-save(annot, file="data/sample_phenotype_pcs.RData")
+saveRDS(annot, file="data/sample_phenotype_pcs.rds")
 ```
 
 We create a kinship matrix from the output of `pcrelate`. We multiply the kinship values by 2 to get values equivalent to a GRM. This matrix is represented in R as a symmetric matrix object from the Matrix package.
@@ -55,7 +55,20 @@ saveRDS(nullmod, file="data/null_mixed_model.rds")
 ## Single-variant tests
 
 Now we can run a single-variant test, accounting for relatedness between the subjects.
-```{r qqPlot1}
+
+```{r assoc_single_mm}
+library(SeqVarTools)
+gdsfile <- "data/1KG_phase3_subset_chr1.gds"
+if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
+gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
+gds <- seqOpen(gdsfile)
+seqData <- SeqVarData(gds, sampleData=annot)
+iterator <- SeqVarBlockIterator(seqData, verbose=FALSE)
+assoc <- assocTestSingle(iterator, nullmod)
+head(assoc)
+```
+
+```{r qqplot_mm}
 library(ggplot2)
 qqPlot <- function(pval) {
     pval <- pval[!is.na(pval)]
@@ -75,19 +88,6 @@ qqPlot <- function(pval) {
         ylab(expression(paste(-log[10], "(observed P)"))) +
         theme_bw()
 }    
-```
-
-```{r assoc_single_mm}
-library(SeqVarTools)
-gdsfile <- "data/1KG_phase3_subset_chr1.gds"
-if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
-gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
-gds <- seqOpen(gdsfile)
-seqData <- SeqVarData(gds, sampleData=annot)
-iterator <- SeqVarBlockIterator(seqData, verbose=FALSE)
-assoc <- assocTestSingle(iterator, nullmod)
-head(assoc)
-
 qqPlot(assoc$Score.pval)
 ```
 

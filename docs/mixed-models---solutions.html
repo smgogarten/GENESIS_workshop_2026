@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-07-03" />
+<meta name="date" content="2026-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -216,27 +216,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mixed-models---solutions" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">6</span> Mixed models - Solutions<a href="mixed-models---solutions.html#mixed-models---solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Run a sliding window test using the mixed model and make a QQ plot.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="mixed-models---solutions.html#cb37-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb37-2"><a href="mixed-models---solutions.html#cb37-2" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarWindowIterator</span>(seqData, <span class="at">windowSize=</span><span class="dv">5000</span>, <span class="at">windowShift=</span><span class="dv">2000</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb37-3"><a href="mixed-models---solutions.html#cb37-3" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="mixed-models---solutions.html#cb36-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb36-2"><a href="mixed-models---solutions.html#cb36-2" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarWindowIterator</span>(seqData, <span class="at">windowSize=</span><span class="dv">5000</span>, <span class="at">windowShift=</span><span class="dv">2000</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb36-3"><a href="mixed-models---solutions.html#cb36-3" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## # of selected samples: 100</code></pre>
 <pre><code>## Using 8 CPU cores</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="mixed-models---solutions.html#cb40-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
-<pre><code>##   chr   start     end n.site n.alt n.sample.alt       Score   Score.SE
-## 1   1  966001  971000      1     3            3 -0.08539608 0.14196049
-## 2   1  982001  987000      1     9            9 -0.22241847 0.23151042
-## 3   1 1022001 1027000      0     0            0          NA         NA
-## 4   1 1262001 1267000      0     0            0          NA         NA
-## 5   1 1468001 1473000      1     1            1 -0.08038066 0.08682407
-## 6   1 1732001 1737000      0     0            0          NA         NA
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="mixed-models---solutions.html#cb39-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
+<pre><code>##   chr   start     end n.site n.alt n.sample.alt       Score  Score.SE
+## 1   1  966001  971000      1     3            3 -0.08852635 0.1420016
+## 2   1  982001  987000      1     9            9 -0.22587752 0.2317793
+## 3   1 1022001 1027000      0     0            0          NA        NA
+## 4   1 1262001 1267000      0     0            0          NA        NA
+## 5   1 1468001 1473000      1     1            1 -0.08049928 0.0867410
+## 6   1 1732001 1737000      0     0            0          NA        NA
 ##   Score.Stat Score.pval        Est    Est.SE         PVE
-## 1 -0.6015483  0.5474749  -4.237435  7.044214 0.004020670
-## 2 -0.9607277  0.3366891  -4.149825  4.319460 0.010255530
+## 1 -0.6234179  0.5330099  -4.390217  7.042173 0.004318329
+## 2 -0.9745371  0.3297899  -4.204591  4.314449 0.010552466
 ## 3         NA         NA         NA        NA          NA
 ## 4         NA         NA         NA        NA          NA
-## 5 -0.9257877  0.3545563 -10.662800 11.517543 0.009523144
+## 5 -0.9280419  0.3533858 -10.698999 11.528573 0.009569569
 ## 6         NA         NA         NA        NA          NA</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="mixed-models---solutions.html#cb42-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="mixed-models---solutions.html#cb41-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
 <pre><code>## [[1]]
 ##   variant.id chr    pos allele.index n.obs  freq MAC weight
 ## 1          1   1 970546            1   100 0.015   3      1
@@ -263,9 +263,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] variant.id   chr          pos          allele.index n.obs       
 ## [6] freq         MAC          weight      
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="mixed-models---solutions.html#cb44-1" tabindex="-1"></a><span class="fu">qqPlot</span>(assoc<span class="sc">$</span>results<span class="sc">$</span>Score.pval)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="mixed-models---solutions.html#cb43-1" tabindex="-1"></a><span class="fu">qqPlot</span>(assoc<span class="sc">$</span>results<span class="sc">$</span>Score.pval)</span></code></pre></div>
 <p><img src="_main_files/figure-html/exercise_mm-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="mixed-models---solutions.html#cb45-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="mixed-models---solutions.html#cb44-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
 
 </div>
             </section>
