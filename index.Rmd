@@ -28,13 +28,13 @@ Background material (not covered in workshop): [GWAS crash course](https://drive
 
 - Introduction and Genomic Data Storage
     - Intro to Genomic Data Storage  ([slides](https://docs.google.com/presentation/d/1gh_oEq60hlH04obl3aLp5E9jsRDl_gFNcuDeZQMHMf0/preview?slide=id.g2e0ee4e7d66_0_176))
-    - Demo - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
+    - Demo - [GDS format in R](https://uw-gac.github.io/smgogarten/GENESIS_workshop_2026/gds-format.html)
 - Association tests
     - GENESIS for association tests  ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf))
-    - Demo - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
+    - Demo - [Association tests in R](https://smgogarten.github.io/GENESIS_workshop_2026/association-tests.html)
 - Population Structure and Relatedness
     - R packages for PCA and relatedness ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf))
-    - Demo - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
+    - Demo - [Population structure and relatedness in R](https://smgogarten.github.io/GENESIS_workshop_2026/population-structure-and-relatedness.html)
     
 
 **Wednesday, July 29**
@@ -43,9 +43,9 @@ Background material (not covered in workshop): [GWAS crash course](https://drive
     - Demo - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
 - Variant annotation
     - Variant annotation  ([slides](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf))
-    - Demo - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
+    - Demo - [Using variant annotation](https://smgogarten.github.io/GENESIS_workshop_2026/variant-annotation.html)
 - Aggregate tests
-    - Demo - [Aggregate tests](https://uw-gac.github.io/SISG_2020/aggregate_tests.html)
+    - Demo - [Aggregate tests](https://smgogarten.github.io/GENESIS_workshop_2026/aggregate-tests.html)
 
 
 

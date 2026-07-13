@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-07-03" />
+<meta name="date" content="2026-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,13 +314,12 @@ We have a sample annotation with a <code>sample.id</code> column matched to the 
 <span id="cb24-2"><a href="association-tests.html#cb24-2" tabindex="-1"></a>nullmod <span class="ot">&lt;-</span> <span class="fu">fitNullModel</span>(annot, <span class="at">outcome=</span><span class="st">&quot;height&quot;</span>, <span class="at">covars=</span><span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;study&quot;</span>), </span>
 <span id="cb24-3"><a href="association-tests.html#cb24-3" tabindex="-1"></a>                        <span class="at">group.var=</span><span class="st">&quot;study&quot;</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
 <span id="cb24-4"><a href="association-tests.html#cb24-4" tabindex="-1"></a><span class="fu">saveRDS</span>(nullmod, <span class="at">file=</span><span class="st">&quot;data/null_model.rds&quot;</span>)</span></code></pre></div>
-<p>We also recommend taking an inverse normal transform of the residuals and refitting the model. See the full procedure in the<br />
-<a href="https://github.com/UW-GAC/analysis_pipeline#association-testing">pipeline documentation</a>.</p>
+<p>We also recommend taking an inverse normal transform of the residuals and refitting the model. See the full procedure in the <a href="https://github.com/UW-GAC/analysis_pipeline#association-testing">pipeline documentation</a>.</p>
 </div>
 <div id="single-variant-tests" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Single-variant tests<a href="association-tests.html#single-variant-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have a null model adjusting height for covariates, we can run an association test to look for genetic effects on height.</p>
-<p>Single-variant tests are the same as in GWAS. We use the <code>assocTestSingle</code> function in GENESIS. First, we have to create a <code>SeqVarData</code> object including both the GDS file and the sample annotation containing phenotypes. We then create a <code>SeqVarBlockIterator</code> object to iterate over blocks of variants.</p>
+<p>We use the <code>assocTestSingle</code> function in GENESIS. First, we have to create a <code>SeqVarData</code> object including both the GDS file and the sample annotation containing phenotypes. We then create a <code>SeqVarBlockIterator</code> object to iterate over blocks of variants.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="association-tests.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(SeqVarTools)</span></code></pre></div>
 <pre><code>## Loading required package: SeqArray</code></pre>
 <pre><code>## Loading required package: gdsfmt</code></pre>

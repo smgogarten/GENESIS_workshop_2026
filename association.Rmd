@@ -49,14 +49,13 @@ saveRDS(nullmod, file="data/null_model.rds")
 ```
 
 
-We also recommend taking an inverse normal transform of the residuals and refitting the model. See the full procedure in the  
-[pipeline documentation](https://github.com/UW-GAC/analysis_pipeline#association-testing).
+We also recommend taking an inverse normal transform of the residuals and refitting the model. See the full procedure in the [pipeline documentation](https://github.com/UW-GAC/analysis_pipeline#association-testing).
 
 ## Single-variant tests
 
 Now that we have a null model adjusting height for covariates, we can run an association test to look for genetic effects on height.
 
-Single-variant tests are the same as in GWAS. We use the `assocTestSingle` function in GENESIS. First, we have to create a `SeqVarData` object including both the GDS file and the sample annotation containing phenotypes. We then create a `SeqVarBlockIterator` object to iterate over blocks of variants.
+We use the `assocTestSingle` function in GENESIS. First, we have to create a `SeqVarData` object including both the GDS file and the sample annotation containing phenotypes. We then create a `SeqVarBlockIterator` object to iterate over blocks of variants.
 
 ```{r assoc_single}
 library(SeqVarTools)

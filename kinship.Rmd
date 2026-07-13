@@ -46,9 +46,9 @@ gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
 gds <- seqOpen(gdsfile)
 
 # use a subset of 100 samples to make things run faster
-sampfile <- "data/samples_subset100.RData"
+sampfile <- "data/samples_subset100.rds"
 if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
-sample.id <- get(load(sampfile))
+sample.id <- readRDS(sampfile)
 
 # LD pruning to get variant set
 library(SNPRelate)
@@ -129,9 +129,9 @@ We need to determine which PCs are ancestry informative. To do this we need popu
 
 ```{r annot}
 library(Biobase)
-sampfile <- "data/sample_annotation.RData"
+sampfile <- "data/sample_annotation.rds"
 if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
-annot <- get(load(sampfile))
+annot <- readRDS(sampfile)
 annot
 head(pData(annot))
 varMetadata(annot)
@@ -205,7 +205,7 @@ seqSetFilter(seqData, variant.id=pruned)
 iterator <- SeqVarBlockIterator(seqData, verbose=FALSE)
 pcrel <- pcrelate(iterator, pcs=pcs[,1:2], training.set=pca$unrels, 
                   sample.include=sample.id)
-save(pcrel, file="data/pcrelate_kinship.RData")
+saveRDS(pcrel, file="data/pcrelate_kinship.rds")
 ```
 
 We plot the kinship estimates from PC-Relate, and notice that the values for less related pairs are much better behaved.
