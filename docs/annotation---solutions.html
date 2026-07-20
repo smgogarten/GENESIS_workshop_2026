@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-07-03" />
+<meta name="date" content="2026-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -216,14 +216,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="annotation---solutions" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">8</span> Annotation - Solutions<a href="annotation---solutions.html#annotation---solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Since we are working with a subset of the data, many of the genes listed in <code>group_id</code> have a very small number of variants. Create a new set of units based on position rather than gene name, using the function <code>aggregateGRanges</code>. Then run SKAT using those units and a <code>SeqVarRangeIterator</code>.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="annotation---solutions.html#cb38-1" tabindex="-1"></a>minp <span class="ot">&lt;-</span> <span class="fu">min</span>(aggunit1<span class="sc">$</span>pos)</span>
-<span id="cb38-2"><a href="annotation---solutions.html#cb38-2" tabindex="-1"></a>maxp <span class="ot">&lt;-</span> <span class="fu">max</span>(aggunit1<span class="sc">$</span>pos)</span>
-<span id="cb38-3"><a href="annotation---solutions.html#cb38-3" tabindex="-1"></a>aggByPos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">chr=</span><span class="dv">1</span>,</span>
-<span id="cb38-4"><a href="annotation---solutions.html#cb38-4" tabindex="-1"></a>               <span class="at">start=</span><span class="fu">seq</span>(minp, maxp<span class="fl">-1e6</span>, <span class="at">length.out=</span><span class="dv">10</span>),</span>
-<span id="cb38-5"><a href="annotation---solutions.html#cb38-5" tabindex="-1"></a>               <span class="at">end=</span><span class="fu">seq</span>(minp<span class="fl">+1e6</span>, maxp, <span class="at">length.out=</span><span class="dv">10</span>))</span>
-<span id="cb38-6"><a href="annotation---solutions.html#cb38-6" tabindex="-1"></a>aggByPos<span class="sc">$</span>group_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(aggByPos)</span>
-<span id="cb38-7"><a href="annotation---solutions.html#cb38-7" tabindex="-1"></a></span>
-<span id="cb38-8"><a href="annotation---solutions.html#cb38-8" tabindex="-1"></a><span class="fu">head</span>(aggByPos)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="annotation---solutions.html#cb37-1" tabindex="-1"></a>minp <span class="ot">&lt;-</span> <span class="fu">min</span>(aggunit1<span class="sc">$</span>pos)</span>
+<span id="cb37-2"><a href="annotation---solutions.html#cb37-2" tabindex="-1"></a>maxp <span class="ot">&lt;-</span> <span class="fu">max</span>(aggunit1<span class="sc">$</span>pos)</span>
+<span id="cb37-3"><a href="annotation---solutions.html#cb37-3" tabindex="-1"></a>aggByPos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">chr=</span><span class="dv">1</span>,</span>
+<span id="cb37-4"><a href="annotation---solutions.html#cb37-4" tabindex="-1"></a>               <span class="at">start=</span><span class="fu">seq</span>(minp, maxp<span class="fl">-1e6</span>, <span class="at">length.out=</span><span class="dv">10</span>),</span>
+<span id="cb37-5"><a href="annotation---solutions.html#cb37-5" tabindex="-1"></a>               <span class="at">end=</span><span class="fu">seq</span>(minp<span class="fl">+1e6</span>, maxp, <span class="at">length.out=</span><span class="dv">10</span>))</span>
+<span id="cb37-6"><a href="annotation---solutions.html#cb37-6" tabindex="-1"></a>aggByPos<span class="sc">$</span>group_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(aggByPos)</span>
+<span id="cb37-7"><a href="annotation---solutions.html#cb37-7" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="annotation---solutions.html#cb37-8" tabindex="-1"></a><span class="fu">head</span>(aggByPos)</span></code></pre></div>
 <pre><code>##   chr     start       end group_id
 ## 1   1   1025045   2025045        1
 ## 2   1  28440219  29440219        2
@@ -231,8 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4   1  83270568  84270568        4
 ## 5   1 110685742 111685742        5
 ## 6   1 138100916 139100916        6</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="annotation---solutions.html#cb40-1" tabindex="-1"></a>aggVarList <span class="ot">&lt;-</span> <span class="fu">aggregateGRanges</span>(aggByPos)</span>
-<span id="cb40-2"><a href="annotation---solutions.html#cb40-2" tabindex="-1"></a>aggVarList</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="annotation---solutions.html#cb39-1" tabindex="-1"></a>aggVarList <span class="ot">&lt;-</span> <span class="fu">aggregateGRanges</span>(aggByPos)</span>
+<span id="cb39-2"><a href="annotation---solutions.html#cb39-2" tabindex="-1"></a>aggVarList</span></code></pre></div>
 <pre><code>## GRanges object with 10 ranges and 0 metadata columns:
 ##      seqnames              ranges strand
 ##         &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt;
@@ -248,20 +248,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   10        1 247761613-248761613      *
 ##   -------
 ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="annotation---solutions.html#cb42-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb42-2"><a href="annotation---solutions.html#cb42-2" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarRangeIterator</span>(seqData, <span class="at">variantRanges=</span>aggVarList, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb42-3"><a href="annotation---solutions.html#cb42-3" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;SKAT&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">25</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="annotation---solutions.html#cb41-1" tabindex="-1"></a><span class="fu">seqResetFilter</span>(seqData, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb41-2"><a href="annotation---solutions.html#cb41-2" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarRangeIterator</span>(seqData, <span class="at">variantRanges=</span>aggVarList, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb41-3"><a href="annotation---solutions.html#cb41-3" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;SKAT&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">25</span>))</span></code></pre></div>
 <pre><code>## # of selected samples: 100</code></pre>
 <pre><code>## Using 8 CPU cores</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="annotation---solutions.html#cb45-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="annotation---solutions.html#cb44-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
 <pre><code>##   n.site n.alt n.sample.alt         Q      pval err pval.method
-## 1      1     1            1 3.1746150 0.3545563   0 integration
-## 2      3    11           10 4.0727682 0.8022399   0 saddlepoint
-## 3      1     5            5 1.6067904 0.5884993   0 integration
-## 4      2     3            3 0.8777963 0.8930198   0 saddlepoint
+## 1      1     1            1 3.1839917 0.3533858   0 integration
+## 2      3    11           10 4.0093901 0.8072738   0 saddlepoint
+## 3      1     5            5 1.5862092 0.5926083   0 integration
+## 4      2     3            3 0.8853864 0.8921204   0 saddlepoint
 ## 5      0     0            0        NA        NA  NA        &lt;NA&gt;
 ## 6      0     0            0        NA        NA  NA        &lt;NA&gt;</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="annotation---solutions.html#cb47-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="annotation---solutions.html#cb46-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
 <pre><code>## $`1`
 ##   variant.id chr     pos allele.index n.obs  freq MAC   weight
 ## 3          5   1 1472676            1   100 0.005   1 22.16634
@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $`6`
 ## [1] variant.id chr        pos        n.obs      freq       MAC        weight    
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="annotation---solutions.html#cb49-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="annotation---solutions.html#cb48-1" tabindex="-1"></a><span class="fu">seqClose</span>(gds)</span></code></pre></div>
 
 </div>
             </section>

@@ -69,7 +69,21 @@ iterator <- SeqVarListIterator(seqData, variantRanges=aggVarList, verbose=FALSE)
 
 As in the previous section, we must load the null model before running the association test.
 
-```{r qqPlot2}
+```{r assoc_aggregate}
+if (!exists("nullmod")) {
+    nmfile <- "data/null_mixed_model.rds"
+    if (!file.exists(nmfile)) download.file(file.path(repo_path, nmfile), nmfile)
+    nullmod <- readRDS(nmfile)
+}
+
+assoc <- assocTestAggregate(iterator, nullmod, test="Burden", AF.max=0.1, weight.beta=c(1,1))
+names(assoc)
+head(assoc$results)
+head(names(assoc$variantInfo))
+assoc$variantInfo[[3]]
+```
+
+```{r qqplot_agg}
 library(ggplot2)
 qqPlot <- function(pval) {
     pval <- pval[!is.na(pval)]
@@ -89,21 +103,6 @@ qqPlot <- function(pval) {
         ylab(expression(paste(-log[10], "(observed P)"))) +
         theme_bw()
 }    
-```
-
-```{r assoc_aggregate}
-if (!exists("nullmod")) {
-    nmfile <- "data/null_mixed_model.rds"
-    if (!file.exists(nmfile)) download.file(file.path(repo_path, nmfile), nmfile)
-    nullmod <- readRDS(nmfile)
-}
-
-assoc <- assocTestAggregate(iterator, nullmod, test="Burden", AF.max=0.1, weight.beta=c(1,1))
-names(assoc)
-head(assoc$results)
-head(names(assoc$variantInfo))
-assoc$variantInfo[[3]]
-
 qqPlot(assoc$results$Score.pval)
 ```
 

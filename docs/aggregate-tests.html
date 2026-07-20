@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-07-03" />
+<meta name="date" content="2026-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,72 +314,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   seqinfo: 23 sequences from an unspecified genome; no seqlengths</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="aggregate-tests.html#cb23-1" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarListIterator</span>(seqData, <span class="at">variantRanges=</span>aggVarList, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>As in the previous section, we must load the null model before running the association test.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="aggregate-tests.html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb24-2"><a href="aggregate-tests.html#cb24-2" tabindex="-1"></a>qqPlot <span class="ot">&lt;-</span> <span class="cf">function</span>(pval) {</span>
-<span id="cb24-3"><a href="aggregate-tests.html#cb24-3" tabindex="-1"></a>    pval <span class="ot">&lt;-</span> pval[<span class="sc">!</span><span class="fu">is.na</span>(pval)]</span>
-<span id="cb24-4"><a href="aggregate-tests.html#cb24-4" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(pval)</span>
-<span id="cb24-5"><a href="aggregate-tests.html#cb24-5" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
-<span id="cb24-6"><a href="aggregate-tests.html#cb24-6" tabindex="-1"></a>    dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">obs=</span><span class="fu">sort</span>(pval),</span>
-<span id="cb24-7"><a href="aggregate-tests.html#cb24-7" tabindex="-1"></a>                      <span class="at">exp=</span>x<span class="sc">/</span>n,</span>
-<span id="cb24-8"><a href="aggregate-tests.html#cb24-8" tabindex="-1"></a>                      <span class="at">upper=</span><span class="fu">qbeta</span>(<span class="fl">0.025</span>, x, <span class="fu">rev</span>(x)),</span>
-<span id="cb24-9"><a href="aggregate-tests.html#cb24-9" tabindex="-1"></a>                      <span class="at">lower=</span><span class="fu">qbeta</span>(<span class="fl">0.975</span>, x, <span class="fu">rev</span>(x)))</span>
-<span id="cb24-10"><a href="aggregate-tests.html#cb24-10" tabindex="-1"></a>    </span>
-<span id="cb24-11"><a href="aggregate-tests.html#cb24-11" tabindex="-1"></a>    <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="sc">-</span><span class="fu">log10</span>(exp), <span class="sc">-</span><span class="fu">log10</span>(obs))) <span class="sc">+</span></span>
-<span id="cb24-12"><a href="aggregate-tests.html#cb24-12" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="sc">-</span><span class="fu">log10</span>(exp), <span class="sc">-</span><span class="fu">log10</span>(upper)), <span class="at">color=</span><span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
-<span id="cb24-13"><a href="aggregate-tests.html#cb24-13" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="sc">-</span><span class="fu">log10</span>(exp), <span class="sc">-</span><span class="fu">log10</span>(lower)), <span class="at">color=</span><span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
-<span id="cb24-14"><a href="aggregate-tests.html#cb24-14" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-15"><a href="aggregate-tests.html#cb24-15" tabindex="-1"></a>        <span class="fu">geom_abline</span>(<span class="at">intercept=</span><span class="dv">0</span>, <span class="at">slope=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb24-16"><a href="aggregate-tests.html#cb24-16" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="sc">-</span>log[<span class="dv">10</span>], <span class="st">&quot;(expected P)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb24-17"><a href="aggregate-tests.html#cb24-17" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="sc">-</span>log[<span class="dv">10</span>], <span class="st">&quot;(observed P)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb24-18"><a href="aggregate-tests.html#cb24-18" tabindex="-1"></a>        <span class="fu">theme_bw</span>()</span>
-<span id="cb24-19"><a href="aggregate-tests.html#cb24-19" tabindex="-1"></a>}    </span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="aggregate-tests.html#cb25-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;nullmod&quot;</span>)) {</span>
-<span id="cb25-2"><a href="aggregate-tests.html#cb25-2" tabindex="-1"></a>    nmfile <span class="ot">&lt;-</span> <span class="st">&quot;data/null_mixed_model.rds&quot;</span></span>
-<span id="cb25-3"><a href="aggregate-tests.html#cb25-3" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(nmfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, nmfile), nmfile)</span>
-<span id="cb25-4"><a href="aggregate-tests.html#cb25-4" tabindex="-1"></a>    nullmod <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(nmfile)</span>
-<span id="cb25-5"><a href="aggregate-tests.html#cb25-5" tabindex="-1"></a>}</span>
-<span id="cb25-6"><a href="aggregate-tests.html#cb25-6" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="aggregate-tests.html#cb25-7" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="aggregate-tests.html#cb24-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;nullmod&quot;</span>)) {</span>
+<span id="cb24-2"><a href="aggregate-tests.html#cb24-2" tabindex="-1"></a>    nmfile <span class="ot">&lt;-</span> <span class="st">&quot;data/null_mixed_model.rds&quot;</span></span>
+<span id="cb24-3"><a href="aggregate-tests.html#cb24-3" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(nmfile)) <span class="fu">download.file</span>(<span class="fu">file.path</span>(repo_path, nmfile), nmfile)</span>
+<span id="cb24-4"><a href="aggregate-tests.html#cb24-4" tabindex="-1"></a>    nullmod <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(nmfile)</span>
+<span id="cb24-5"><a href="aggregate-tests.html#cb24-5" tabindex="-1"></a>}</span>
+<span id="cb24-6"><a href="aggregate-tests.html#cb24-6" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="aggregate-tests.html#cb24-7" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>, <span class="at">AF.max=</span><span class="fl">0.1</span>, <span class="at">weight.beta=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## # of selected samples: 100</code></pre>
 <pre><code>## Using 8 CPU cores</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="aggregate-tests.html#cb28-1" tabindex="-1"></a><span class="fu">names</span>(assoc)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="aggregate-tests.html#cb27-1" tabindex="-1"></a><span class="fu">names</span>(assoc)</span></code></pre></div>
 <pre><code>## [1] &quot;results&quot;     &quot;variantInfo&quot;</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="aggregate-tests.html#cb30-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="aggregate-tests.html#cb29-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
 <pre><code>##                    n.site n.alt n.sample.alt       Score   Score.SE Score.Stat
 ## ENSG00000131591.13      0     0            0          NA         NA         NA
 ## ENSG00000169962.4       0     0            0          NA         NA         NA
-## ENSG00000205090.4       1     1            1 -0.08038066 0.08682407 -0.9257877
+## ENSG00000205090.4       1     1            1 -0.08049928 0.08674100 -0.9280419
 ## ENSG00000171603.12      0     0            0          NA         NA         NA
 ## ENSG00000204624.6       0     0            0          NA         NA         NA
-## ENSG00000270914.1       1     1            1 -0.05287454 0.08051536 -0.6567013
+## ENSG00000270914.1       1     1            1 -0.05350310 0.08061794 -0.6636624
 ##                    Score.pval        Est   Est.SE         PVE
 ## ENSG00000131591.13         NA         NA       NA          NA
 ## ENSG00000169962.4          NA         NA       NA          NA
-## ENSG00000205090.4   0.3545563 -10.662800 11.51754 0.009523144
+## ENSG00000205090.4   0.3533858 -10.698999 11.52857 0.009569569
 ## ENSG00000171603.12         NA         NA       NA          NA
 ## ENSG00000204624.6          NA         NA       NA          NA
-## ENSG00000270914.1   0.5113730  -8.156224 12.41999 0.004791740</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="aggregate-tests.html#cb32-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">names</span>(assoc<span class="sc">$</span>variantInfo))</span></code></pre></div>
+## ENSG00000270914.1   0.5069064  -8.232193 12.40419 0.004893862</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="aggregate-tests.html#cb31-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">names</span>(assoc<span class="sc">$</span>variantInfo))</span></code></pre></div>
 <pre><code>## [1] &quot;ENSG00000131591.13&quot; &quot;ENSG00000169962.4&quot;  &quot;ENSG00000205090.4&quot; 
 ## [4] &quot;ENSG00000171603.12&quot; &quot;ENSG00000204624.6&quot;  &quot;ENSG00000270914.1&quot;</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="aggregate-tests.html#cb34-1" tabindex="-1"></a>assoc<span class="sc">$</span>variantInfo[[<span class="dv">3</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="aggregate-tests.html#cb33-1" tabindex="-1"></a>assoc<span class="sc">$</span>variantInfo[[<span class="dv">3</span>]]</span></code></pre></div>
 <pre><code>##   variant.id chr     pos ref alt allele.index n.obs  freq MAC weight
 ## 1          5   1 1472676   T   C            1   100 0.005   1      1</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="aggregate-tests.html#cb36-1" tabindex="-1"></a><span class="fu">qqPlot</span>(assoc<span class="sc">$</span>results<span class="sc">$</span>Score.pval)</span></code></pre></div>
-<p><img src="_main_files/figure-html/assoc_aggregate-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="aggregate-tests.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb35-2"><a href="aggregate-tests.html#cb35-2" tabindex="-1"></a>qqPlot <span class="ot">&lt;-</span> <span class="cf">function</span>(pval) {</span>
+<span id="cb35-3"><a href="aggregate-tests.html#cb35-3" tabindex="-1"></a>    pval <span class="ot">&lt;-</span> pval[<span class="sc">!</span><span class="fu">is.na</span>(pval)]</span>
+<span id="cb35-4"><a href="aggregate-tests.html#cb35-4" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(pval)</span>
+<span id="cb35-5"><a href="aggregate-tests.html#cb35-5" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
+<span id="cb35-6"><a href="aggregate-tests.html#cb35-6" tabindex="-1"></a>    dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">obs=</span><span class="fu">sort</span>(pval),</span>
+<span id="cb35-7"><a href="aggregate-tests.html#cb35-7" tabindex="-1"></a>                      <span class="at">exp=</span>x<span class="sc">/</span>n,</span>
+<span id="cb35-8"><a href="aggregate-tests.html#cb35-8" tabindex="-1"></a>                      <span class="at">upper=</span><span class="fu">qbeta</span>(<span class="fl">0.025</span>, x, <span class="fu">rev</span>(x)),</span>
+<span id="cb35-9"><a href="aggregate-tests.html#cb35-9" tabindex="-1"></a>                      <span class="at">lower=</span><span class="fu">qbeta</span>(<span class="fl">0.975</span>, x, <span class="fu">rev</span>(x)))</span>
+<span id="cb35-10"><a href="aggregate-tests.html#cb35-10" tabindex="-1"></a>    </span>
+<span id="cb35-11"><a href="aggregate-tests.html#cb35-11" tabindex="-1"></a>    <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="sc">-</span><span class="fu">log10</span>(exp), <span class="sc">-</span><span class="fu">log10</span>(obs))) <span class="sc">+</span></span>
+<span id="cb35-12"><a href="aggregate-tests.html#cb35-12" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="sc">-</span><span class="fu">log10</span>(exp), <span class="sc">-</span><span class="fu">log10</span>(upper)), <span class="at">color=</span><span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-13"><a href="aggregate-tests.html#cb35-13" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="sc">-</span><span class="fu">log10</span>(exp), <span class="sc">-</span><span class="fu">log10</span>(lower)), <span class="at">color=</span><span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-14"><a href="aggregate-tests.html#cb35-14" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb35-15"><a href="aggregate-tests.html#cb35-15" tabindex="-1"></a>        <span class="fu">geom_abline</span>(<span class="at">intercept=</span><span class="dv">0</span>, <span class="at">slope=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-16"><a href="aggregate-tests.html#cb35-16" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="sc">-</span>log[<span class="dv">10</span>], <span class="st">&quot;(expected P)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb35-17"><a href="aggregate-tests.html#cb35-17" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="sc">-</span>log[<span class="dv">10</span>], <span class="st">&quot;(observed P)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb35-18"><a href="aggregate-tests.html#cb35-18" tabindex="-1"></a>        <span class="fu">theme_bw</span>()</span>
+<span id="cb35-19"><a href="aggregate-tests.html#cb35-19" tabindex="-1"></a>}    </span>
+<span id="cb35-20"><a href="aggregate-tests.html#cb35-20" tabindex="-1"></a><span class="fu">qqPlot</span>(assoc<span class="sc">$</span>results<span class="sc">$</span>Score.pval)</span></code></pre></div>
+<p><img src="_main_files/figure-html/qqplot_agg-1.png" alt="" width="672" /></p>
 </div>
 <div id="exercise-3" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Exercise<a href="aggregate-tests.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Since we are working with a subset of the data, many of the genes listed in <code>group_id</code> have a very small number of variants. Create a new set of units based on position rather than gene name, using the function <code>aggregateGRanges</code>. Then run SKAT using those units and a <code>SeqVarRangeIterator</code>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="aggregate-tests.html#cb37-1" tabindex="-1"></a>aggregateGRanges <span class="ot">&lt;-</span> <span class="cf">function</span>(groups) {</span>
-<span id="cb37-2"><a href="aggregate-tests.html#cb37-2" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">c</span>(<span class="st">&quot;group_id&quot;</span>, <span class="st">&quot;chr&quot;</span>, <span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>) <span class="sc">%in%</span> <span class="fu">names</span>(groups)))</span>
-<span id="cb37-3"><a href="aggregate-tests.html#cb37-3" tabindex="-1"></a>    cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(groups), <span class="fu">c</span>(<span class="st">&quot;group_id&quot;</span>, <span class="st">&quot;chr&quot;</span>, <span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>))</span>
-<span id="cb37-4"><a href="aggregate-tests.html#cb37-4" tabindex="-1"></a>    gr <span class="ot">&lt;-</span> GenomicRanges<span class="sc">::</span><span class="fu">GRanges</span>(<span class="at">seqnames=</span>groups<span class="sc">$</span>chr,</span>
-<span id="cb37-5"><a href="aggregate-tests.html#cb37-5" tabindex="-1"></a>                  <span class="at">ranges=</span>IRanges<span class="sc">::</span><span class="fu">IRanges</span>(<span class="at">start=</span>groups<span class="sc">$</span>start, <span class="at">end=</span>groups<span class="sc">$</span>end))</span>
-<span id="cb37-6"><a href="aggregate-tests.html#cb37-6" tabindex="-1"></a>    <span class="fu">names</span>(gr) <span class="ot">&lt;-</span> groups<span class="sc">$</span>group_id</span>
-<span id="cb37-7"><a href="aggregate-tests.html#cb37-7" tabindex="-1"></a>    GenomicRanges<span class="sc">::</span><span class="fu">mcols</span>(gr) <span class="ot">&lt;-</span> groups[,cols]</span>
-<span id="cb37-8"><a href="aggregate-tests.html#cb37-8" tabindex="-1"></a>    gr</span>
-<span id="cb37-9"><a href="aggregate-tests.html#cb37-9" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="aggregate-tests.html#cb36-1" tabindex="-1"></a>aggregateGRanges <span class="ot">&lt;-</span> <span class="cf">function</span>(groups) {</span>
+<span id="cb36-2"><a href="aggregate-tests.html#cb36-2" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">c</span>(<span class="st">&quot;group_id&quot;</span>, <span class="st">&quot;chr&quot;</span>, <span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>) <span class="sc">%in%</span> <span class="fu">names</span>(groups)))</span>
+<span id="cb36-3"><a href="aggregate-tests.html#cb36-3" tabindex="-1"></a>    cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(groups), <span class="fu">c</span>(<span class="st">&quot;group_id&quot;</span>, <span class="st">&quot;chr&quot;</span>, <span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>))</span>
+<span id="cb36-4"><a href="aggregate-tests.html#cb36-4" tabindex="-1"></a>    gr <span class="ot">&lt;-</span> GenomicRanges<span class="sc">::</span><span class="fu">GRanges</span>(<span class="at">seqnames=</span>groups<span class="sc">$</span>chr,</span>
+<span id="cb36-5"><a href="aggregate-tests.html#cb36-5" tabindex="-1"></a>                  <span class="at">ranges=</span>IRanges<span class="sc">::</span><span class="fu">IRanges</span>(<span class="at">start=</span>groups<span class="sc">$</span>start, <span class="at">end=</span>groups<span class="sc">$</span>end))</span>
+<span id="cb36-6"><a href="aggregate-tests.html#cb36-6" tabindex="-1"></a>    <span class="fu">names</span>(gr) <span class="ot">&lt;-</span> groups<span class="sc">$</span>group_id</span>
+<span id="cb36-7"><a href="aggregate-tests.html#cb36-7" tabindex="-1"></a>    GenomicRanges<span class="sc">::</span><span class="fu">mcols</span>(gr) <span class="ot">&lt;-</span> groups[,cols]</span>
+<span id="cb36-8"><a href="aggregate-tests.html#cb36-8" tabindex="-1"></a>    gr</span>
+<span id="cb36-9"><a href="aggregate-tests.html#cb36-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
             </section>

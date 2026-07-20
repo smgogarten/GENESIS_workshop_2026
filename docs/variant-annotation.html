@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2026-07-03" />
+<meta name="date" content="2026-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="variant-annotation.html#cb27-1" tabindex="-1"></a><span class="co"># find variants that overlap with each gene</span></span>
 <span id="cb27-2"><a href="variant-annotation.html#cb27-2" tabindex="-1"></a>txdb <span class="ot">&lt;-</span> TxDb.Hsapiens.UCSC.hg19.knownGene</span>
-<span id="cb27-3"><a href="variant-annotation.html#cb27-3" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">renameSeqlevels</span>(gr, <span class="fu">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="fu">seqlevels</span>(gr)))</span>
-<span id="cb27-4"><a href="variant-annotation.html#cb27-4" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">transcriptsByOverlaps</span>(txdb, gr, <span class="at">columns=</span><span class="st">&quot;GENEID&quot;</span>)</span>
-<span id="cb27-5"><a href="variant-annotation.html#cb27-5" tabindex="-1"></a><span class="co"># simplistic example - define genes as overlapping transcripts</span></span>
-<span id="cb27-6"><a href="variant-annotation.html#cb27-6" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">reduce</span>(ts)</span>
-<span id="cb27-7"><a href="variant-annotation.html#cb27-7" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">renameSeqlevels</span>(genes, <span class="fu">sub</span>(<span class="st">&quot;chr&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">seqlevels</span>(genes)))</span>
-<span id="cb27-8"><a href="variant-annotation.html#cb27-8" tabindex="-1"></a>genes</span></code></pre></div>
+<span id="cb27-3"><a href="variant-annotation.html#cb27-3" tabindex="-1"></a>txdb</span></code></pre></div>
+<pre><code>## TxDb object:
+## # Db type: TxDb
+## # Supporting package: GenomicFeatures
+## # Data source: UCSC
+## # Genome: hg19
+## # Organism: Homo sapiens
+## # Taxonomy ID: 9606
+## # UCSC Table: knownGene
+## # UCSC Track: GENCODE V48lift37
+## # Resource URL: https://genome.ucsc.edu/
+## # Type of Gene ID: Entrez Gene ID
+## # Full dataset: yes
+## # Nb of transcripts: 381987
+## # Db created by: txdbmaker package from Bioconductor
+## # Creation time: 2025-10-13 16:17:01 -0700 (Mon, 13 Oct 2025)
+## # txdbmaker version at creation time: 1.5.6
+## # RSQLite version at creation time: 2.4.3
+## # DBSCHEMAVERSION: 1.2</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="variant-annotation.html#cb29-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">transcripts</span>(txdb))</span></code></pre></div>
+<pre><code>## GRanges object with 6 ranges and 2 metadata columns:
+##       seqnames      ranges strand |     tx_id             tx_name
+##          &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;character&gt;
+##   [1]     chr1 10370-10582      + |         1 ENST00000833856.1_2
+##   [2]     chr1 11121-14413      + |         2 ENST00000832824.1_1
+##   [3]     chr1 11125-14405      + |         3 ENST00000832825.1_1
+##   [4]     chr1 11410-14413      + |         4 ENST00000832826.1_1
+##   [5]     chr1 11411-14413      + |         5 ENST00000832827.1_1
+##   [6]     chr1 11426-14409      + |         6 ENST00000832828.1_1
+##   -------
+##   seqinfo: 298 sequences (2 circular) from hg19 genome</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="variant-annotation.html#cb31-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">renameSeqlevels</span>(gr, <span class="fu">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="fu">seqlevels</span>(gr)))</span>
+<span id="cb31-2"><a href="variant-annotation.html#cb31-2" tabindex="-1"></a><span class="fu">head</span>(gr)</span></code></pre></div>
+<pre><code>## GRanges object with 6 ranges and 0 metadata columns:
+##     seqnames    ranges strand
+##        &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
+##   1     chr1    970546      *
+##   2     chr1    985900      *
+##   3     chr1   1025045      *
+##   4     chr1   1265550      *
+##   5     chr1   1472676      *
+##   6     chr1   1735725      *
+##   -------
+##   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="variant-annotation.html#cb33-1" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">transcriptsByOverlaps</span>(txdb, gr, <span class="at">columns=</span><span class="st">&quot;GENEID&quot;</span>)</span>
+<span id="cb33-2"><a href="variant-annotation.html#cb33-2" tabindex="-1"></a>ts</span></code></pre></div>
+<pre><code>## GRanges object with 4004 ranges and 1 metadata column:
+##          seqnames              ranges strand |          GENEID
+##             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;CharacterList&gt;
+##      [1]     chr1       955500-991496      + |          375790
+##      [2]     chr1       955503-991498      + |          375790
+##      [3]     chr1       969486-991496      + |          375790
+##      [4]     chr1       969486-991499      + |          375790
+##      [5]     chr1       970247-976777      + |          375790
+##      ...      ...                 ...    ... .             ...
+##   [4000]     chr1 249144244-249149657      - |           55657
+##   [4001]     chr1 249144244-249153267      - |           55657
+##   [4002]     chr1 249144265-249153059      - |           55657
+##   [4003]     chr1 249144481-249153264      - |           55657
+##   [4004]     chr1 249144583-249150285      - |           55657
+##   -------
+##   seqinfo: 298 sequences (2 circular) from hg19 genome</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="variant-annotation.html#cb35-1" tabindex="-1"></a><span class="co"># simplistic example - define genes as overlapping transcripts</span></span>
+<span id="cb35-2"><a href="variant-annotation.html#cb35-2" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">reduce</span>(ts)</span>
+<span id="cb35-3"><a href="variant-annotation.html#cb35-3" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">renameSeqlevels</span>(genes, <span class="fu">sub</span>(<span class="st">&quot;chr&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">seqlevels</span>(genes)))</span>
+<span id="cb35-4"><a href="variant-annotation.html#cb35-4" tabindex="-1"></a>genes</span></code></pre></div>
 <pre><code>## GRanges object with 628 ranges and 0 metadata columns:
 ##         seqnames              ranges strand
 ##            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt;
@@ -319,30 +379,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   -------
 ##   seqinfo: 298 sequences (2 circular) from hg19 genome</code></pre>
 <p>We run a burden test, setting a maximum alternate allele frequency to exclude common variants.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="variant-annotation.html#cb29-1" tabindex="-1"></a><span class="fu">library</span>(GENESIS)</span>
-<span id="cb29-2"><a href="variant-annotation.html#cb29-2" tabindex="-1"></a><span class="co"># create an iterator where each successive unit is a different gene</span></span>
-<span id="cb29-3"><a href="variant-annotation.html#cb29-3" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarRangeIterator</span>(seqData, <span class="at">variantRanges=</span>genes, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
-<span id="cb29-4"><a href="variant-annotation.html#cb29-4" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="variant-annotation.html#cb29-5" tabindex="-1"></a><span class="co"># do a burden test on the rare variants in each gene</span></span>
-<span id="cb29-6"><a href="variant-annotation.html#cb29-6" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">AF.max=</span><span class="fl">0.05</span>, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="variant-annotation.html#cb37-1" tabindex="-1"></a><span class="fu">library</span>(GENESIS)</span>
+<span id="cb37-2"><a href="variant-annotation.html#cb37-2" tabindex="-1"></a><span class="co"># create an iterator where each successive unit is a different gene</span></span>
+<span id="cb37-3"><a href="variant-annotation.html#cb37-3" tabindex="-1"></a>iterator <span class="ot">&lt;-</span> <span class="fu">SeqVarRangeIterator</span>(seqData, <span class="at">variantRanges=</span>genes, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb37-4"><a href="variant-annotation.html#cb37-4" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="variant-annotation.html#cb37-5" tabindex="-1"></a><span class="co"># do a burden test on the rare variants in each gene</span></span>
+<span id="cb37-6"><a href="variant-annotation.html#cb37-6" tabindex="-1"></a>assoc <span class="ot">&lt;-</span> <span class="fu">assocTestAggregate</span>(iterator, nullmod, <span class="at">AF.max=</span><span class="fl">0.05</span>, <span class="at">test=</span><span class="st">&quot;Burden&quot;</span>)</span></code></pre></div>
 <pre><code>## # of selected samples: 100</code></pre>
 <pre><code>## Using 8 CPU cores</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="variant-annotation.html#cb32-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
-<pre><code>##   n.site n.alt n.sample.alt        Score   Score.SE Score.Stat Score.pval
-## 1      2    12           12 -0.307814558 0.26357660 -1.1678372 0.24287243
-## 2      1     1            1  0.024908204 0.07345671  0.3390868 0.73454432
-## 3      1     2            2  0.200506079 0.11801693  1.6989604 0.08932665
-## 4      1     6            6 -0.106628030 0.17547492 -0.6076540 0.54341700
-## 5      0     0            0           NA         NA         NA         NA
-## 6      2     4            4 -0.005743665 0.16583076 -0.0346357 0.97237023
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="variant-annotation.html#cb40-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>results)</span></code></pre></div>
+<pre><code>##   n.site n.alt n.sample.alt       Score  Score.SE  Score.Stat Score.pval
+## 1      2    12           12 -0.31440387 0.2637233 -1.19217330 0.23319330
+## 2      1     1            1  0.02586286 0.0734014  0.35234834 0.72457704
+## 3      1     2            2  0.20290867 0.1181066  1.71801312 0.08579422
+## 4      1     6            6 -0.10625716 0.1755801 -0.60517765 0.54506096
+## 5      0     0            0          NA        NA          NA         NA
+## 6      2     4            4 -0.00336988 0.1659474 -0.02030691 0.98379854
 ##          Est    Est.SE          PVE
-## 1 -4.4307319  3.793964 1.515382e-02
-## 2  4.6161448 13.613460 1.277554e-03
-## 3 14.3959044  8.473361 3.207185e-02
-## 4 -3.4629107  5.698820 4.102704e-03
+## 1 -4.5205460  3.791853 1.579196e-02
+## 2  4.8002943 13.623717 1.379436e-03
+## 3 14.5462937  8.466928 3.279519e-02
+## 4 -3.4467324  5.695406 4.069331e-03
 ## 5         NA        NA           NA
-## 6 -0.2088617  6.030244 1.332924e-05</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="variant-annotation.html#cb34-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
+## 6 -0.1223696  6.026005 4.581895e-06</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="variant-annotation.html#cb42-1" tabindex="-1"></a><span class="fu">head</span>(assoc<span class="sc">$</span>variantInfo)</span></code></pre></div>
 <pre><code>## [[1]]
 ##   variant.id chr    pos allele.index n.obs  freq MAC weight
 ## 1          1   1 970546            1   100 0.015   3      1
@@ -373,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="aggregating-and-filtering-variants-using-annotation" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Aggregating and filtering variants using annotation<a href="variant-annotation.html#aggregating-and-filtering-variants-using-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Alternatively, we may want to import annotation from other software, such as ANNOVAR or WGSA. The output formats of variant annotation software can be quite complex, but for this exercise we use fairly simple tab-separated text files.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="variant-annotation.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="variant-annotation.html#cb44-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:AnnotationDbi&#39;:
@@ -406,16 +466,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="variant-annotation.html#cb48-1" tabindex="-1"></a>snv_annotation <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/snv_parsed.tsv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">na.strings=</span><span class="st">&quot;.&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
-<span id="cb48-2"><a href="variant-annotation.html#cb48-2" tabindex="-1"></a>indel_annotation <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/indel_parsed.tsv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">na.strings=</span><span class="st">&quot;.&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
-<span id="cb48-3"><a href="variant-annotation.html#cb48-3" tabindex="-1"></a>combined_annotation <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(snv_annotation, indel_annotation)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="variant-annotation.html#cb56-1" tabindex="-1"></a>snv_annotation <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/snv_parsed.tsv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">na.strings=</span><span class="st">&quot;.&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
+<span id="cb56-2"><a href="variant-annotation.html#cb56-2" tabindex="-1"></a>indel_annotation <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/indel_parsed.tsv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">na.strings=</span><span class="st">&quot;.&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
+<span id="cb56-3"><a href="variant-annotation.html#cb56-3" tabindex="-1"></a>combined_annotation <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(snv_annotation, indel_annotation)</span>
+<span id="cb56-4"><a href="variant-annotation.html#cb56-4" tabindex="-1"></a><span class="fu">head</span>(combined_annotation)</span></code></pre></div>
+<pre><code>##   CHROM      POS REF ALT VEP_ensembl_Gene_ID VEP_ensembl_Consequence CADD_phred
+## 1    22 15319214   C   G                &lt;NA&gt;      intergenic_variant      1.218
+## 2    22 15355706   T   C                &lt;NA&gt;      intergenic_variant         NA
+## 3    22 15360561   A   G                &lt;NA&gt;      intergenic_variant      4.624
+## 4    22 15360561   A   T                &lt;NA&gt;      intergenic_variant      3.807
+## 5    22 15437106   T   C                &lt;NA&gt;      intergenic_variant      3.885
+## 6    22 15589963   G   T     ENSG00000230643 downstream_gene_variant         NA</code></pre>
 <p>Here we remove variants that are not associated with a gene, group the variants by gene, and filter the variants for intron_variants with a CADD_phred score greater than 3 in just a few lines of code:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="variant-annotation.html#cb49-1" tabindex="-1"></a>combined_annotation <span class="sc">%&gt;%</span> </span>
-<span id="cb49-2"><a href="variant-annotation.html#cb49-2" tabindex="-1"></a>  <span class="fu">filter</span>(VEP_ensembl_Gene_ID <span class="sc">!=</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># remove variants not annotated with a Gene_ID</span></span>
-<span id="cb49-3"><a href="variant-annotation.html#cb49-3" tabindex="-1"></a>  <span class="fu">group_by</span>(VEP_ensembl_Gene_ID) <span class="sc">%&gt;%</span> <span class="co"># aggregate by gene</span></span>
-<span id="cb49-4"><a href="variant-annotation.html#cb49-4" tabindex="-1"></a>  <span class="fu">filter</span>(CADD_phred <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="co"># filter variants to keep only CADD_phred greater than 3</span></span>
-<span id="cb49-5"><a href="variant-annotation.html#cb49-5" tabindex="-1"></a>  <span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(VEP_ensembl_Consequence, <span class="st">&quot;intron_variant&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># keep intron variants</span></span>
-<span id="cb49-6"><a href="variant-annotation.html#cb49-6" tabindex="-1"></a>  <span class="fu">glimpse</span>() <span class="co"># view the result - 592 variants</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="variant-annotation.html#cb58-1" tabindex="-1"></a>combined_annotation <span class="sc">%&gt;%</span> </span>
+<span id="cb58-2"><a href="variant-annotation.html#cb58-2" tabindex="-1"></a>  <span class="fu">filter</span>(VEP_ensembl_Gene_ID <span class="sc">!=</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># remove variants not annotated with a Gene_ID</span></span>
+<span id="cb58-3"><a href="variant-annotation.html#cb58-3" tabindex="-1"></a>  <span class="fu">group_by</span>(VEP_ensembl_Gene_ID) <span class="sc">%&gt;%</span> <span class="co"># aggregate by gene</span></span>
+<span id="cb58-4"><a href="variant-annotation.html#cb58-4" tabindex="-1"></a>  <span class="fu">filter</span>(CADD_phred <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="co"># filter variants to keep only CADD_phred greater than 3</span></span>
+<span id="cb58-5"><a href="variant-annotation.html#cb58-5" tabindex="-1"></a>  <span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(VEP_ensembl_Consequence, <span class="st">&quot;intron_variant&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># keep intron variants</span></span>
+<span id="cb58-6"><a href="variant-annotation.html#cb58-6" tabindex="-1"></a>  <span class="fu">glimpse</span>() <span class="co"># view the result - 592 variants</span></span></code></pre></div>
 <pre><code>## Rows: 592
 ## Columns: 7
 ## Groups: VEP_ensembl_Gene_ID [170]
@@ -427,16 +495,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ VEP_ensembl_Consequence &lt;chr&gt; &quot;intron_variant,NMD_transcript_variant&quot;, &quot;intr…
 ## $ CADD_phred              &lt;dbl&gt; 3.612, 3.612, 9.729, 3.895, 7.530, 5.332, 5.33…</code></pre>
 <p>Now that you’ve got a set of variants that you can aggregate into genic units, the data needs to be reformatted for input to the GENESIS analysis pipeline. The input to the GENESIS pipeline is a data frame with variables called <code>group_id</code>, <code>chr</code>, <code>pos</code>, <code>ref</code>, and <code>alt</code>. Prepare this data frame and save it for testing (You do not need to filter the variants for this exercise):</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="variant-annotation.html#cb51-1" tabindex="-1"></a>aggregates <span class="ot">&lt;-</span></span>
-<span id="cb51-2"><a href="variant-annotation.html#cb51-2" tabindex="-1"></a>  combined_annotation <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="variant-annotation.html#cb51-3" tabindex="-1"></a>  <span class="fu">filter</span>(VEP_ensembl_Gene_ID <span class="sc">!=</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># remove variants not annotated with a Gene_ID</span></span>
-<span id="cb51-4"><a href="variant-annotation.html#cb51-4" tabindex="-1"></a>  <span class="fu">group_by</span>(VEP_ensembl_Gene_ID) <span class="sc">%&gt;%</span> <span class="co"># aggregate by gene</span></span>
-<span id="cb51-5"><a href="variant-annotation.html#cb51-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">group_id =</span> VEP_ensembl_Gene_ID,</span>
-<span id="cb51-6"><a href="variant-annotation.html#cb51-6" tabindex="-1"></a>         <span class="at">chr =</span> CHROM,</span>
-<span id="cb51-7"><a href="variant-annotation.html#cb51-7" tabindex="-1"></a>         <span class="at">pos =</span> POS,</span>
-<span id="cb51-8"><a href="variant-annotation.html#cb51-8" tabindex="-1"></a>         <span class="at">ref =</span> REF,</span>
-<span id="cb51-9"><a href="variant-annotation.html#cb51-9" tabindex="-1"></a>         <span class="at">alt =</span> ALT) <span class="sc">%&gt;%</span></span>
-<span id="cb51-10"><a href="variant-annotation.html#cb51-10" tabindex="-1"></a>  glimpse <span class="co"># inspect the tibble</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="variant-annotation.html#cb60-1" tabindex="-1"></a>aggregates <span class="ot">&lt;-</span></span>
+<span id="cb60-2"><a href="variant-annotation.html#cb60-2" tabindex="-1"></a>  combined_annotation <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="variant-annotation.html#cb60-3" tabindex="-1"></a>  <span class="fu">filter</span>(VEP_ensembl_Gene_ID <span class="sc">!=</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># remove variants not annotated with a Gene_ID</span></span>
+<span id="cb60-4"><a href="variant-annotation.html#cb60-4" tabindex="-1"></a>  <span class="fu">group_by</span>(VEP_ensembl_Gene_ID) <span class="sc">%&gt;%</span> <span class="co"># aggregate by gene</span></span>
+<span id="cb60-5"><a href="variant-annotation.html#cb60-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">group_id =</span> VEP_ensembl_Gene_ID,</span>
+<span id="cb60-6"><a href="variant-annotation.html#cb60-6" tabindex="-1"></a>         <span class="at">chr =</span> CHROM,</span>
+<span id="cb60-7"><a href="variant-annotation.html#cb60-7" tabindex="-1"></a>         <span class="at">pos =</span> POS,</span>
+<span id="cb60-8"><a href="variant-annotation.html#cb60-8" tabindex="-1"></a>         <span class="at">ref =</span> REF,</span>
+<span id="cb60-9"><a href="variant-annotation.html#cb60-9" tabindex="-1"></a>         <span class="at">alt =</span> ALT) <span class="sc">%&gt;%</span></span>
+<span id="cb60-10"><a href="variant-annotation.html#cb60-10" tabindex="-1"></a>  glimpse <span class="co"># inspect the tibble</span></span></code></pre></div>
 <pre><code>## Rows: 2,603
 ## Columns: 5
 ## Groups: group_id [598]
@@ -446,12 +514,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ ref      &lt;chr&gt; &quot;G&quot;, &quot;A&quot;, &quot;A&quot;, &quot;C&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;…
 ## $ alt      &lt;chr&gt; &quot;T&quot;, &quot;G&quot;, &quot;G&quot;, &quot;T&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;…</code></pre>
 <p>You can also compute some summary information about these aggregates, such as counting how many genic units we’re using:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="variant-annotation.html#cb53-1" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(aggregates<span class="sc">$</span>group_id))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="variant-annotation.html#cb62-1" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(aggregates<span class="sc">$</span>group_id))</span></code></pre></div>
 <pre><code>## [1] 598</code></pre>
 <p>We can look at the distribution of the number of variants per aggregation unit:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="variant-annotation.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb55-2"><a href="variant-annotation.html#cb55-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> aggregates <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group_id) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span>
-<span id="cb55-3"><a href="variant-annotation.html#cb55-3" tabindex="-1"></a><span class="fu">ggplot</span>(counts, <span class="fu">aes</span>(<span class="at">x =</span> n)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="variant-annotation.html#cb64-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb64-2"><a href="variant-annotation.html#cb64-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> aggregates <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group_id) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb64-3"><a href="variant-annotation.html#cb64-3" tabindex="-1"></a><span class="fu">ggplot</span>(counts, <span class="fu">aes</span>(<span class="at">x =</span> n)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/plot_agg_units-1.png" alt="" width="672" /></p>
 
 </div>

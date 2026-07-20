@@ -20,7 +20,10 @@ Data used is located in the [github repository](https://github.com/smgogarten/GE
 
 Slides for lectures are linked below in the schedule.
 
-Background material (not covered in workshop): [GWAS crash course](https://drive.google.com/file/d/1jIAraJ2g4B9iMaw4ADH_lerWic11fxCd/view)
+Background material (not covered in workshop): 
+- [GWAS crash course](https://drive.google.com/file/d/1jIAraJ2g4B9iMaw4ADH_lerWic11fxCd/view)
+- [Variant annotation](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf) ([video](https://washington.zoom.us/rec/share/5cpzcuntpklJW8_K7mKPZ7U4RY7-T6a81CZLqfcLmEZ4UtOvefz1dn05i3eFNAjJ?startTime=1595707556000))
+- the SISG 2020 "Computational Pipeline for WGS Data" class with videos: https://uw-gac.github.io/SISG_2020
 
 ## Schedule
 
@@ -68,3 +71,8 @@ If you are new to R, you might find the following material helpful:
 - [Introduction to R](http://faculty.washington.edu/kenrice/rintro/) 
 - Graphics with [ggplot2](https://ggplot2.tidyverse.org/) tutorial
 - Data manipulation with [dplyr](http://dplyr.tidyverse.org/)
+
+If you have access to a HPC cluster or want more information on running 
+GENESIS functions in parallel on your computer, read about the [BiocParallel](https://bioconductor.org/packages/BiocParallel) package. Each GENESIS function
+takes a BiocParallel parameter object as an optional input, which you can customize to
+your computing setup.

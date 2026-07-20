@@ -33,8 +33,15 @@ gr
 
 # find variants that overlap with each gene
 txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+txdb
+head(transcripts(txdb))
+
 gr <- renameSeqlevels(gr, paste0("chr", seqlevels(gr)))
+head(gr)
+
 ts <- transcriptsByOverlaps(txdb, gr, columns="GENEID")
+ts
+
 # simplistic example - define genes as overlapping transcripts
 genes <- reduce(ts)
 genes <- renameSeqlevels(genes, sub("chr", "", seqlevels(genes)))
@@ -65,6 +72,7 @@ library(dplyr)
 snv_annotation <- read.table("data/snv_parsed.tsv", sep="\t", na.strings=".", header=TRUE, as.is=TRUE)
 indel_annotation <- read.table("data/indel_parsed.tsv", sep="\t", na.strings=".", header=TRUE, as.is=TRUE)
 combined_annotation <- bind_rows(snv_annotation, indel_annotation)
+head(combined_annotation)
 ```
 
 Here we remove variants that are not associated with a gene, group the variants by gene, and filter the variants for intron_variants with a CADD_phred score greater than 3 in just a few lines of code:
